@@ -20,13 +20,22 @@ function ToolPage() {
     const { inputTopic, setInputTopic,
         inputDescription, setInputDescription,
         loading, generateContent,
-        setAiPrompt } = useContext(Context)
+        setAiPrompt, deductCredits } = useContext(Context)
 
 
     useEffect(() => {
         const aiPrompt = tool.aiPrompt
         setAiPrompt(aiPrompt)
     }, [tool])
+
+    const handleGenerateContent = async () => {
+        try {
+            await deductCredits(50); // Deduct 50 credits
+        } catch (error) {
+            alert(error.message || "Failed to deduct credits.");
+        }
+        generateContent();
+    }
 
     return (
         <ContentContainer>
@@ -62,7 +71,7 @@ function ToolPage() {
                                 onChange={(e) => setInputDescription(e.target.value)}
                             ></textarea>
                         </div>
-                        <button className='bg-primary text-white rounded py-2 flex items-center justify-center min-h-8' onClick={() => generateContent()}>
+                        <button className='bg-primary text-white rounded py-2 flex items-center justify-center min-h-8' onClick={handleGenerateContent}>
                             {loading ?
                                 <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
                                 : 'Generate'

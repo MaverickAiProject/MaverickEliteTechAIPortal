@@ -4,10 +4,10 @@ import { Context } from "../context/Context";
 function CreditProgressBar() {
     const { credits, maxLimit } = useContext(Context);
 
-    const progressPercentage = Math.min((credits / maxLimit) * 100, 100);
+    const progressPercentage = Math.min(((credits - 200) / maxLimit) * 100, 100);
 
     return (
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-lg mx-auto bg-gray-200 p-[0.6px] rounded-full">
             <div className="relative w-full h-[5px] bg-gray-200 rounded-lg overflow-hidden">
                 <div
                     style={{ width: `${progressPercentage}%` }}

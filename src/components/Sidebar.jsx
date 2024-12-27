@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaHome } from "react-icons/fa";
 import { SiCashapp } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
 import { FiCpu } from "react-icons/fi";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Context } from "../context/Context";
+import CreditProgressBar from "./CreditsBalance";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -29,8 +31,7 @@ function Sidebar() {
         },
     ];
 
-    const rangeValue = 60
-
+    const { credits, maxLimit } = useContext(Context);
     const navigate = useNavigate();
 
     return (
@@ -57,17 +58,9 @@ function Sidebar() {
             </nav>
             <div className="flex flex-col gap-2 items-center">
                 <div className="bg-primary text-white w-full rounded-lg p-2">
-                    <h2 className="-mb-2 text-xl"><strong>Credits</strong></h2>
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={rangeValue}
-                        readOnly
-                        style={{ "--range-value": `${(rangeValue / 100) * 100}%` }}
-                        className="w-full"
-                    />
-                    <p className="text-xs">630/1000 Credits Left</p>
+                    <h2 className="mb-1 text-xl"><strong>Credits</strong></h2>
+                    <CreditProgressBar />
+                    <p className=' text-xs mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
                 </div>
                 <div className="bg-grayCard w-full text-center py-2 rounded-lg cursor-pointer" onClick={() => navigate('/billing')}>
                     <p className="text-primary">Buy more credits</p>

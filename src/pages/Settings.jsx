@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
-import ContentContainer from '../components/ContentContainer';
-import GradientBox from '../components/GradientBox';
-import GradientInnerTitle from '../components/GradientInnerTitle';
-import { images } from '../assets/images';
-import { Context } from '../context/Context';
+import React, { useContext } from "react";
+import ContentContainer from "../components/ContentContainer";
+import GradientBox from "../components/GradientBox";
+import GradientInnerTitle from "../components/GradientInnerTitle";
+import { images } from "../assets/images";
+import { Context } from "../context/Context";
 
 function Settings() {
-
-    const { userDetails, status, handleLogout } = useContext(Context);
+    const { handleLogout, userDetails, authorizedUser } = useContext(Context);
+    console.log(userDetails)
 
     return (
         <ContentContainer>
             <GradientBox>
                 <GradientInnerTitle
                     icon={images.profile_logo}
-                    title={'Welcome to Your Profile'}
-                    description={'View and manage your account details, status, and other information.'}
+                    title={"Welcome to Your Profile"}
+                    description={"View and manage your account details, status, and other information."}
                 />
             </GradientBox>
 
@@ -32,7 +32,7 @@ function Settings() {
                         <span className="font-semibold">Phone Number:</span> {userDetails?.number || "N/A"}
                     </p>
                     <p className="text-lg text-gray-800 dark:text-dark-textPrimary">
-                        <span className="font-semibold">Verification Status:</span> {status || "Loading..."}
+                        <span className="font-semibold">Verification Status:</span> {authorizedUser?.emailVerified ? "Verified" : "Not Verified"}
                     </p>
                 </div>
                 <button
