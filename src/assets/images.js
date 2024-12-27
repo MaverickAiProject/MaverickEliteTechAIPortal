@@ -1,0 +1,38 @@
+import logo_purple from "./logo_purple.png";
+import logo_purple_transparent from "./logo_purple_transparent.png";
+import billing_logo from "./billing_logo.png";
+import profile_logo from "./profile_logo.png";
+
+export const images = {
+  logo_purple,
+  logo_purple_transparent,
+  billing_logo,
+  profile_logo,
+};
+
+// tools images
+import blog_content from "./tools images/blog_content.png";
+import keywords_generator from "./tools images/keywords_generator.jpeg";
+import insta_reels_ideas from "./tools images/instagram_reels_ideas.png";
+import instagram_hashtags from "./tools images/instagram_hashtags.png";
+import instagram_post_description from "./tools images/instagram_post_description.png";
+import youtube_videos_ideas from "./tools images/youtube_videos_ideas.png";
+import youtube_seo_title from "./tools images/youtube_seo_title.png";
+import youtube_description from "./tools images/youtube_description.png";
+import youtube_hashtags from "./tools images/youtube_hashtags.png";
+import blog_title from "./tools images/blog_title.png";
+import blog_topic_ideas from "./tools images/blog_topic_ideas.png";
+
+export const TOOLS_IMAGES = {
+  blog_content,
+  keywords_generator,
+  insta_reels_ideas,
+  instagram_hashtags,
+  instagram_post_description,
+  youtube_videos_ideas,
+  youtube_seo_title,
+  youtube_description,
+  youtube_hashtags,
+  blog_title,
+  blog_topic_ideas,
+};
