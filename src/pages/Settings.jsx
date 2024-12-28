@@ -7,7 +7,7 @@ import { Context } from "../context/Context";
 
 function Settings() {
     const { handleLogout, userDetails, authorizedUser } = useContext(Context);
-    console.log(userDetails)
+    // console.log(userDetails)
 
     return (
         <ContentContainer>

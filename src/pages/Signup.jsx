@@ -19,7 +19,7 @@ function Signup() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { setAuthorizedUser, authorizedUser, newUser, setNewUser } = useContext(Context)
+    const { setAuthorizedUser, authorizedUser, newUser, setNewUser, fetchUserData } = useContext(Context)
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -66,14 +66,13 @@ function Signup() {
                 if (newUser.emailVerified) {
                     setVerificationStatus(true);
                     clearInterval(interval);
+                    fetchUserData(newUser)
                     setAuthorizedUser(newUser);
-                    console.log('signup = ' + authorizedUser)
+                    console.log('signup = ' + newUser)
                     navigate('/');
                 }
             }, 5000);
-
             return () => clearInterval(interval);
-
         }
     }, [newUser]);
 

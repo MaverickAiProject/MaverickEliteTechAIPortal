@@ -34,7 +34,6 @@ function ToolPage() {
         } catch (error) {
             alert(error.message || "Failed to deduct credits.");
         }
-        generateContent();
     }
 
     return (

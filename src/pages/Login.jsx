@@ -74,7 +74,7 @@ function Login() {
                     >
                         {loading ?
                             <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
-                            : 'Signup'
+                            : 'Login'
                         }
                     </button>
                 </form>

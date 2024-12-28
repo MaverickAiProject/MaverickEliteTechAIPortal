@@ -4,6 +4,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { MdContentCopy } from "react-icons/md";
 import { FaCheck } from "react-icons/fa6";
 import { Editor } from '@toast-ui/react-editor';
+import { toast } from "react-toastify";
 
 function TextEditor() {
     const editorRef = useRef();
@@ -13,8 +14,8 @@ function TextEditor() {
     const handleCopy = async () => {
 
         if (!result) {
-            alert("Please generate content before copying.")
-            return
+            toast.error("Please generate content before copying.")
+            return;
         }
 
         try {
@@ -25,7 +26,7 @@ function TextEditor() {
                 setIsCopied(false);
             }, 2000);
         } catch (error) {
-            console.error("Failed to copy text: ", error);
+            toast.error("Failed to copy text: ", error)
         }
     };
 

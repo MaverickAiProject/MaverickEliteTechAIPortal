@@ -2,10 +2,15 @@ import { createContext, useEffect, useState } from "react";
 import { runSpecial } from "../config/geminiAPI";
 import { auth, db } from "../firebase.config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 export const Context = createContext();
 
 const ContextProvider = (props) => {
+
+    const handleError = (message) => {
+        toast.error(message)
+    }
 
     const [newUser, setNewUser] = useState()
     const [authorizedUser, setAuthorizedUser] = useState(null);
@@ -36,10 +41,9 @@ const ContextProvider = (props) => {
     // Monitor Firebase authentication state changes
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            console.log(user)
+            // console.log(user)
             if (user?.emailVerified === false) {
                 setNewUser(user)
-                navigate('/signup')
                 setAuthorizedUser(null)
             } else {
                 setAuthorizedUser(user);
@@ -70,26 +74,6 @@ const ContextProvider = (props) => {
     const [credits, setCredits] = useState();
     const [maxLimit, setMaxLimit] = useState(1000);
 
-    useEffect(() => {
-        setCredits(userDetails.credits)
-    }, [userDetails])
-
-    // Generate AI content
-    const generateContent = async () => {
-        setLoading(true);
-        try {
-            const result = await runSpecial(aiPrompt, inputTopic, inputDescription);
-            setResult(result);
-        } catch (error) {
-            console.error("Error generating content:", error);
-        } finally {
-            setLoading(false);
-            setInputTopic("");
-            setInputDescription("");
-        }
-    };
-
-
     // Deduct credits from Firestore
     const deductCredits = async (amount) => {
         if (!authorizedUser) {
@@ -97,13 +81,19 @@ const ContextProvider = (props) => {
             return;
         }
 
+        setLoading(true);
+
         const userDocRef = doc(db, "Users", authorizedUser.uid);
+        const userDocSnap = await getDoc(userDocRef);
+        setCredits(userDocSnap.data().credits);
 
         try {
-            const currentCredits = credits || userDetails.credits;
+            const currentCredits = userDocSnap.data().credits;
 
             if (currentCredits < amount) {
-                throw new Error("Insufficient credits.");
+                handleError("Insufficient credits...Buy more credits to continue.")
+                setLoading(false);
+                return;
             }
 
             const newCredits = currentCredits - amount;
@@ -113,13 +103,35 @@ const ContextProvider = (props) => {
 
             // Update local state
             setCredits(newCredits);
+
             setUserDetails((prevDetails) => ({
                 ...prevDetails,
                 credits: newCredits,
             }));
 
+            generateContent();
+
         } catch (error) {
+            toast.error("Error deducting credits:", error)
             console.error("Error deducting credits:", error);
+        }
+    };
+
+    useEffect(() => {
+        setCredits(userDetails.credits)
+    }, [userDetails])
+
+    // Generate AI content
+    const generateContent = async () => {
+        try {
+            const result = await runSpecial(aiPrompt, inputTopic, inputDescription);
+            setResult(result);
+        } catch (error) {
+            console.error("Error generating content:", error);
+        } finally {
+            setLoading(false);
+            setInputTopic("");
+            setInputDescription("");
         }
     };
 
