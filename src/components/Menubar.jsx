@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRegCircleUser } from "react-icons/fa6";
 import { images } from '../assets/images';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { Context } from '../context/Context';
 
-function Menubar({ setOpen, open }) {
+function Menubar() {
 
+    const { setNavOpen, navOpen } = useContext(Context)
 
+    const toggleNavbar = () => {
+        setNavOpen((prev) => !prev); // Correctly toggling navOpen state
+    };
 
     return (
         <div className='flex h-16 py-3 fixed z-[1000] md:static bg-white px-6 justify-between items-center w-full border-b shadow-sm'>
-            <div onClick={() => setOpen(prev => !prev)} className='md:hidden' >
-                {open
+            <div onClick={toggleNavbar} className='md:hidden' >
+                {navOpen
                     ? <ImCross size={30} className='md:hidden' />
                     : <GiHamburgerMenu size={30} className='md:hidden' />
                 }

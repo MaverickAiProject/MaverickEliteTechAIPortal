@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 export const Context = createContext();
 
 const ContextProvider = (props) => {
+    // nav open state
+    const [navOpen, setNavOpen] = useState(false)
 
     const handleError = (message) => {
         toast.error(message)
@@ -139,6 +141,7 @@ const ContextProvider = (props) => {
 
 
     const contextValue = {
+        navOpen, setNavOpen,
         userDetails,
         handleLogout,
         authorizedUser,
