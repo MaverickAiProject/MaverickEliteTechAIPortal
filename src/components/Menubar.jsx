@@ -13,8 +13,14 @@ function Menubar() {
         setNavOpen((prev) => !prev); // Correctly toggling navOpen state
     };
 
+    const handleNav = () => {
+        if (navOpen) {
+            setNavOpen(false)
+        }
+    }
+
     return (
-        <div className='flex h-16 py-3 fixed z-[1000] md:static bg-white px-6 justify-between items-center w-full border-b shadow-sm'>
+        <div className='flex h-16 py-3 fixed z-[1000] md:static bg-white px-6 justify-between items-center w-full border-b shadow-sm' onClick={handleNav}>
             <div onClick={toggleNavbar} className='md:hidden' >
                 {navOpen
                     ? <ImCross size={30} className='md:hidden' />

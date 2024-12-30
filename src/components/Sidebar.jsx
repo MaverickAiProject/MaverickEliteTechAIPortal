@@ -31,7 +31,7 @@ function Sidebar() {
         },
     ];
 
-    const { navOpen } = useContext(Context)
+    const { navOpen, setNavOpen } = useContext(Context)
     const { credits, maxLimit } = useContext(Context);
     const navigate = useNavigate();
 
@@ -49,6 +49,7 @@ function Sidebar() {
                                         : "text-gray-700 dark:text-dark-textPrimary hover:bg-gray-200 dark:hover:bg-dark-primary-light"
                                     }`
                                 }
+                                onClick={() => setNavOpen(false)}
                             >
                                 <span className="mr-2">{menu.icon}</span>
                                 {menu.name}
