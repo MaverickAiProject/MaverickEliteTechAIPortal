@@ -8,6 +8,23 @@ import { toast } from "react-toastify";
 
 function TextEditor() {
     const editorRef = useRef();
+
+    const [editorHeight, setEditorHeight] = useState(`${window.innerHeight * 0.6}px`); // Default to 60% of viewport height
+
+    const adjustHeight = () => {
+        const newHeight = `${window.innerHeight * 0.6}px`;
+        setEditorHeight(newHeight);
+    };
+
+    useEffect(() => {
+        adjustHeight();
+        window.addEventListener("resize", adjustHeight);
+
+        return () => {
+            window.removeEventListener("resize", adjustHeight);
+        };
+    }, []);
+
     const { result } = useContext(Context);
     const [isCopied, setIsCopied] = useState(false);
 
@@ -50,7 +67,7 @@ function TextEditor() {
                     initialValue="Maverick's AI Generated content will appear here."
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
-                    height='400px'
+                    height={editorHeight}
                     onChange={() => (editorRef.current.getInstance().getMarkdown())}
                 />
             </div>

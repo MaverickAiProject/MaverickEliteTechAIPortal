@@ -7,7 +7,6 @@ import ContentContainer from '../components/ContentContainer'
 import TextEditor from '../components/TextEditor'
 import { Context } from '../context/Context'
 import ReactLoading from 'react-loading';
-import { toast } from "react-toastify";
 
 
 function ToolPage() {
@@ -22,7 +21,6 @@ function ToolPage() {
         inputDescription, setInputDescription,
         loading,
         setAiPrompt, deductCredits } = useContext(Context)
-
 
     useEffect(() => {
         const aiPrompt = tool.aiPrompt
@@ -79,7 +77,7 @@ function ToolPage() {
                         </button>
                     </div>
                 </div>
-                <div className='min-h-full md:flex-1 min-w-80 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
+                <div className='min-h-full md:flex-1 min-w-72 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
                     <TextEditor />
                 </div>
             </div>
