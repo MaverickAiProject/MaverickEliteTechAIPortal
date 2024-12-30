@@ -46,9 +46,9 @@ function ToolPage() {
                     description={tool.description}
                 />
             </GradientBox>
-            <div className='p-5 flex-col md:flex-row flex gap-4 h-[calc(100vh-10.5rem)] items-start'>
+            <div className='p-5 flex-col sm:flex-row flex gap-4 sm:h-[calc(100vh-10.5rem)] items-start'>
                 <div className='flex min-h-full md:w-auto w-full'>
-                    <div className='flex flex-col gap-4 bg-white p-5 rounded shadow-sm min-h-full w-full'>
+                    <div className='flex flex-col gap-4 bg-white p-5 rounded shadow-sm min-h-fit sm:min-h-full w-full'>
                         <div className='flex flex-col gap-2'>
                             <label htmlFor="idea-heading" className='font-semibold'>What is your content Topic?</label>
                             <input
@@ -79,7 +79,7 @@ function ToolPage() {
                         </button>
                     </div>
                 </div>
-                <div className='min-h-full md:flex-1 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
+                <div className='min-h-full md:flex-1 min-w-80 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
                     <TextEditor />
                 </div>
             </div>
