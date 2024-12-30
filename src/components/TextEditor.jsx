@@ -25,6 +25,14 @@ function TextEditor() {
         };
     }, []);
 
+    useEffect(() => {
+        // Remove focus when the editor loads
+        const editorInstance = editorRef.current?.getInstance();
+        if (editorInstance) {
+            editorInstance.blur(); // Blur the editor
+        }
+    }, []);
+
     const { result } = useContext(Context);
     const [isCopied, setIsCopied] = useState(false);
 
@@ -68,6 +76,7 @@ function TextEditor() {
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
                     height={editorHeight}
+                    autofocus={false}
                     onChange={() => (editorRef.current.getInstance().getMarkdown())}
                 />
             </div>
