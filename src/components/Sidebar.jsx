@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import CreditProgressBar from "./CreditsBalance";
 
-function Sidebar() {
+function Sidebar({ open }) {
     const NAV_MENUS = [
         {
             name: "Home",
@@ -35,7 +35,7 @@ function Sidebar() {
     const navigate = useNavigate();
 
     return (
-        <div className="w-56 bg-white dark:bg-dark-grayCard justify-between shadow-md p-4 mt-4 h-[calc(100vh-5rem)] flex flex-col">
+        <div className={`${open ? "left-0" : "-left-full"} transition-all duration-500 absolute md:relative h-full w-56 md:w-56 bg-white dark:bg-dark-grayCard justify-between shadow-md p-4 md:mt-4 md:h-[calc(100vh-5rem)] flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 md:pt-1 pt-20`}>
             <nav>
                 <ul className="space-y-2">
                     {NAV_MENUS.map((menu, index) => (

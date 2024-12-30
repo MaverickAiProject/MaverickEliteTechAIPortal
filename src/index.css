@@ -2,76 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="range"]::-ms-thumb {
-  opacity: 0;
-}
-
-/* Hide the thumb (dot) of the range input */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  /* Remove the default appearance */
-  appearance: none;
-  /* Remove the default appearance */
-  opacity: 0;
-}
-
-input[type="range"]::-moz-range-thumb {
-  opacity: 0;
-}
-
-/* Style the track of the range input (the unfilled part) */
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  /* Full width of the input */
-  height: 4px;
-  /* Track height */
-  background: #e0e7ff;
-  /* Light purple color for the unfilled part */
-  border-radius: 9999px;
-  /* Make the track rounded */
-}
-
-/* Style the filled part of the track */
-input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #e0e7ff;
-  /* Light purple color for the unfilled part */
-}
-
-input[type="range"]::-moz-range-track {
-  width: 100%;
-  /* Full width of the input */
-  height: 4px;
-  /* Track height */
-  background: #e0e7ff;
-  /* Light purple color for the unfilled part */
-  border-radius: 9999px;
-  /* Make the track rounded */
-}
-
-/* Add a filled color (white) for the value */
-input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(to right,
-      #ffffff 0%,
-      #ffffff var(--range-value),
-      #e0e7ff var(--range-value),
-      #e0e7ff 100%);
-}
-
-input[type="range"]::-moz-range-track {
-  background: linear-gradient(to right,
-      #ffffff 0%,
-      #ffffff var(--range-value),
-      #e0e7ff var(--range-value),
-      #e0e7ff 100%);
-}
-
-/* Remove the background color and border from the range input itself */
-input[type="range"] {
-  background: none;
-  border: none;
-  outline: none;
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -93,9 +23,28 @@ input[type="range"] {
   background: #5f13c5;
 }
 
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    display: none;
+  }
+}
+
 .gradient-background {
   background: rgb(149, 19, 197);
-  background: linear-gradient(171deg,
-      rgba(149, 19, 197, 1) 0%,
-      rgba(95, 19, 197, 1) 100%);
+  background: linear-gradient(
+    171deg,
+    rgba(149, 19, 197, 1) 0%,
+    rgba(95, 19, 197, 1) 100%
+  );
 }

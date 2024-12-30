@@ -7,6 +7,7 @@ import ContentContainer from '../components/ContentContainer'
 import TextEditor from '../components/TextEditor'
 import { Context } from '../context/Context'
 import ReactLoading from 'react-loading';
+import { toast } from "react-toastify";
 
 
 function ToolPage() {
@@ -19,7 +20,7 @@ function ToolPage() {
 
     const { inputTopic, setInputTopic,
         inputDescription, setInputDescription,
-        loading, generateContent,
+        loading,
         setAiPrompt, deductCredits } = useContext(Context)
 
 

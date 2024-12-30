@@ -96,6 +96,8 @@ const ContextProvider = (props) => {
                 return;
             }
 
+            await generateContent();
+
             const newCredits = currentCredits - amount;
 
             // Update Firestore
@@ -109,7 +111,7 @@ const ContextProvider = (props) => {
                 credits: newCredits,
             }));
 
-            generateContent();
+
 
         } catch (error) {
             toast.error("Error deducting credits:", error)

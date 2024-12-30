@@ -20,22 +20,22 @@ function Billing() {
                     description={'You can buy more credits if your balance is low and then enjoy.'}
                 />
             </GradientBox>
-            <div className='p-5 flex flex-wrap gap-4 '>
-                <div className='max-w-[500px] w-3/5 mx-auto'>
+            <div className='p-5 flex flex-wrap gap-4  '>
+                <div className='max-w-[500px] md:w-5/6 lg:w-3/5 w-[100%] mx-auto h-[calc(100vh-210px)] md:h-full'>
                     <div className='flex justify-between py-3 px-5 gap-6 bg-white items-center mb-3 shadow-sm rounded-lg'>
                         <div className='flex-1'>
-                            <h2 className='font-semibold text-lg mb-2'>Your Credits Balance</h2>
+                            <h2 className='font-semibold text-sm md:text-lg mb-2'>Your Credits Balance</h2>
                             <CreditProgressBar />
-                            <p className='text-gray-600 text-xs mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
+                            <p className='text-gray-600 md:text-xs text-[12px] mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
                         </div>
-                        <h1 className='text-5xl font-semibold'>{credits}</h1>
+                        <h1 className='md:text-5xl text-4xl font-semibold'>{credits}</h1>
                     </div>
 
-                    <div className='bg-primary text-white p-4 rounded-lg mb-3'>
+                    <div className='bg-primary text-white md:p-4 p-2 rounded-lg mb-3'>
                         <h3 className='mb-3 text-center'>Buy Credits</h3>
-                        <div className='flex gap-3 justify-center'>
+                        <div className='flex gap-3 justify-center flex-wrap'>
                             {offers.map((item, index) => (
-                                <div key={index} className='flex flex-col gap-3 justify-between text-center p-1 bg-white text-black rounded-lg flex-1 cursor-pointer'>
+                                <div key={index} className='flex flex-col gap-3 justify-between text-center p-1 bg-white text-black rounded-lg md:flex-1 cursor-pointer w-[45%] md:w-auto'>
                                     <div>
                                         <h4 className={`font-semibold text-base ${item.textColor}`}>{item.title}</h4>
                                         <p className='text-gray-500 text-xs'>{item.save}</p>
@@ -52,13 +52,13 @@ function Billing() {
 
                     <div className='bg-black text-[#fada00] flex justify-between p-3 gap-3 items-center rounded-lg'>
                         <div className='flex-1 text-left'>
-                            <h1 className='text-4xl mb-2 font-semibold'>Mega Gold Pack</h1>
+                            <h1 className='sm:text-4xl text-2xl mb-2 font-semibold'>Mega Gold Pack</h1>
                             <p>Super Savings of ₹ 80/-</p>
                         </div>
                         <div className='text-center'>
-                            <h1 className='text-4xl font-bold'>5000</h1>
-                            <p className='mb-2 text-sm'>Credits</p>
-                            <button className='bg-[#fada00] text-black px-4 py-1 rounded-2xl text-sm font-semibold'>Only ₹420</button>
+                            <h1 className='sm:text-4xl text-3xl font-bold'>5000</h1>
+                            <p className='mb-2 text-xs sm:text-sm'>Credits</p>
+                            <button className='bg-[#fada00] text-black sm:px-4 px-2 text-xs py-1 rounded-2xl sm:text-sm font-semibold'>Only ₹420</button>
                         </div>
                     </div>
                 </div>
