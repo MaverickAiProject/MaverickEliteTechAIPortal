@@ -19,7 +19,7 @@ function Signup() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { setAuthorizedUser, authorizedUser, newUser, setNewUser, fetchUserData } = useContext(Context)
+    const { setAuthorizedUser, newUser, setNewUser, fetchUserData } = useContext(Context)
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -84,7 +84,7 @@ function Signup() {
         <div className="flex items-center justify-center min-h-screen bg-dashboardBg dark:bg-dark-dashboardBg">
             {!newUser
                 &&
-                <div className="w-full max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md">
+                <div className="w-full max-w-[90%] sm:max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md">
                     <div>
                         <img src={images.logo_purple_transparent} alt="" className="w-[40%] mx-auto mb-2" />
                         <h1 className="text-2xl font-bold text-primary dark:text-dark-primary text-center">

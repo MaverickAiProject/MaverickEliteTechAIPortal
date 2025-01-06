@@ -64,7 +64,7 @@ function Sidebar() {
                     <CreditProgressBar />
                     <p className=' text-xs mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
                 </div>
-                <div className="bg-grayCard w-full text-center py-2 rounded-lg cursor-pointer" onClick={() => navigate('/billing')}>
+                <div className="bg-grayCard w-full text-center py-2 rounded-lg cursor-pointer" onClick={() => { navigate('/billing'); setNavOpen(false) }}>
                     <p className="text-primary">Buy more credits</p>
                 </div>
             </div>
