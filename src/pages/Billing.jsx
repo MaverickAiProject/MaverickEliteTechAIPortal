@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
@@ -8,7 +8,7 @@ import CreditProgressBar from '../components/CreditsBalance'
 import { Context } from '../context/Context'
 
 function Billing() {
-    const { credits, maxLimit } = useContext(Context);
+    const { credits, maxLimit, handleBuyCredits } = useContext(Context);
     const offers = OFFERS;
 
     return (
@@ -35,7 +35,11 @@ function Billing() {
                         <h3 className='mb-3 text-center'>Buy Credits</h3>
                         <div className='flex gap-3 justify-center flex-wrap'>
                             {offers.map((item, index) => (
-                                <div key={index} className='flex flex-col gap-3 justify-between text-center p-1 bg-white text-black rounded-lg md:flex-1 cursor-pointer w-[45%] md:w-auto'>
+                                <div
+                                    key={index}
+                                    className='flex flex-col gap-3 justify-between text-center p-1 bg-white text-black rounded-lg md:flex-1 cursor-pointer w-[45%] md:w-auto transition-all duration-300 hover:shadow-lg hover:shadow-purple-950 hover:bottom-2 relative bottom-0'
+                                    onClick={() => handleBuyCredits(item.amount)}
+                                >
                                     <div>
                                         <h4 className={`font-semibold text-base ${item.textColor}`}>{item.title}</h4>
                                         <p className='text-gray-500 text-xs'>{item.save}</p>
@@ -44,13 +48,16 @@ function Billing() {
                                         <h1 className='text-4xl font-bold'>{item.credits}</h1>
                                         <p>Credits</p>
                                     </div>
-                                    <button className={`text-white rounded-md py-1 font-semibold ${item.bgColor}`}>₹ {item.amount}</button>
+                                    <button className={`text-white rounded-md py-1 font-semibold ${item.bgColor}`} >₹ {item.amount}</button>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div className='bg-black text-[#fada00] flex justify-between p-3 gap-3 items-center rounded-lg'>
+                    <div
+                        className='bg-black text-[#fada00] flex justify-between p-3 gap-3 items-center rounded-lg cursor-pointer duration-300 hover:scale-105'
+                        onClick={() => handleBuyCredits(420)}
+                    >
                         <div className='flex-1 text-left'>
                             <h1 className='sm:text-4xl text-2xl mb-2 font-semibold'>Mega Gold Pack</h1>
                             <p>Super Savings of ₹ 80/-</p>

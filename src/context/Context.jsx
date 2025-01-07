@@ -10,16 +10,17 @@ const ContextProvider = (props) => {
     // nav open state
     const [navOpen, setNavOpen] = useState(false)
 
+    // Error Toast Message
     const handleError = (message) => {
         toast.error(message)
     }
 
+    // User Realted States
     const [newUser, setNewUser] = useState()
     const [authorizedUser, setAuthorizedUser] = useState(null);
     const [userDetails, setUserDetails] = useState("");
 
     // Fetch user details from Firestore
-
     const fetchUserData = async (user) => {
         if (!user) {
             setUserDetails("User not found");
@@ -43,7 +44,6 @@ const ContextProvider = (props) => {
     // Monitor Firebase authentication state changes
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            // console.log(user)
             if (user?.emailVerified === false) {
                 setNewUser(user)
                 setAuthorizedUser(null)
@@ -113,8 +113,6 @@ const ContextProvider = (props) => {
                 credits: newCredits,
             }));
 
-
-
         } catch (error) {
             toast.error("Error deducting credits:", error)
             console.error("Error deducting credits:", error);
@@ -139,6 +137,83 @@ const ContextProvider = (props) => {
         }
     };
 
+    // Payment 
+
+    const [cartItems, setCartItems] = useState()
+    const [amount, setAmount] = useState()
+
+    const buyNow = () => {
+        const options = {
+            key: "rzp_test_JcIZHitAFC4zRU",
+            amount: amount * 100,
+            currency: "INR",
+            name: "Maverick AI Portal",
+            description: "Purchase Credits",
+            handler: async (response) => {
+                const paymentId = response.razorpay_payment_id;
+                try {
+                    const userDocRef = doc(db, "Users", authorizedUser.uid);
+
+                    // Update Firestore with the purchased credits
+                    await updateDoc(userDocRef, {
+                        credits: credits + cartItems,
+                    });
+                    fetchUserData(authorizedUser)
+                    setMaxLimit(credits + cartItems)
+                    toast.success("Payment successful. Credits added successfully.")
+                    setAmount(0);
+                    setCartItems(0);
+
+                } catch (error) {
+                    console.error("Error updating credits:", error);
+                }
+            },
+            theme: {
+                color: "#5f13c5",
+            },
+            modal: {
+                ondismiss: () => {
+                    console.log("Payment popup closed.");
+                    toast.error("Payment unsuccessfull.")
+                    setAmount(0);
+                    setCartItems(0);
+                },
+            },
+        };
+
+        const rzp = new window.Razorpay(options);
+
+        rzp.on("payment.failed", (response) => {
+            console.error("Payment failed:", response.error);
+            alert("Payment failed. Please try again.");
+        });
+
+        rzp.open();
+    };
+
+    const handleBuyCredits = (val) => {
+        if (val === 50) {
+            setAmount(50);
+            setCartItems(500);
+        } else if (val === 85) {
+            setAmount(85);
+            setCartItems(1000);
+        } else if (val === 170) {
+            setAmount(170);
+            setCartItems(2000);
+        } else if (val === 420) {
+            setAmount(420);
+            setCartItems(5000);
+        } else {
+            return;
+        }
+    };
+
+    useEffect(() => {
+        if (amount && cartItems) {
+            buyNow();
+        }
+    }, [amount, cartItems]);
 
     const contextValue = {
         navOpen, setNavOpen,
@@ -162,7 +237,11 @@ const ContextProvider = (props) => {
         setCredits,
         maxLimit,
         setMaxLimit,
-        deductCredits
+        deductCredits,
+
+        // credits
+        buyNow,
+        handleBuyCredits
     };
 
     return (
