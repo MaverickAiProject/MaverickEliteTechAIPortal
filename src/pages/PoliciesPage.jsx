@@ -43,7 +43,7 @@ function PoliciesPage() {
     return (
         <ContentContainer>
             <GradientBox>
-                <h1 className="font-semibold text-3xl">Information Pages</h1>
+                <h1 className="font-semibold text-3xl">Our Policies</h1>
             </GradientBox>
             <div className="p-5 flex flex-wrap gap-4 justify-center md:justify-start">
                 {INFO_CARDS.map((card, index) => (
