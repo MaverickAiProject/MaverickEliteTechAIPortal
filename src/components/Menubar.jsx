@@ -30,7 +30,7 @@ function Menubar() {
             </div>
             <img src={images.logo_purple_transparent} alt="" className='h-10' />
             <div className='flex gap-2 items-center cursor-pointer hover:text-primary transition-all duration-200' onClick={() => navigate('/settings')}>
-                <p>{userDetails.name}</p>
+                <p className='hidden md:block'>{userDetails.name}</p>
                 <FaRegCircleUser size={30} className='' />
             </div>
         </div>
