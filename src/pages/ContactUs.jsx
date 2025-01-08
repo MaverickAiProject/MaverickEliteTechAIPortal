@@ -21,15 +21,10 @@ function ContactUs() {
                     </p>
                     <div>
                         <h3 className='font-semibold text-lg text-primary'>Email Us:</h3>
-                        <p className='text-gray-600'>support@maverickai.com</p>
+                        <p className='text-gray-600'>maverick.aiproject@gmail.com</p>
                     </div>
                     <div>
-                        <h3 className='font-semibold text-lg text-primary'>Call Us:</h3>
-                        <p className='text-gray-600'>+1 (800) 123-4567</p>
-                    </div>
-                    <div>
-                        <h3 className='font-semibold text-lg text-primary'>Visit Us:</h3>
-                        <p className='text-gray-600'>123 Maverick Street, Innovation City, AI World</p>
+                        <img src="/contactUs.webp" alt="contact img" />
                     </div>
                 </div>
 

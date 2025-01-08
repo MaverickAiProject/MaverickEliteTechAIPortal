@@ -70,7 +70,7 @@ function PrivacyPolicy() {
                         <h2 className="text-2xl font-bold mb-4">Your Rights</h2>
                         <p>
                             You have the right to access, update, or delete your personal information. If you wish to exercise any of these rights,
-                            please contact us at <a href="mailto:support@maverickai.com" className="text-primary font-semibold">support@maverickai.com</a>.
+                            please contact us at <a href="mailto:maverick.aiproject@gmail.com" className="text-primary font-semibold">maverick.aiproject@gmail.com</a>.
                         </p>
                     </section>
 
@@ -89,10 +89,8 @@ function PrivacyPolicy() {
                         <p>
                             If you have any questions about this Privacy Policy or our data practices, please reach out to us:
                         </p>
-                        <ul className="list-disc list-inside ml-4 space-y-2">
-                            <li>Email: <a href="mailto:support@maverickai.com" className="text-primary font-semibold">support@maverickai.com</a></li>
-                            <li>Phone: +1 (800) 123-4567</li>
-                            <li>Address: 123 Maverick Street, Innovation City, AI World</li>
+                        <ul className="list-disc list-inside ml-4 space-y-2 mt-2">
+                            <li>Email: <a href="mailto:maverick.aiproject@gmail.com" className="text-primary font-semibold">maverick.aiproject@gmail.com</a></li>
                         </ul>
                     </section>
                 </div>

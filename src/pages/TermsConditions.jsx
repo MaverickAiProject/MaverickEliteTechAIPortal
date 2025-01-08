@@ -82,8 +82,8 @@ function TermsConditions() {
                 <section>
                     <h2 className="text-2xl font-bold mb-4">Governing Law</h2>
                     <p>
-                        These terms and conditions are governed by the laws of [Your Country/State]. Any disputes arising from the use of our website will be subject to
-                        the jurisdiction of the courts in [Your Country/State].
+                        These terms and conditions are governed by the laws of India. Any disputes arising from the use of our website will be subject to
+                        the jurisdiction of the courts in India.
                     </p>
                 </section>
 
@@ -103,9 +103,7 @@ function TermsConditions() {
                         If you have any questions about these terms and conditions, please contact us:
                     </p>
                     <ul className="list-disc list-inside ml-4 space-y-2">
-                        <li>Email: <a href="mailto:support@maverickai.com" className="text-primary font-semibold">support@maverickai.com</a></li>
-                        <li>Phone: +1 (800) 123-4567</li>
-                        <li>Address: 123 Maverick Street, Innovation City, AI World</li>
+                        <li>Email: <a href="mailto:maverick.aiproject@gmail.com" className="text-primary font-semibold">maverick.aiproject@gmail.com</a></li>
                     </ul>
                 </section>
             </div>

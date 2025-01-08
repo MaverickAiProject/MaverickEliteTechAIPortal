@@ -69,8 +69,7 @@ function RefundPolicy() {
                         or discrepancies related to your account or transactions promptly.
                     </p>
                     <ul className="list-disc list-inside ml-4 space-y-2">
-                        <li>Email: <a href="mailto:support@maverickai.com" className="text-primary font-semibold">support@maverickai.com</a></li>
-                        <li>Phone: +1 (800) 123-4567</li>
+                        <li>Email: <a href="mailto:support@maverickai.com" className="text-primary font-semibold">maverick.aiproject@gmail.com</a></li>
                     </ul>
                 </section>
             </div>
