@@ -6,6 +6,7 @@ import { FiCpu } from "react-icons/fi";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import CreditProgressBar from "./CreditsBalance";
+import { MdPolicy } from "react-icons/md";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -28,6 +29,11 @@ function Sidebar() {
             name: "Settings",
             icon: <IoSettingsSharp />,
             link: "/settings",
+        },
+        {
+            name: "Our Policies",
+            icon: <MdPolicy />,
+            link: "/PolicyPage",
         },
     ];
 

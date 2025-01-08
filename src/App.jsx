@@ -16,6 +16,7 @@ import PrivacyPoilcy from "./pages/PrivacyPoilcy";
 import TermsConditions from "./pages/TermsConditions";
 import RefundPolicy from "./pages/RefundPolicy";
 import ContactUs from "./pages/ContactUs";
+import PoliciesPage from "./pages/PoliciesPage";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/settings"
             element={!authorizedUser ? <Navigate to="/login" /> : <Settings />}
+          />
+          <Route
+            path="/PolicyPage"
+            element={!authorizedUser ? <Navigate to="/login" /> : <PoliciesPage />}
           />
         </Route>
 
