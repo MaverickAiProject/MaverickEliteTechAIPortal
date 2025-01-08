@@ -11,6 +11,11 @@ import ToolPage from "./pages/ToolPage";
 import { Context } from "./context/Context";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AboutUs from "./pages/AboutUs";
+import PrivacyPoilcy from "./pages/PrivacyPoilcy";
+import TermsConditions from "./pages/TermsConditions";
+import RefundPolicy from "./pages/RefundPolicy";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -27,6 +32,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route element={<Layout />}>
+          {/* Secured Routes */}
           <Route
             path="/"
             element={!authorizedUser ? <Navigate to="/login" /> : <Dashboard />}
@@ -49,6 +55,7 @@ function App() {
           />
         </Route>
 
+        {/* Login Routes */}
         <Route
           path="/login"
           element={authorizedUser ? <Navigate to="/" /> : <Login />}
@@ -57,6 +64,14 @@ function App() {
           path="/signup"
           element={authorizedUser ? <Navigate to="/" /> : <Signup />}
         />
+
+        {/* Local Details Routes */}
+        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/privacyPolicy" element={<PrivacyPoilcy />} />
+        <Route path="/t&c" element={<TermsConditions />} />
+        <Route path="/refundPolicy" element={<RefundPolicy />} />
+        <Route path="/contactUs" element={<ContactUs />} />
+
       </Routes>
     </>
   );

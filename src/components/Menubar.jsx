@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Menubar() {
     const navigate = useNavigate()
-    const { setNavOpen, navOpen } = useContext(Context)
+    const { setNavOpen, navOpen, userDetails } = useContext(Context)
 
     const toggleNavbar = () => {
         setNavOpen((prev) => !prev); // Correctly toggling navOpen state
@@ -29,7 +29,10 @@ function Menubar() {
                 }
             </div>
             <img src={images.logo_purple_transparent} alt="" className='h-10' />
-            <FaRegCircleUser size={30} onClick={() => navigate('/settings')} className='cursor-pointer hover:text-primary transition-all duration-200' />
+            <div className='flex gap-2 items-center cursor-pointer hover:text-primary transition-all duration-200' onClick={() => navigate('/settings')}>
+                <p>{userDetails.name}</p>
+                <FaRegCircleUser size={30} className='' />
+            </div>
         </div>
     )
 }

@@ -167,6 +167,13 @@ function Signup() {
                             {error}
                         </p>
                     )}
+                    <div className="text-sm text-gray-600 flex gap-4 w-[90%] mx-auto flex-wrap items-center justify-center mt-3 border-t pt-3">
+                        <Link to={'/aboutUs'} className="hover:text-primary hover:border-b border-primary transition-all">About Us</Link>
+                        <Link to={'/contactUs'} className="hover:text-primary hover:border-b border-primary transition-all">Contact Us</Link>
+                        <Link to={'/t&c'} className="hover:text-primary hover:border-b border-primary transition-all">Terms & Conditions</Link>
+                        <Link to={'/privacyPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Privacy Policy</Link>
+                        <Link to={'/refundPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Refund Policy</Link>
+                    </div>
                 </div>
             }
             {newUser && !verificationStatus &&

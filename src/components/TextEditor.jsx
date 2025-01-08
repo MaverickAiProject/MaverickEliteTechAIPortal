@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 function TextEditor() {
     const editorRef = useRef();
 
-    const [editorHeight, setEditorHeight] = useState(`${window.innerHeight * 0.6}px`); // Default to 60% of viewport height
+    const [editorHeight, setEditorHeight] = useState(`${window.innerHeight * 0.6}px`);
 
     const adjustHeight = () => {
         const newHeight = `${window.innerHeight * 0.6}px`;
@@ -29,7 +29,7 @@ function TextEditor() {
         // Remove focus when the editor loads
         const editorInstance = editorRef.current?.getInstance();
         if (editorInstance) {
-            editorInstance.blur(); // Blur the editor
+            editorInstance.blur();
         }
     }, []);
 
@@ -76,7 +76,7 @@ function TextEditor() {
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
                     height={editorHeight}
-                    autofocus={false}
+                    autoFocus={false}
                     onChange={() => (editorRef.current.getInstance().getMarkdown())}
                 />
             </div>
