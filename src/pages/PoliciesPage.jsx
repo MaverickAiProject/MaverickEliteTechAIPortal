@@ -49,7 +49,7 @@ function PoliciesPage() {
                 {INFO_CARDS.map((card, index) => (
                     <div
                         key={index}
-                        className="max-w-[250px] bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition cursor-pointer"
+                        className="w-full sm:max-w-[250px] bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition cursor-pointer"
                         onClick={() => window.open(card.redirectTo, "_blank")}
                     >
                         <img

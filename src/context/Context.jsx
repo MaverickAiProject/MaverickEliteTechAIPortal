@@ -145,7 +145,7 @@ const ContextProvider = (props) => {
 
     const buyNow = () => {
         const options = {
-            key: "rzp_test_JcIZHitAFC4zRU",
+            key: "rzp_live_fD7GzfsSLYcwhn",
             amount: amount * 100,
             currency: "INR",
             name: "Maverick AI Portal",
@@ -194,8 +194,8 @@ const ContextProvider = (props) => {
 
     const handleBuyCredits = (val) => {
         if (val === 50) {
-            setAmount(50);
-            setCartItems(500);
+            setAmount(1);
+            setCartItems(1);
         } else if (val === 85) {
             setAmount(85);
             setCartItems(1000);
