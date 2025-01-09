@@ -77,6 +77,7 @@ function Signup() {
     }, [newUser]);
 
     const handleEmailChange = () => {
+        confirm("Are you sure you want to change your email?")
         setNewUser(null)
     }
 
@@ -140,7 +141,7 @@ function Signup() {
                                 htmlFor="terms"
                                 className="text-sm text-gray-700 dark:text-dark-textPrimary"
                             >
-                                I hereby declare that the email and phone number I have provided are true and authentic.
+                                I hereby declare that the email and phone number I have provided are true and authentic. I also agree to the <Link to={'/t&c'} className="text-primary underline">Terms & Conditions</Link>  and <Link to={'/privacyPolicy'} className="text-primary underline"> Privacy Policy</Link> of Maverick AI Portal.
                             </label>
                         </div>
 

@@ -11,7 +11,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
-    const { setAuthorizedUser } = useContext(Context);
+    const { setAuthorizedUser, fetchUserData } = useContext(Context);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -23,6 +23,7 @@ function Login() {
 
             if (user.emailVerified) {
                 setAuthorizedUser(user);
+                fetchUserData(user)
                 setLoading(false)
                 navigate("/");
 
