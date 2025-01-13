@@ -194,8 +194,8 @@ const ContextProvider = (props) => {
 
     const handleBuyCredits = (val) => {
         if (val === 50) {
-            setAmount(1);
-            setCartItems(1);
+            setAmount(50);
+            setCartItems(500);
         } else if (val === 85) {
             setAmount(85);
             setCartItems(1000);
