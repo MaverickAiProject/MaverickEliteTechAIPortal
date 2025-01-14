@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import CreditProgressBar from "./CreditsBalance";
 import { MdPolicy } from "react-icons/md";
+import { RiImageCircleAiFill } from "react-icons/ri";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -19,6 +20,11 @@ function Sidebar() {
             name: "AI Tools",
             icon: <FiCpu />,
             link: "/ai-tools",
+        },
+        {
+            name: "AI Images",
+            icon: <RiImageCircleAiFill />,
+            link: "/image-gen",
         },
         {
             name: "Billing",

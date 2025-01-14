@@ -17,6 +17,7 @@ import TermsConditions from "./pages/TermsConditions";
 import RefundPolicy from "./pages/RefundPolicy";
 import ContactUs from "./pages/ContactUs";
 import PoliciesPage from "./pages/PoliciesPage";
+import ImageGen from "./pages/ImageGen";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -45,6 +46,10 @@ function App() {
           <Route
             path="/ai-tools/:toolSlug"
             element={!authorizedUser ? <Navigate to="/login" /> : <ToolPage />}
+          />
+          <Route
+            path="/image-gen"
+            element={!authorizedUser ? <Navigate to="/login" /> : <ImageGen />}
           />
           <Route
             path="/billing"
