@@ -3,6 +3,7 @@ import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
 import aiImageGen from '../assets/tools images/ai image.png'
+import aiSec from '../assets/ai-sec.jpg'
 
 function ImageGen() {
 
@@ -70,48 +71,63 @@ function ImageGen() {
                     description={'Generate images using AI'}
                 />
             </GradientBox>
-            <div className="flex flex-col items-center justify-center py-10">
-                <h2 className="text-2xl font-bold text-[#5f13c5] mb-6">
-                    🚀 Welcome to the Beta Version of Our AI Image Generator!
-                </h2>
-                <p className="text-gray-600 mb-6 text-center max-w-md">
-                    Experience the magic of AI by generating stunning images from your prompts.
-                    This is a beta release, so feel free to explore and let your creativity flow!
-                </p>
-                <input
-                    type="text"
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Enter your prompt"
-                    className="w-80 p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
-                />
-                <button
-                    onClick={handleGenerate}
-                    disabled={loading}
-                    className={`px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
-                        }`}
-                >
-                    {loading ? "Generating..." : "Generate"}
-                </button>
-                {imageUrl && (
-                    <div className="mt-6 text-center">
-                        <img
-                            src={imageUrl}
-                            alt="Generated"
-                            className="max-w-full rounded-lg shadow-md border border-gray-200"
+            <div className="bg-[#e7effe] min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center gap-5 md:gap-10 p-6">
+                {/* Left Section */}
+                <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
+                    {/* Beta Version Card */}
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                        <h2 className="text-xl md:text-2xl text-center font-bold text-[#5f13c5] mb-4">
+                            🚀 Welcome to the Beta Version of Our AI Image Generator!
+                        </h2>
+                        <p className="text-gray-600 text-sm text-justify">
+                            Discover the power of AI to create stunning images from simple prompts.
+                            As this is a beta version, feel free to explore and share your feedback!
+                        </p>
+                    </div>
+
+                    {/* Input & Button Card */}
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                        <input
+                            type="text"
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                            placeholder="Enter your prompt"
+                            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
                         />
                         <button
-                            onClick={handleDownload}
-                            className="mt-4 px-6 py-2 bg-[#5f13c5] text-white font-medium rounded-lg shadow-md hover:bg-[#4a0fa3] transition-colors"
+                            onClick={handleGenerate}
+                            disabled={loading}
+                            className={`w-full px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
+                                }`}
                         >
-                            Download
+                            {loading ? "Generating..." : "Generate"}
                         </button>
+                        {error && <p className="mt-4 text-red-600">{error}</p>}
                     </div>
-                )}
-                {error && <p className="mt-4 text-red-600">{error}</p>}
+                </div>
+
+                {/* Right Section */}
+                <div className="w-full lg:w-1/2 flex justify-center items-center">
+                    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                        <img
+                            src={imageUrl || aiSec}
+                            alt="Generated"
+                            className="rounded-lg shadow-md w-full"
+                        />
+                        {imageUrl && (
+                            <button
+                                onClick={handleDownload}
+                                className="mt-4 w-full px-6 py-3 bg-[#5f13c5] text-white font-medium rounded-lg shadow-md hover:bg-[#4a0fa3] transition-colors"
+                            >
+                                Download
+                            </button>
+                        )}
+                    </div>
+                </div>
             </div>
+
         </ContentContainer>
     )
 }
