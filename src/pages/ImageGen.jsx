@@ -4,8 +4,10 @@ import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
 import aiImageGen from '../assets/tools images/ai image.png'
 import aiSec from '../assets/ai-sec.jpg'
+import pg from '/progress.gif'
 
 function ImageGen() {
+    console.log("API Key:", import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API);
 
     const [prompt, setPrompt] = useState("");
     const [imageUrl, setImageUrl] = useState(null);
@@ -18,7 +20,7 @@ function ImageGen() {
                 "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
                 {
                     headers: {
-                        Authorization: "Bearer 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",
+                        Authorization: "Bearer " + import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API,
                         "Content-Type": "application/json",
                     },
                     method: "POST",
@@ -34,6 +36,7 @@ function ImageGen() {
             return URL.createObjectURL(result);
         } catch (err) {
             setError(err.message);
+            console.log(err)
             setLoading(false);
         }
     };
@@ -57,7 +60,7 @@ function ImageGen() {
     const handleDownload = () => {
         const link = document.createElement("a");
         link.href = imageUrl;
-        link.download = "generated-image.png";
+        link.download = "Maverick-generated-image.png";
         link.click();
     };
 
@@ -111,11 +114,23 @@ function ImageGen() {
                 {/* Right Section */}
                 <div className="w-full lg:w-1/2 flex justify-center items-center">
                     <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                        <img
-                            src={imageUrl || aiSec}
-                            alt="Generated"
-                            className="rounded-lg shadow-md w-full"
-                        />
+                        {!loading ?
+                            <img
+                                src={imageUrl || aiSec}
+                                alt="Generated"
+                                className="rounded-lg shadow-md w-full"
+                            />
+                            : <div className='w-full flex flex-col h-[calc(60vh-2rem)] justify-center items-center'>
+                                <img
+                                    src={imageUrl || pg}
+                                    alt="Generated"
+                                    className="rounded-lg w-full max-w-44"
+                                />
+                                <h3 className='font-semibold mb-1'>Generating image...</h3>
+                                <p className='text-sm text-gray-500'>Don't refresh or close the page.</p>
+
+                            </div>
+                        }
                         {imageUrl && (
                             <button
                                 onClick={handleDownload}
@@ -133,3 +148,5 @@ function ImageGen() {
 }
 
 export default ImageGen
+
+
