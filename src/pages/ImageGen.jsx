@@ -7,7 +7,6 @@ import aiSec from '../assets/ai-sec.jpg'
 import pg from '/progress.gif'
 
 function ImageGen() {
-    console.log("API Key:", import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API);
 
     const [prompt, setPrompt] = useState("");
     const [imageUrl, setImageUrl] = useState(null);
@@ -20,7 +19,7 @@ function ImageGen() {
                 "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
                 {
                     headers: {
-                        Authorization: "Bearer " + import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API,
+                        Authorization: "Bearer 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",
                         "Content-Type": "application/json",
                     },
                     method: "POST",
@@ -148,5 +147,3 @@ function ImageGen() {
 }
 
 export default ImageGen
-
-
