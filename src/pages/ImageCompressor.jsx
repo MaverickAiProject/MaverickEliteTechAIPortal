@@ -147,7 +147,7 @@ function ImageCompressor() {
                         {compressedImage ? (
                             <>
                                 {loading
-                                    ? <div className='h-full flex flex-col items-center md:mt-[25%] '>
+                                    ? <div className='h-full flex flex-col items-center md:mt-[3rem]'>
                                         <img
                                             src={LOADING_GIFS.image_compress_loading} //  dummy image
                                             alt="loading"
@@ -179,7 +179,7 @@ function ImageCompressor() {
                             </>
                         ) : (
                             loading
-                                ? <div className='h-full flex flex-col items-center md:mt-[25%]'>
+                                ? <div className='h-full flex flex-col items-center md:mt-[3rem]'>
                                     <img
                                         src={LOADING_GIFS.image_compress_loading} //  dummy image
                                         alt="loading"
