@@ -18,6 +18,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ContactUs from "./pages/ContactUs";
 import PoliciesPage from "./pages/PoliciesPage";
 import ImageGen from "./pages/ImageGen";
+import ImageCompressor from "./pages/ImageCompressor";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -50,6 +51,10 @@ function App() {
           <Route
             path="/image-gen"
             element={!authorizedUser ? <Navigate to="/login" /> : <ImageGen />}
+          />
+          <Route
+            path="/image-compressor"
+            element={!authorizedUser ? <Navigate to="/login" /> : <ImageCompressor />}
           />
           <Route
             path="/billing"

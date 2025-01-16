@@ -7,11 +7,6 @@
   width: 5px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  /* border-radius: 10px; */
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #5f13c5;
@@ -27,13 +22,16 @@
   ::-webkit-scrollbar {
     display: none;
   }
+
   ::-webkit-scrollbar-track {
     display: none;
   }
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     display: none;
   }
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     display: none;
@@ -42,9 +40,12 @@
 
 .gradient-background {
   background: rgb(149, 19, 197);
-  background: linear-gradient(
-    171deg,
-    rgba(149, 19, 197, 1) 0%,
-    rgba(95, 19, 197, 1) 100%
-  );
+  background: linear-gradient(171deg,
+      rgba(149, 19, 197, 1) 0%,
+      rgba(95, 19, 197, 1) 100%);
+}
+
+
+input[type="range"] {
+  margin-left: 0px !important;
 }

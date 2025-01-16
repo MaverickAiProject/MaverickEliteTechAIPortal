@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
-import aiImageGen from '../assets/tools images/ai image.png'
 import aiSec from '../assets/ai-sec.jpg'
 import pg from '/progress.gif'
+import { TOOLS_IMAGES } from '../assets/images'
 
 function ImageGen() {
 
@@ -68,7 +68,7 @@ function ImageGen() {
         <ContentContainer>
             <GradientBox>
                 <GradientInnerTitle
-                    icon={aiImageGen}
+                    icon={TOOLS_IMAGES.ai_image_gen}
                     title={'AI Image Generator'}
                     description={'Generate images using AI'}
                 />

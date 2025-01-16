@@ -8,6 +8,7 @@ import { Context } from "../context/Context";
 import CreditProgressBar from "./CreditsBalance";
 import { MdPolicy } from "react-icons/md";
 import { RiImageCircleAiFill } from "react-icons/ri";
+import { FaCompressArrowsAlt } from "react-icons/fa";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -25,6 +26,11 @@ function Sidebar() {
             name: "AI Images",
             icon: <RiImageCircleAiFill />,
             link: "/image-gen",
+        },
+        {
+            name: "Image Compress",
+            icon: <FaCompressArrowsAlt />,
+            link: "/image-compressor",
         },
         {
             name: "Billing",
