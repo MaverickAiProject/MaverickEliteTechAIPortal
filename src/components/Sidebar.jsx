@@ -9,6 +9,7 @@ import CreditProgressBar from "./CreditsBalance";
 import { MdPolicy } from "react-icons/md";
 import { RiImageCircleAiFill } from "react-icons/ri";
 import { FaCompressArrowsAlt } from "react-icons/fa";
+import { RiVoiceprintFill } from "react-icons/ri";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -31,6 +32,11 @@ function Sidebar() {
             name: "Image Compress",
             icon: <FaCompressArrowsAlt />,
             link: "/image-compressor",
+        },
+        {
+            name: "Text to Voice",
+            icon: <RiVoiceprintFill />,
+            link: "/text-to-voice",
         },
         {
             name: "Billing",

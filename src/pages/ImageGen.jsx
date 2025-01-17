@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
-import aiSec from '../assets/ai-sec.jpg'
-import pg from '/progress.gif'
-import { TOOLS_IMAGES } from '../assets/images'
+import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images'
 
 function ImageGen() {
 
@@ -73,7 +71,7 @@ function ImageGen() {
                     description={'Generate images using AI'}
                 />
             </GradientBox>
-            <div className="bg-[#e7effe] min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center gap-5 md:gap-10 p-6">
+            <div className="bg-[#e7effe] min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3 md:gap-5 p-6">
                 {/* Left Section */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
                     {/* Beta Version Card */}
@@ -112,16 +110,16 @@ function ImageGen() {
 
                 {/* Right Section */}
                 <div className="w-full lg:w-1/2 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                    <div className="bg-white p-6 rounded-lg shadow-md w-full">
                         {!loading ?
                             <img
-                                src={imageUrl || aiSec}
+                                src={imageUrl || images.ai_image_dummy}
                                 alt="Generated"
                                 className="rounded-lg shadow-md w-full"
                             />
                             : <div className='w-full flex flex-col h-[calc(60vh-2rem)] justify-center items-center'>
                                 <img
-                                    src={imageUrl || pg}
+                                    src={imageUrl || LOADING_GIFS.progress}
                                     alt="Generated"
                                     className="rounded-lg w-full max-w-44"
                                 />

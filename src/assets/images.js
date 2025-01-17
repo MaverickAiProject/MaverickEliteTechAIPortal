@@ -2,7 +2,9 @@ import logo_purple from "./logo_purple.png";
 import logo_purple_transparent from "./logo_purple_transparent.png";
 import billing_logo from "./billing_logo.png";
 import profile_logo from "./profile_logo.png";
-import dummy_image from "./dummy.jpg";
+import dummy_image from "./dummy/dummy.jpg";
+import text_to_voice_dummy from "./text_to_voice.jpg";
+import ai_image_dummy from "./dummy/ai_image.jpg";
 
 export const images = {
   logo_purple,
@@ -10,6 +12,8 @@ export const images = {
   billing_logo,
   profile_logo,
   dummy_image,
+  text_to_voice_dummy,
+  ai_image_dummy,
 };
 
 // tools images
@@ -26,6 +30,7 @@ import blog_title from "./tools images/blog_title.png";
 import blog_topic_ideas from "./tools images/blog_topic_ideas.png";
 import image_compressor from "./tools images/image_compressor.png";
 import ai_image_gen from "./tools images/ai_image_gen.png";
+import text_to_voice from "./tools images/text_to_voice.png";
 
 export const TOOLS_IMAGES = {
   blog_content,
@@ -41,10 +46,16 @@ export const TOOLS_IMAGES = {
   blog_topic_ideas,
   image_compressor,
   ai_image_gen,
+  text_to_voice,
 };
 
-import image_compress_loading from "./image-compressing.gif";
+// Loading gifs
+import image_compress_loading from "./loaders/image-compressing.gif";
+import microphone from "./loaders/microphone.gif";
+import progress from "./loaders/progress.gif";
 
 export const LOADING_GIFS = {
   image_compress_loading,
+  microphone,
+  progress,
 };
