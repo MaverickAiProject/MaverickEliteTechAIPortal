@@ -31,7 +31,7 @@ function TextToVoice() {
 
         try {
             const response = await fetch(
-                `https://api.voicerss.org/?key=${import.meta.env.VITE_VOICERSS_API_KEY}&hl=${selectedLanguage}&v=${selectedVoice}&src=${encodeURIComponent(text)}&c=MP3`);
+                `https://api.voicerss.org/?key=${'a0cec6f432d745d19be0ae4323bbb5c0'}&hl=${selectedLanguage}&v=${selectedVoice}&src=${encodeURIComponent(text)}&c=MP3`);
 
             if (!response.ok) {
                 throw new Error("Failed to generate audio.");
@@ -65,7 +65,7 @@ function TextToVoice() {
                     description={'Generate speech from text using AI'}
                 />
             </GradientBox>
-            <div className="bg-[#e7effe] min-h-fit flex sm:flex-col flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-2 md:gap-4 p-6">
+            <div className="bg-[#e7effe] max-w-[1200px] mx-auto min-h-fit flex sm:flex-col flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-2 md:gap-4 p-6">
                 {/* Left Section */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
                     {/* Input & Button Card */}

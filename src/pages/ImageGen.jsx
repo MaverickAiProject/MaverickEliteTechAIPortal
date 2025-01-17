@@ -71,7 +71,7 @@ function ImageGen() {
                     description={'Generate images using AI'}
                 />
             </GradientBox>
-            <div className="bg-[#e7effe] min-h-screen flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3 md:gap-5 p-6">
+            <div className="bg-[#e7effe] max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3 md:gap-5 p-6">
                 {/* Left Section */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
                     {/* Beta Version Card */}
