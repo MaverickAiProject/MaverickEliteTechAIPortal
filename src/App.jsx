@@ -20,6 +20,7 @@ import PoliciesPage from "./pages/PoliciesPage";
 import ImageGen from "./pages/ImageGen";
 import ImageCompressor from "./pages/ImageCompressor";
 import TextToVoice from "./pages/TextToVoice";
+import YoutubeVideoGen from "./pages/YoutubeVideoGen";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -60,6 +61,10 @@ function App() {
           <Route
             path="/text-to-voice"
             element={!authorizedUser ? <Navigate to="/login" /> : <TextToVoice />}
+          />
+          <Route
+            path="/youtube-video-generator"
+            element={!authorizedUser ? <Navigate to="/login" /> : <YoutubeVideoGen />}
           />
           <Route
             path="/billing"

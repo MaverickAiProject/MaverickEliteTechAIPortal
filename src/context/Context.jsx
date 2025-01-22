@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { runSpecial } from "../config/geminiAPI";
 import { auth, db } from "../firebase.config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -7,6 +6,7 @@ import { toast } from "react-toastify";
 export const Context = createContext();
 
 const ContextProvider = (props) => {
+
     // nav open state
     const [navOpen, setNavOpen] = useState(false)
 
@@ -23,14 +23,13 @@ const ContextProvider = (props) => {
     // Fetch user details from Firestore
     const fetchUserData = async (user) => {
         if (!user) {
-            setUserDetails("User not found");
+            setUserDetails("User details not found");
             return;
         }
 
         try {
             const docRef = doc(db, "Users", user.uid);
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
                 setUserDetails(docSnap.data());
             } else {
@@ -65,26 +64,16 @@ const ContextProvider = (props) => {
         }
     };
 
-    // dsfsd
-    // AI-related state and functionality
-    const [loading, setLoading] = useState(false);
-    const [inputTopic, setInputTopic] = useState("");
-    const [inputDescription, setInputDescription] = useState("");
-    const [aiPrompt, setAiPrompt] = useState("");
-    const [result, setResult] = useState("");
-
     // Credits management
     const [credits, setCredits] = useState();
-    const [maxLimit, setMaxLimit] = useState(1000);
+    const [maxLimit, setMaxLimit] = useState();
 
     // Deduct credits from Firestore
     const deductCredits = async (amount) => {
         if (!authorizedUser) {
-            console.error("No user is logged in.");
+            toast.error("User not signed in!")
             return;
         }
-
-        setLoading(true);
 
         const userDocRef = doc(db, "Users", authorizedUser.uid);
         const userDocSnap = await getDoc(userDocRef);
@@ -95,11 +84,8 @@ const ContextProvider = (props) => {
 
             if (currentCredits < amount) {
                 handleError("Insufficient credits...Buy more credits to continue.")
-                setLoading(false);
                 return;
             }
-
-            await generateContent();
 
             const newCredits = currentCredits - amount;
 
@@ -122,24 +108,11 @@ const ContextProvider = (props) => {
 
     useEffect(() => {
         setCredits(userDetails.credits)
+        setMaxLimit(userDetails.maxLimit)
     }, [userDetails])
 
-    // Generate AI content
-    const generateContent = async () => {
-        try {
-            const result = await runSpecial(aiPrompt, inputTopic, inputDescription);
-            setResult(result);
-        } catch (error) {
-            console.error("Error generating content:", error);
-        } finally {
-            setLoading(false);
-            setInputTopic("");
-            setInputDescription("");
-        }
-    };
 
     // Payment 
-
     const [cartItems, setCartItems] = useState()
     const [amount, setAmount] = useState()
 
@@ -158,9 +131,9 @@ const ContextProvider = (props) => {
                     // Update Firestore with the purchased credits
                     await updateDoc(userDocRef, {
                         credits: credits + cartItems,
+                        maxLimit: credits + cartItems
                     });
                     fetchUserData(authorizedUser)
-                    setMaxLimit(credits + cartItems)
                     toast.success("Payment successful. Credits added successfully.")
                     setAmount(0);
                     setCartItems(0);
@@ -194,7 +167,7 @@ const ContextProvider = (props) => {
 
     const handleBuyCredits = (val) => {
         if (val === 50) {
-            setAmount(50);
+            setAmount(1);
             setCartItems(500);
         } else if (val === 85) {
             setAmount(85);
@@ -218,29 +191,20 @@ const ContextProvider = (props) => {
 
     const contextValue = {
         navOpen, setNavOpen,
+        // User related
         userDetails,
         handleLogout,
         authorizedUser,
         setAuthorizedUser,
         fetchUserData,
         newUser, setNewUser,
-        loading,
-        setLoading,
-        inputTopic,
-        setInputTopic,
-        inputDescription,
-        setInputDescription,
-        result,
-        setResult,
-        generateContent,
-        setAiPrompt,
+        // credits
         credits,
         setCredits,
         maxLimit,
         setMaxLimit,
         deductCredits,
-
-        // credits
+        // Buy credits
         buyNow,
         handleBuyCredits
     };

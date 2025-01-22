@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ContentContainer from '../components/ContentContainer';
 import GradientBox from '../components/GradientBox';
 import GradientInnerTitle from '../components/GradientInnerTitle';
 import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images';
 import { LANGUAGES } from '../utils/languagesData';
+import { Context } from '../context/Context';
 
 function TextToVoice() {
+    const { deductCredits } = useContext(Context)
+
     const [text, setText] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -40,6 +43,8 @@ function TextToVoice() {
             const audioBlob = await response.blob();
             const audioUrl = URL.createObjectURL(audioBlob);
             setAudioUrl(audioUrl);
+            deductCredits(70);
+
         } catch (err) {
             setError("An error occurred while generating the audio.");
             console.error(err);

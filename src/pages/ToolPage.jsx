@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GradientBox from '../components/GradientBox'
 import { useParams } from 'react-router-dom'
 import { AI_TOOLS } from '../utils/toolsTemplate'
@@ -7,9 +7,17 @@ import ContentContainer from '../components/ContentContainer'
 import TextEditor from '../components/TextEditor'
 import { Context } from '../context/Context'
 import ReactLoading from 'react-loading';
-
+import generateContent from '../services/generateContent'
+import { toast } from 'react-toastify'
 
 function ToolPage() {
+
+    const [loading, setLoading] = useState(false);
+    const [inputTopic, setInputTopic] = useState("");
+    const [inputDescription, setInputDescription] = useState("");
+    const [aiPrompt, setAiPrompt] = useState("");
+    const [result, setResult] = useState('');
+
     const { toolSlug } = useParams()
     const tool = AI_TOOLS.find((tool) => tool.slug === toolSlug)
 
@@ -17,10 +25,7 @@ function ToolPage() {
         return <div>Tool not found</div>;
     }
 
-    const { inputTopic, setInputTopic,
-        inputDescription, setInputDescription,
-        loading,
-        setAiPrompt, deductCredits } = useContext(Context)
+    const { deductCredits } = useContext(Context)
 
     useEffect(() => {
         const aiPrompt = tool.aiPrompt
@@ -28,10 +33,27 @@ function ToolPage() {
     }, [tool])
 
     const handleGenerateContent = async () => {
+        setLoading(true);
+
         try {
-            await deductCredits(50); // Deduct 50 credits
+            const res = await generateContent({
+                responseType: "text/plain",
+                inputPrompt: `${aiPrompt} Topic: ${inputTopic}, Description: ${inputDescription} `
+            });
+
+            if (res) {
+                console.log(res)
+                setResult(res)
+                deductCredits(50)
+                setLoading(false);
+            } else {
+                toast.error("Error in generating content.")
+            }
+
         } catch (error) {
-            alert(error.message || "Failed to deduct credits.");
+            toast.error('Error in getting response', error)
+            console.log(error)
+            setLoading(false);
         }
     }
 
@@ -78,7 +100,7 @@ function ToolPage() {
                     </div>
                 </div>
                 <div className='min-h-full md:flex-1 min-w-72 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
-                    <TextEditor />
+                    <TextEditor text={result} />
                 </div>
             </div>
         </ContentContainer>

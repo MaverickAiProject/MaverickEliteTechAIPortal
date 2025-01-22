@@ -4,7 +4,7 @@ import billing_logo from "./billing_logo.png";
 import profile_logo from "./profile_logo.png";
 import dummy_image from "./dummy/dummy.jpg";
 import text_to_voice_dummy from "./text_to_voice.jpg";
-import ai_image_dummy from "./dummy/ai_image.jpg";
+import ai_image_dummy from "./dummy/ai_image.png";
 
 export const images = {
   logo_purple,

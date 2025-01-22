@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
 import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images'
+import { Context } from '../context/Context'
+import { toast } from 'react-toastify'
 
 function ImageGen() {
+
+    const { deductCredits } = useContext(Context)
 
     const [prompt, setPrompt] = useState("");
     const [imageUrl, setImageUrl] = useState(null);
@@ -26,6 +30,7 @@ function ImageGen() {
             );
 
             if (!response.ok) {
+                toast.error('Failed to fetch Image');
                 throw new Error("Failed to fetch image");
             }
 
@@ -33,6 +38,7 @@ function ImageGen() {
             return URL.createObjectURL(result);
         } catch (err) {
             setError(err.message);
+            toast.error("Failed to Generate Image")
             console.log(err)
             setLoading(false);
         }
@@ -49,6 +55,7 @@ function ImageGen() {
 
         if (generatedImage) {
             setImageUrl(generatedImage);
+            deductCredits(100)
         }
 
         setLoading(false);

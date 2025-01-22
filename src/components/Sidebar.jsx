@@ -10,6 +10,7 @@ import { MdPolicy } from "react-icons/md";
 import { RiImageCircleAiFill } from "react-icons/ri";
 import { FaCompressArrowsAlt } from "react-icons/fa";
 import { RiVoiceprintFill } from "react-icons/ri";
+import { FaYoutube } from "react-icons/fa";
 
 function Sidebar() {
     const NAV_MENUS = [
@@ -39,6 +40,11 @@ function Sidebar() {
             link: "/text-to-voice",
         },
         {
+            name: "Youtube Video",
+            icon: <FaYoutube />,
+            link: "/youtube-video-generator",
+        },
+        {
             name: "Billing",
             icon: <SiCashapp />,
             link: "/billing",
@@ -61,7 +67,7 @@ function Sidebar() {
 
     return (
         <div className={`${navOpen ? "left-0" : "-left-full"} transition-all duration-500 absolute md:relative h-full w-56 md:w-56 bg-white dark:bg-dark-grayCard justify-between shadow-md p-4 md:mt-4 md:h-[calc(100vh-5rem)] flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 md:pt-1 pt-20`}>
-            <nav>
+            <nav className=" overflow-scroll">
                 <ul className="space-y-2">
                     {NAV_MENUS.map((menu, index) => (
                         <li key={index}>

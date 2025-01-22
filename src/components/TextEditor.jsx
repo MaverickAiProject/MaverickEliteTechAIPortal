@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa6";
 import { Editor } from '@toast-ui/react-editor';
 import { toast } from "react-toastify";
 
-function TextEditor() {
+function TextEditor({ text }) {
     const editorRef = useRef();
 
     const [editorHeight, setEditorHeight] = useState(`${window.innerHeight * 0.6}px`);
@@ -25,20 +25,20 @@ function TextEditor() {
         };
     }, []);
 
-    useEffect(() => {
-        // Remove focus when the editor loads
-        const editorInstance = editorRef.current?.getInstance();
-        if (editorInstance) {
-            editorInstance.blur();
-        }
-    }, []);
+    // useEffect(() => {
+    //     // Remove focus when the editor loads
+    //     const editorInstance = editorRef.current?.getInstance();
+    //     if (editorInstance) {
+    //         editorInstance.blur();
+    //     }
+    // }, []);
 
-    const { result } = useContext(Context);
+    // const { result } = useContext(Context);
+
+    // Copy function
     const [isCopied, setIsCopied] = useState(false);
-
     const handleCopy = async () => {
-
-        if (!result) {
+        if (!text) {
             toast.error("Please generate content before copying.")
             return;
         }
@@ -55,10 +55,10 @@ function TextEditor() {
         }
     };
 
-    useEffect(() => {
+    if (text && text.length < 0) {
         const editorInstance = editorRef.current.getInstance();
-        editorInstance.setMarkdown(result);
-    }, [result])
+        editorInstance.setMarkdown(text);
+    }
 
     return (
         <div className="px-4 py-2 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded shadow h-full">
@@ -76,7 +76,6 @@ function TextEditor() {
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
                     height={editorHeight}
-                    autoFocus={false}
                     onChange={() => (editorRef.current.getInstance().getMarkdown())}
                 />
             </div>

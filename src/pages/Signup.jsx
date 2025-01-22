@@ -46,7 +46,8 @@ function Signup() {
                     email: user.email,
                     name: name,
                     number: number,
-                    credits: 1000
+                    credits: 1000,
+                    maxLimit: 1000
                 });
                 setLoading(false)
             }
@@ -77,8 +78,8 @@ function Signup() {
     }, [newUser]);
 
     const handleEmailChange = () => {
-        confirm("Are you sure you want to change your email?")
-        setNewUser(null)
+        confirm("Are you sure you want to change your email?");
+        setNewUser(null);
     }
 
     return (
@@ -189,7 +190,7 @@ function Signup() {
                         className="w-full px-4 py-2 bg-primary text-white font-bold rounded hover:bg-primary-dark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
                         onClick={handleEmailChange}
                     >
-                        Change Email
+                        Want to use another email? Click here.
                     </button>
                 </div>
             }

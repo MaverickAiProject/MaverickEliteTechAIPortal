@@ -3,12 +3,10 @@ import GradientBox from '../components/GradientBox'
 import { AI_TOOLS } from '../utils/toolsTemplate'
 import AiToolCard from '../components/AiToolCard'
 import { useNavigate } from 'react-router-dom'
-import { Context } from '../context/Context'
 import ContentContainer from '../components/ContentContainer'
 
 function AiTools() {
     const navigate = useNavigate();
-    const { setResult } = useContext(Context);
 
     return (
         <ContentContainer>
@@ -24,7 +22,6 @@ function AiTools() {
                         cardText={tool.description}
                         handleOpenToolPage={() => {
                             navigate(`./${tool.slug}`);
-                            setResult('')
                         }
                         }
                     />

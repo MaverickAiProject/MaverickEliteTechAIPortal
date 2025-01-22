@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
 import imageCompression from 'browser-image-compression'
+import { Context } from '../context/Context'
 
 function ImageCompressor() {
+    const { deductCredits } = useContext(Context)
+
     const [originalImage, setOriginalImage] = useState(null)
     const [compressedImage, setCompressedImage] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -47,8 +50,10 @@ function ImageCompressor() {
                 if (quality <= 0.1) break // Stop if quality gets too low
             }
 
-            setCompressedImage(compressedFile)
+            setCompressedImage(compressedFile);
+            deductCredits(50);
             setCompressedSize((compressedFile.size / 1024 / 1024).toFixed(2)) // Convert to MB
+
         } catch (error) {
             console.error('Error compressing image:', error)
             alert('Error compressing image. Please try again.')
