@@ -21,6 +21,7 @@ import ImageGen from "./pages/ImageGen";
 import ImageCompressor from "./pages/ImageCompressor";
 import TextToVoice from "./pages/TextToVoice";
 import YoutubeVideoGen from "./pages/YoutubeVideoGen";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -34,6 +35,17 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="bottom-right" // Set position to bottom-right
+        toastOptions={{
+          style: {
+            border: '1px solid #5f13c5',
+            padding: '16px',
+            color: '#000000',
+            fontWeight: '600',
+          },
+        }}
+      />
       <ToastContainer />
       <Routes>
         <Route element={<Layout />}>

@@ -1,17 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ContentContainer from '../components/ContentContainer'
 import GradientBox from '../components/GradientBox'
 import GradientInnerTitle from '../components/GradientInnerTitle'
 import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images'
 import { Context } from '../context/Context'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast';
 
 function ImageGen() {
 
     const { deductCredits } = useContext(Context)
-
     const [prompt, setPrompt] = useState("");
-    const [imageUrl, setImageUrl] = useState(null);
+    const [imageUrl, setImageUrl] = useState(() => {
+        const savedAiImage = localStorage.getItem("aiImageURL");
+        return savedAiImage || images.ai_image_dummy;
+    });
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -36,6 +39,7 @@ function ImageGen() {
 
             const result = await response.blob();
             return URL.createObjectURL(result);
+
         } catch (err) {
             setError(err.message);
             toast.error("Failed to Generate Image")
@@ -45,21 +49,34 @@ function ImageGen() {
     };
 
     const handleGenerate = async () => {
+        const loadingToastId = toast.loading("Generating AI Image...");
         setLoading(true);
         setError(null);
-        setImageUrl(null);
 
         const generatedImage = await query({
             inputs: prompt,
         });
 
         if (generatedImage) {
+            toast.dismiss(loadingToastId);
+            toast.success('Image Generated Successfully');
             setImageUrl(generatedImage);
+            localStorage.setItem('aiImageURL', generatedImage)
             deductCredits(100)
+        } else {
+            toast.dismiss(loadingToastId);
+            setImageUrl(images.ai_image_dummy);
         }
 
         setLoading(false);
     };
+
+    useEffect(() => {
+        if (imageUrl) {
+            localStorage.setItem("aiImageURL", imageUrl);
+        }
+    }, [imageUrl]);
+
 
     const handleDownload = () => {
         const link = document.createElement("a");
@@ -67,7 +84,6 @@ function ImageGen() {
         link.download = "Maverick-generated-image.png";
         link.click();
     };
-
 
     return (
         <ContentContainer>
@@ -124,10 +140,11 @@ function ImageGen() {
                                 alt="Generated"
                                 className="rounded-lg shadow-md w-full"
                             />
+
                             : <div className='w-full flex flex-col h-[calc(60vh-2rem)] justify-center items-center'>
                                 <img
-                                    src={imageUrl || LOADING_GIFS.progress}
-                                    alt="Generated"
+                                    src={LOADING_GIFS.progress}
+                                    alt="Generating"
                                     className="rounded-lg w-full max-w-44"
                                 />
                                 <h3 className='font-semibold mb-1'>Generating image...</h3>
@@ -135,7 +152,7 @@ function ImageGen() {
 
                             </div>
                         }
-                        {imageUrl && (
+                        {imageUrl && imageUrl !== "/src/assets/dummy/ai_image.png" && (
                             <button
                                 onClick={handleDownload}
                                 className="mt-4 w-full px-6 py-3 bg-[#5f13c5] text-white font-medium rounded-lg shadow-md hover:bg-[#4a0fa3] transition-colors"
