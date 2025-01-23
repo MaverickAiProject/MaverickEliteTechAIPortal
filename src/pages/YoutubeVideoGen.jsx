@@ -95,7 +95,7 @@ function YoutubeVideoGen() {
             try {
                 const res = await generateContent({
                     responseType: "application/json",
-                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt in Realistic format for each scene and give me result in an array of multiple objects with imagePrompt, scene and ContentText as field, No Plain text.`,
+                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt in Realistic format for each scene (the AI Prompt must be fully descriptive of the scene. The length of Image prompt must be minimum 30 words) and give me result in an array of multiple objects with imagePrompt, scene and ContentText (The length of ContentText must be minimum 30 words. It can have many lines also.) as field, No Plain text.`,
                 });
 
                 if (res) {

@@ -5,11 +5,14 @@ import GradientInnerTitle from '../components/GradientInnerTitle'
 import { images, LOADING_GIFS, TOOLS_IMAGES } from '../assets/images'
 import { Context } from '../context/Context'
 import toast from 'react-hot-toast';
+import { imageGenerator } from '../services/imageGenerator'
+import { IMAGE_MODELS } from '../utils/aiModel'
 
 function ImageGen() {
 
     const { deductCredits } = useContext(Context)
     const [prompt, setPrompt] = useState("");
+    const [imageModel, setImageModel] = useState(IMAGE_MODELS[0].model)
     const [imageUrl, setImageUrl] = useState(() => {
         const savedAiImage = localStorage.getItem("aiImageURL");
         return savedAiImage || images.ai_image_dummy;
@@ -18,44 +21,43 @@ function ImageGen() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const query = async (data) => {
-        try {
-            const response = await fetch(
-                "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
-                {
-                    headers: {
-                        Authorization: "Bearer " + import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API,
-                        "Content-Type": "application/json",
-                    },
-                    method: "POST",
-                    body: JSON.stringify(data),
-                }
-            );
+    // const query = async (data) => {
+    //     try {
+    //         const response = await fetch(
+    //             "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
+    //             {
+    //                 headers: {
+    //                     Authorization: "Bearer " + import.meta.env.VITE_HUGGING_FACE_IMAGE_GENERATION_API,
+    //                     "Content-Type": "application/json",
+    //                 },
+    //                 method: "POST",
+    //                 body: JSON.stringify(data),
+    //             }
+    //         );
 
-            if (!response.ok) {
-                toast.error('Failed to fetch Image');
-                throw new Error("Failed to fetch image");
-            }
+    //         if (!response.ok) {
+    //             throw new Error("Failed to fetch image");
+    //         }
 
-            const result = await response.blob();
-            return URL.createObjectURL(result);
+    //         const result = await response.blob();
+    //         return URL.createObjectURL(result);
 
-        } catch (err) {
-            setError(err.message);
-            toast.error("Failed to Generate Image")
-            console.log(err)
-            setLoading(false);
-        }
-    };
+    //     } catch (err) {
+    //         setError(err.message);
+    //         toast.error("Failed to Generate Image")
+    //         console.log(err)
+    //         setLoading(false);
+    //     }
+    // };
 
     const handleGenerate = async () => {
         const loadingToastId = toast.loading("Generating AI Image...");
         setLoading(true);
         setError(null);
 
-        const generatedImage = await query({
+        const generatedImage = await imageGenerator({
             inputs: prompt,
-        });
+        }, imageModel);
 
         if (generatedImage) {
             toast.dismiss(loadingToastId);
@@ -65,6 +67,7 @@ function ImageGen() {
             deductCredits(100)
         } else {
             toast.dismiss(loadingToastId);
+            toast.error("Error in Generating AI Image, Please select another model and try again.")
             setImageUrl(images.ai_image_dummy);
         }
 
@@ -100,11 +103,11 @@ function ImageGen() {
                     {/* Beta Version Card */}
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-xl md:text-2xl text-center font-bold text-[#5f13c5] mb-4">
-                            🚀 Welcome to the Beta Version of Our AI Image Generator!
+                            🚀 Welcome to Our AI Image Generator!
                         </h2>
                         <p className="text-gray-600 text-sm text-justify">
-                            Discover the power of AI to create stunning images from simple prompts.
-                            As this is a beta version, feel free to explore and share your feedback!
+                            Discover the power of AI to create stunning images from simple prompts. <br />
+                            We have different AI image generation models, so if any model doesn't respond, you can use another model.
                         </p>
                     </div>
 
@@ -117,6 +120,27 @@ function ImageGen() {
                             placeholder="Enter your prompt"
                             className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
                         />
+
+                        <div className="w-full mb-5">
+                            <label
+                                htmlFor="videoLanguage"
+                                className="block text-sm font-medium text-gray-700 mb-2"
+                            >
+                                Select AI Model:
+                            </label>
+                            <select
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-[#5f13c5] focus:outline-none"
+                                value={imageModel}
+                                onChange={(e) => setImageModel(e.target.value)}
+                            >
+                                {IMAGE_MODELS.map((item) => (
+                                    <option key={item.id} value={item.model}>
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
                         <button
                             onClick={handleGenerate}
                             disabled={loading}
@@ -155,7 +179,11 @@ function ImageGen() {
                         {imageUrl && imageUrl !== "/src/assets/dummy/ai_image.png" && (
                             <button
                                 onClick={handleDownload}
-                                className="mt-4 w-full px-6 py-3 bg-[#5f13c5] text-white font-medium rounded-lg shadow-md hover:bg-[#4a0fa3] transition-colors"
+                                disabled={loading}
+                                className={`w-full mt-3 px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
+                                    }`}
                             >
                                 Download
                             </button>
