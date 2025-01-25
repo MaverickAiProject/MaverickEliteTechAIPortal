@@ -7,6 +7,7 @@ import { Context } from '../context/Context'
 import toast from 'react-hot-toast';
 import { imageGenerator } from '../services/imageGenerator'
 import { IMAGE_MODELS } from '../utils/aiModel'
+import { handleDownloadImage } from '../services/downloadImage'
 
 function ImageGen() {
 
@@ -79,14 +80,6 @@ function ImageGen() {
             localStorage.setItem("aiImageURL", imageUrl);
         }
     }, [imageUrl]);
-
-
-    const handleDownload = () => {
-        const link = document.createElement("a");
-        link.href = imageUrl;
-        link.download = "Maverick-generated-image.png";
-        link.click();
-    };
 
     return (
         <ContentContainer>
@@ -178,7 +171,7 @@ function ImageGen() {
                         }
                         {imageUrl && imageUrl !== "/src/assets/dummy/ai_image.png" && (
                             <button
-                                onClick={handleDownload}
+                                onClick={() => handleDownloadImage(imageUrl)}
                                 disabled={loading}
                                 className={`w-full mt-3 px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
                                     ? "bg-gray-400 cursor-not-allowed"

@@ -6,7 +6,10 @@ import { YOUTUBENICHE } from "../utils/constants";
 import { LANGUAGES } from "../utils/languagesData";
 import generateContent from "../services/generateContent";
 import toast from 'react-hot-toast';
-import { TOOLS_IMAGES } from "../assets/images";
+import { images, TOOLS_IMAGES } from "../assets/images";
+import { IMAGE_MODELS } from "../utils/aiModel";
+import { imageGenerator } from "../services/imageGenerator";
+import { handleDownloadImage } from "../services/downloadImage";
 
 function YoutubeVideoGen() {
     const youtubeNiche = YOUTUBENICHE;
@@ -95,7 +98,7 @@ function YoutubeVideoGen() {
             try {
                 const res = await generateContent({
                     responseType: "application/json",
-                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt in Realistic format for each scene (the AI Prompt must be fully descriptive of the scene. The length of Image prompt must be minimum 30 words) and give me result in an array of multiple objects with imagePrompt, scene and ContentText (The length of ContentText must be minimum 30 words. It can have many lines also.) as field, No Plain text.`,
+                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt in Realistic format for each scene (the AI Prompt must be fully descriptive of the scene. The length of Image prompt must be minimum 30 words) and give me result in an array of multiple objects (minimum 8) with id, imagePrompt, scene and ContentText (The length of ContentText must be minimum 30 words. It can have many lines also.) as field, No Plain text.`,
                 });
 
                 if (res) {
@@ -128,6 +131,35 @@ function YoutubeVideoGen() {
         setScript([])
     }
 
+    const handleGenerateYtImage = async (id, inputData) => {
+        const loadingToastId = toast.loading("Generating AI Image...");
+        setLoading(true);
+
+        const generatedImage = await imageGenerator({
+            inputs: inputData,
+        }, IMAGE_MODELS[0].model);
+
+        if (generatedImage) {
+            toast.dismiss(loadingToastId);
+            toast.success('Scene Image Generated');
+
+            const updatedScript = script.map(scene =>
+                scene.id === id
+                    ? { ...scene, image: generatedImage }
+                    : scene
+            )
+            setScript(updatedScript);
+
+            localStorage.setItem("script", JSON.stringify(updatedScript));
+            // deductCredits(100)
+        } else {
+            toast.dismiss(loadingToastId);
+            toast.error("Error in Generating AI Image.")
+        }
+
+        setLoading(false);
+    }
+
     return (
         <ContentContainer>
             <GradientBox>
@@ -155,17 +187,42 @@ function YoutubeVideoGen() {
                                 </p>
                             </div>
                         )}
-                        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {script.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="p-4 bg-white border border-gray-200 rounded-lg shadow-md ursor-pointer hover:scale-105 transform transition-transform duration-200 hover:shadow-lg"
+                                    className="p-4 bg-white border border-gray-200 rounded-lg shadow-md ursor-pointer  transform transition-transform duration-200 hover:shadow-lg"
                                 >
-                                    <h3 className="text-lg font-bold text-[#5f13c5] mb-2">{`Scene ${index + 1}`}</h3>
-                                    <p className="text-sm text-gray-800">{item.ContentText}</p>
-                                    <p className="text-sm mt-2">
-                                        <span className="font-bold">Image Prompt:</span> {item.imagePrompt}
-                                    </p>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-[#5f13c5] mb-2">{`Scene ${index + 1}`}</h3>
+                                        <p className="text-sm text-gray-800">{item.ContentText}</p>
+                                        <p className="text-sm mt-2">
+                                            <span className="font-bold">Image Prompt:</span> {item.imagePrompt}
+                                        </p>
+                                        {/* {!item.image && */}
+                                        <button
+                                            onClick={() => handleGenerateYtImage(item.id, item.imagePrompt)}
+                                            className={`px-6 py-2 mt-3 text-white font-medium rounded-md shadow-md focus:outline-none 
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
+                                        >
+                                            {loading ? "Loading..." : "Generate Image"}
+                                        </button>
+                                        {/* } */}
+                                    </div>
+                                    {item.image &&
+                                        <div className="mt-4 w-full">
+                                            <img src={item.image} alt="script image" className="rounded-lg shadow-md w-full" />
+                                            <button
+                                                onClick={() => handleDownloadImage(item.image)}
+                                                className={`w-full mt-3 px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
+                                                    ? "bg-gray-400 cursor-not-allowed"
+                                                    : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
+                                                    }`}
+                                            >
+                                                Download Image
+                                            </button>
+                                        </div>
+                                    }
                                 </div>
                             ))}
                         </div>
@@ -274,12 +331,7 @@ function YoutubeVideoGen() {
                         </div>
                     )}
                 </div>
-
-
             </div>
-
-
-
         </ContentContainer>
     );
 }

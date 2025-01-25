@@ -21,4 +21,5 @@ export const YOUTUBENICHE = [
   { id: 19, nicheName: "Storytelling" },
   { id: 20, nicheName: "Fun and Challenges" },
   { id: 21, nicheName: "AI and Technology Trends" },
+  { id: 22, nicheName: "Digital Marketing" },
 ];
