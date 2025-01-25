@@ -1,5 +1,6 @@
 // YOUTUBE NICHE OPTIONS FOR YOUTUBE VIDEO GEN
 export const YOUTUBENICHE = [
+  { id: 23, nicheName: "Custom" },
   { id: 1, nicheName: "Tech and Gadgets" },
   { id: 2, nicheName: "Gaming" },
   { id: 3, nicheName: "Personal Development" },

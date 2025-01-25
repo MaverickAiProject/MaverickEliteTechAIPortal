@@ -20,6 +20,8 @@ function YoutubeVideoGen() {
         localStorage.getItem("niche") || "Tech and Gadgets"
     );
 
+    const [customNiche, setCustomNiche] = useState('')
+
     const [videoLanguage, setVideoLanguage] = useState(() =>
         localStorage.getItem("videoLanguage") || "English (US)"
     );
@@ -68,7 +70,7 @@ function YoutubeVideoGen() {
             try {
                 const res = await generateContent({
                     responseType: "application/json",
-                    inputPrompt: `I want to make a long video in 2025 for Youtube on the niche: ${niche} in language: ${videoLanguage}. Give me an array of 8 objects of suggestions. For each, give me a key-value pair of two things - heading and description.`,
+                    inputPrompt: `I want to make a long video in 2025 for Youtube on the niche: ${customNiche ? customNiche : niche} in language: ${videoLanguage}. Give me an array of 8 objects of suggestions. For each, give me a key-value pair of two things - heading and description.`,
                 });
 
                 if (res) {
@@ -199,7 +201,7 @@ function YoutubeVideoGen() {
                                         <p className="text-sm mt-2">
                                             <span className="font-bold">Image Prompt:</span> {item.imagePrompt}
                                         </p>
-                                        {/* {!item.image && */}
+                                        {/* {item.image && */}
                                         <button
                                             onClick={() => handleGenerateYtImage(item.id, item.imagePrompt)}
                                             disabled={loading}
@@ -238,7 +240,7 @@ function YoutubeVideoGen() {
                 )}
 
                 {/* Form Section */}
-                <div className="flex flex-col bg-white mt-6 rounded-lg p-5 md:flex-row gap-6 mb-6 items-end shadow-md">
+                <div className="flex flex-col bg-white mt-6 rounded-lg p-5 md:flex-row gap-6 mb-6 items-start shadow-md">
                     <div className="w-full">
                         <label
                             htmlFor="niche"
@@ -258,6 +260,16 @@ function YoutubeVideoGen() {
                                 </option>
                             ))}
                         </select>
+                        {niche === 'Custom' &&
+                            <textarea
+                                type="text"
+                                value={customNiche}
+                                onChange={(e) => setCustomNiche(e.target.value)}
+                                placeholder="Enter your prompt"
+                                className="w-full p-3 mt-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
+                            />
+                        }
+
                     </div>
 
                     <div className="w-full">
