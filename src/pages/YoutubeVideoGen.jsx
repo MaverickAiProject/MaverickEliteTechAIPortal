@@ -202,6 +202,7 @@ function YoutubeVideoGen() {
                                         {/* {!item.image && */}
                                         <button
                                             onClick={() => handleGenerateYtImage(item.id, item.imagePrompt)}
+                                            disabled={loading}
                                             className={`px-6 py-2 mt-3 text-white font-medium rounded-md shadow-md focus:outline-none 
                 ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
                                         >
