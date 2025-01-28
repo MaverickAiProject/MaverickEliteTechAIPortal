@@ -1,65 +1,11 @@
 import React, { useContext } from "react";
-import { FaHome } from "react-icons/fa";
-import { SiCashapp } from "react-icons/si";
-import { IoSettingsSharp } from "react-icons/io5";
-import { FiCpu } from "react-icons/fi";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import CreditProgressBar from "./CreditsBalance";
-import { MdPolicy } from "react-icons/md";
-import { RiImageCircleAiFill } from "react-icons/ri";
-import { FaCompressArrowsAlt } from "react-icons/fa";
-import { RiVoiceprintFill } from "react-icons/ri";
-import { FaYoutube } from "react-icons/fa";
+import { NAV_MENUS } from "../utils/navMenus";
 
 function Sidebar() {
-    const NAV_MENUS = [
-        {
-            name: "Home",
-            icon: <FaHome />,
-            link: "/",
-        },
-        {
-            name: "AI Tools",
-            icon: <FiCpu />,
-            link: "/ai-tools",
-        },
-        {
-            name: "AI Images",
-            icon: <RiImageCircleAiFill />,
-            link: "/image-gen",
-        },
-        {
-            name: "Image Compress",
-            icon: <FaCompressArrowsAlt />,
-            link: "/image-compressor",
-        },
-        {
-            name: "Text to Voice",
-            icon: <RiVoiceprintFill />,
-            link: "/text-to-voice",
-        },
-        {
-            name: "Youtube Video",
-            icon: <FaYoutube />,
-            link: "/youtube-video-generator",
-        },
-        {
-            name: "Billing",
-            icon: <SiCashapp />,
-            link: "/billing",
-        },
-        {
-            name: "Settings",
-            icon: <IoSettingsSharp />,
-            link: "/settings",
-        },
-        {
-            name: "Our Policies",
-            icon: <MdPolicy />,
-            link: "/PolicyPage",
-        },
-    ];
+    const navMenus = NAV_MENUS;
 
     const { navOpen, setNavOpen } = useContext(Context)
     const { credits, maxLimit } = useContext(Context);
@@ -69,7 +15,7 @@ function Sidebar() {
         <div className={`${navOpen ? "left-0" : "-left-full"} transition-all duration-500 absolute md:relative h-full w-56 md:w-56 bg-white dark:bg-dark-grayCard justify-between shadow-md p-4 md:mt-4 md:h-[calc(100vh-5rem)] flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 md:pt-1 pt-20`}>
             <nav className=" overflow-scroll">
                 <ul className="space-y-2">
-                    {NAV_MENUS.map((menu, index) => (
+                    {navMenus.map((menu, index) => (
                         <li key={index}>
                             <NavLink
                                 to={menu.link}

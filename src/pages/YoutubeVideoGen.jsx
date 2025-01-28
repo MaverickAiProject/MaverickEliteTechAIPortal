@@ -176,7 +176,7 @@ function YoutubeVideoGen() {
 
                 {/* Generated Script Section */}
                 {script.length > 0 && (
-                    <div className="bg-white p-4 shadow-md rounded-lg flex flex-col items-center">
+                    <div className="bg-white p-4 mb-8 shadow-md rounded-lg flex flex-col items-center">
                         <h1 className="text-primary text-3xl text-center mb-5 font-bold">🚀 Video Generated Successfully!</h1>
                         {selectedTopic.heading && (
                             <div className="p-3 bg-gray-100 border-[1px] border-[#5f13c5] sticky rounded-lg shadow-md">
@@ -306,9 +306,9 @@ function YoutubeVideoGen() {
                 <div className="flex flex-col-reverse sm:flex-row-reverse gap-4 mt-6 ">
                     {/* Topics Section */}
                     {allTopics.length > 0 && (
-                        <div>
-                            <h2 className="text-primary mb-3 text-xl font-bold">{selectedTopic.heading ? 'Topic selected successfully. If you want another topic, click another 👉' : `Select a topic to continue 👉`}</h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div className="mb-3">
+                            <h2 className="text-primary text-xl mb-2 font-bold">{selectedTopic.heading ? 'Topic selected successfully. If you want another topic, click another 👉' : `Select a topic to continue 👉`}</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                                 {allTopics.map((item, index) => (
                                     <div
                                         key={index}
@@ -325,7 +325,7 @@ function YoutubeVideoGen() {
 
                     {/* Selected Topic */}
                     {selectedTopic.heading && (
-                        <div className="p-3 bg-gray-100 border-[3px] border-[#5f13c5] rounded-lg shadow-md">
+                        <div className="p-3 mb-3 bg-gray-100 border-[3px] border-[#5f13c5] rounded-lg shadow-md">
                             <h2 className="text-lg font-bold text-[#5f13c5] mb-2">Selected Topic</h2>
                             <p className="text-sm mb-2">
                                 <span className="font-bold">Heading:</span> {selectedTopic.heading}

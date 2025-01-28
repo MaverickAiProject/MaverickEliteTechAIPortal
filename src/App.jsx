@@ -22,6 +22,7 @@ import ImageCompressor from "./pages/ImageCompressor";
 import TextToVoice from "./pages/TextToVoice";
 import YoutubeVideoGen from "./pages/YoutubeVideoGen";
 import { Toaster } from "react-hot-toast";
+import YtAnalytics from "./pages/YtAnalytics";
 
 function App() {
   const { authorizedUser } = useContext(Context);
@@ -77,6 +78,10 @@ function App() {
           <Route
             path="/youtube-video-generator"
             element={!authorizedUser ? <Navigate to="/login" /> : <YoutubeVideoGen />}
+          />
+          <Route
+            path="/youtube-analytics"
+            element={!authorizedUser ? <Navigate to="/login" /> : <YtAnalytics />}
           />
           <Route
             path="/billing"
