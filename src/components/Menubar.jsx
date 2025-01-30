@@ -26,7 +26,7 @@ function Menubar() {
 
     return (
         <div
-            className='flex h-16 py-3 fixed z-[1000] md:static bg-navbarBg text-textColor px-6 justify-between items-center w-full shadow-sm ease-in-out transform duration-300'
+            className='flex h-16 py-2  fixed z-[1000] md:static bg-navbarBg text-textColor px-6 justify-between items-center w-full shadow-md  ease-in-out transform duration-300'
             onClick={handleNav}
         >
             <div onClick={toggleNavbar} className='md:hidden' >
@@ -38,7 +38,7 @@ function Menubar() {
             {/* <img src={images.logo_purple_transparent} alt="" className='h-10' /> */}
             <div className='h-full p-0'>
                 <video
-                    src="/Maverick3.mp4"
+                    src={`${!darkMode ? "/Maverick3.mp4" : "/Maverickblack.mp4"}`}
                     autoPlay
                     loop
                     muted

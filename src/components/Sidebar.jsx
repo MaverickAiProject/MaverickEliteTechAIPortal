@@ -17,9 +17,9 @@ function Sidebar() {
     const navigate = useNavigate();
 
     return (
-        <div className={`${navOpen ? "left-0" : "-left-full"} transition-all ease-in-out duration-500 absolute md:relative w-56 md:w-56 
-         bg-sidebarBg justify-between p-4 md:pt-5 flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 pt-20`}>
-            <nav className="mb-9">
+        <div className={`${navOpen ? "left-0" : "-left-full"} transition-all ease-in-out duration-500 absolute md:relative w-56
+         bg-sidebarBg justify-between p-4 md:pt-5 flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 pt-20 h-screen md:h-full`}>
+            <nav className="mb-9 pt-4 md:pt-0">
                 <ul className="space-y-2 h-full">
                     {navMenus.map((menu, index) => (
                         <li key={index}>
