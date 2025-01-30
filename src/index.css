@@ -2,6 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+
+  /* main purple color */
+  --mainPurple: #5f13c5;
+  --mainPurpleDark: #4b0f9b;
+
+  /* for navbar */
+  --navbarBg: white;
+
+  /* for text */
+  --textColor: black;
+  --greyText: rgb(75 85 99);
+  --activeText: white;
+  --purpleText: #5f13c5;
+
+  /* sidebar */
+  --sidebarBg: white;
+  --sidebarLinksHover: rgb(229 231 235);
+  --grayCard: #e9e9e9;
+
+  /* dashboard */
+  --dashboardBg: #e7effe;
+
+  /* cards */
+  --whiteCard: white;
+
+  /* input */
+  --inputBg: white;
+}
+
+.dark {
+  /* for navbar */
+  --navbarBg: #000000;
+
+  /* for text */
+  --textColor: rgb(226, 225, 225);
+  --greyText: rgb(151, 159, 170);
+  --activeText: white;
+  --purpleText: #ba8df5;
+
+  /* sidebar */
+  --sidebarBg: black;
+  --sidebarLinksHover: #6d6d6d;
+  --grayCard: #e9e9e9;
+
+  /* dashboard */
+  --dashboardBg: #303030;
+
+  /* cards */
+  --whiteCard: rgb(22, 22, 22);
+
+  /* input */
+  --inputBg: #303030;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -10,6 +65,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #5f13c5;
+  cursor: pointer;
   /* border-radius: 10px; */
 }
 

@@ -5,7 +5,6 @@ import MenuBar from "./Menubar";
 import { Context } from "../context/Context";
 
 const Layout = () => {
-
     const { setNavOpen, navOpen } = useContext(Context)
 
     function handleNavOpenClose() {
@@ -15,11 +14,13 @@ const Layout = () => {
     }
 
     return (
-        <div className="flex h-screen flex-col">
+        <div className="flex h-screen flex-col overflow-x-hidden">
             <MenuBar />
-            <div className="flex relative h-screen w-screen">
+            <div className="flex flex-1 relative w-screen">
+                {/* <div className="h-full"> */}
                 <Sidebar />
-                <div className="flex-1 overflow-y-auto h-[calc(100%-0.5vh)] bg-dashboardBg dark:bg-dark-dashboardBg" onClick={handleNavOpenClose}>
+                {/* </div> */}
+                <div className="flex-1 overflow-y-auto bg-dashboardBg transition-all ease-in-out duration-300" onClick={handleNavOpenClose}>
                     <Outlet />
                 </div>
             </div>
@@ -28,3 +29,5 @@ const Layout = () => {
 };
 
 export default Layout;
+
+//h-[calc(100%-0.5vh)]

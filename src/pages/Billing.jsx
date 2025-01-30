@@ -22,16 +22,16 @@ function Billing() {
             </GradientBox>
             <div className='p-5 flex flex-wrap gap-4  '>
                 <div className='max-w-[500px] md:w-5/6 lg:w-3/5 w-[100%] mx-auto h-[calc(100vh-210px)] md:h-full'>
-                    <div className='flex justify-between py-3 px-5 gap-6 bg-white items-center mb-3 shadow-sm rounded-lg'>
+                    <div className='flex justify-between py-3 px-5 gap-6 bg-whiteCard items-center transition-all ease-in-out duration-500 mb-3 shadow-sm rounded-lg'>
                         <div className='flex-1'>
-                            <h2 className='font-semibold text-sm md:text-lg mb-2'>Your Credits Balance</h2>
+                            <h2 className='font-semibold text-textColor text-sm md:text-lg mb-2'>Your Credits Balance</h2>
                             <CreditProgressBar />
-                            <p className='text-gray-600 md:text-xs text-[12px] mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
+                            <p className='text-greyText md:text-xs text-[12px] mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
                         </div>
-                        <h1 className='md:text-5xl text-4xl font-semibold'>{credits}</h1>
+                        <h1 className='md:text-5xl text-4xl text-textColor font-semibold'>{credits}</h1>
                     </div>
 
-                    <div className='bg-primary text-white md:p-4 p-2 rounded-lg mb-3'>
+                    <div className='bg-mainPurple text-activeText md:p-4 p-2 rounded-lg mb-3'>
                         <h3 className='mb-3 text-center'>Buy Credits</h3>
                         <div className='flex gap-3 justify-center flex-wrap'>
                             {offers.map((item, index) => (

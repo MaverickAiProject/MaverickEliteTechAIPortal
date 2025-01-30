@@ -11,7 +11,7 @@ function CreditProgressBar() {
             <div className="relative w-full h-[5px] bg-gray-200 rounded-lg overflow-hidden">
                 <div
                     style={{ width: `${progressPercentage}%` }}
-                    className="h-full rounded-full bg-primary transition-all duration-300"
+                    className="h-full rounded-full bg-mainPurple transition-all duration-300"
                 ></div>
             </div>
         </div>

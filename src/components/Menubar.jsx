@@ -21,7 +21,10 @@ function Menubar() {
     }
 
     return (
-        <div className='flex h-16 py-3 fixed z-[1000] md:static bg-white px-6 justify-between items-center w-full border-b shadow-sm' onClick={handleNav}>
+        <div
+            className='flex h-16 py-3 fixed z-[1000] md:static bg-navbarBg text-textColor px-6 justify-between items-center w-full shadow-sm ease-in-out transform duration-300'
+            onClick={handleNav}
+        >
             <div onClick={toggleNavbar} className='md:hidden' >
                 {navOpen
                     ? <ImCross size={30} className='md:hidden' />
@@ -29,7 +32,10 @@ function Menubar() {
                 }
             </div>
             <img src={images.logo_purple_transparent} alt="" className='h-10' />
-            <div className='flex gap-2 items-center cursor-pointer hover:text-primary transition-all duration-200' onClick={() => navigate('/settings')}>
+            <div
+                className='flex gap-2 items-center cursor-pointer hover:text-purpleText transition-all duration-200'
+                onClick={() => navigate('/settings')}
+            >
                 <p className='hidden md:block'>{userDetails.name}</p>
                 <FaRegCircleUser size={30} className='' />
             </div>

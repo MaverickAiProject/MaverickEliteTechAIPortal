@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -23,21 +23,15 @@ import TextToVoice from "./pages/TextToVoice";
 import YoutubeVideoGen from "./pages/YoutubeVideoGen";
 import { Toaster } from "react-hot-toast";
 import YtAnalytics from "./pages/YtAnalytics";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   const { authorizedUser } = useContext(Context);
 
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark", !darkMode);
-  };
-
   return (
-    <>
+    <ThemeProvider>
       <Toaster
-        position="bottom-right" // Set position to bottom-right
+        position="bottom-right"
         toastOptions={{
           style: {
             border: '1px solid #5f13c5',
@@ -51,50 +45,17 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           {/* Secured Routes */}
-          <Route
-            path="/"
-            element={!authorizedUser ? <Navigate to="/login" /> : <Dashboard />}
-          />
-          <Route
-            path="/ai-tools"
-            element={!authorizedUser ? <Navigate to="/login" /> : <AiTools />}
-          />
-          <Route
-            path="/ai-tools/:toolSlug"
-            element={!authorizedUser ? <Navigate to="/login" /> : <ToolPage />}
-          />
-          <Route
-            path="/image-gen"
-            element={!authorizedUser ? <Navigate to="/login" /> : <ImageGen />}
-          />
-          <Route
-            path="/image-compressor"
-            element={!authorizedUser ? <Navigate to="/login" /> : <ImageCompressor />}
-          />
-          <Route
-            path="/text-to-voice"
-            element={!authorizedUser ? <Navigate to="/login" /> : <TextToVoice />}
-          />
-          <Route
-            path="/youtube-video-generator"
-            element={!authorizedUser ? <Navigate to="/login" /> : <YoutubeVideoGen />}
-          />
-          <Route
-            path="/youtube-analytics"
-            element={!authorizedUser ? <Navigate to="/login" /> : <YtAnalytics />}
-          />
-          <Route
-            path="/billing"
-            element={!authorizedUser ? <Navigate to="/login" /> : <Billing />}
-          />
-          <Route
-            path="/settings"
-            element={!authorizedUser ? <Navigate to="/login" /> : <Settings />}
-          />
-          <Route
-            path="/PolicyPage"
-            element={!authorizedUser ? <Navigate to="/login" /> : <PoliciesPage />}
-          />
+          <Route path="/" element={!authorizedUser ? <Navigate to="/login" /> : <Dashboard />} />
+          <Route path="/ai-tools" element={!authorizedUser ? <Navigate to="/login" /> : <AiTools />} />
+          <Route path="/ai-tools/:toolSlug" element={!authorizedUser ? <Navigate to="/login" /> : <ToolPage />} />
+          <Route path="/image-gen" element={!authorizedUser ? <Navigate to="/login" /> : <ImageGen />} />
+          <Route path="/image-compressor" element={!authorizedUser ? <Navigate to="/login" /> : <ImageCompressor />} />
+          <Route path="/text-to-voice" element={!authorizedUser ? <Navigate to="/login" /> : <TextToVoice />} />
+          <Route path="/youtube-video-generator" element={!authorizedUser ? <Navigate to="/login" /> : <YoutubeVideoGen />} />
+          <Route path="/youtube-analytics" element={!authorizedUser ? <Navigate to="/login" /> : <YtAnalytics />} />
+          <Route path="/billing" element={!authorizedUser ? <Navigate to="/login" /> : <Billing />} />
+          <Route path="/settings" element={!authorizedUser ? <Navigate to="/login" /> : <Settings />} />
+          <Route path="/PolicyPage" element={!authorizedUser ? <Navigate to="/login" /> : <PoliciesPage />} />
         </Route>
 
         {/* Login Routes */}
@@ -115,7 +76,7 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
 
       </Routes>
-    </>
+    </ThemeProvider>
   );
 }
 

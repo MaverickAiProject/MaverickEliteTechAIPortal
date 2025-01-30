@@ -89,18 +89,18 @@ function ImageCompressor() {
             <div className="compressor-container lg:max-w-[900px] lg:mx-auto py-6 px-4 lg:px-8 rounded-lg w-full mx-auto space-y-6">
 
                 {/* Control Section */}
-                <div className="controls flex flex-col gap-1 md:gap-3 lg:flex-row bg-white p-3 rounded-lg shadow-md justify-between items-center space-y-4 lg:space-y-0">
+                <div className="controls flex flex-col gap-1 md:gap-3 lg:flex-row bg-whiteCard p-3 rounded-lg shadow-md justify-between items-center space-y-4 lg:space-y-0">
                     {/* File Upload */}
                     <input
                         type="file"
                         accept="image/*"
                         onChange={handleImageUpload}
-                        className="file-input w-full lg:w-1/3 p-4 bg-[#f0f4f8] border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5f13c5]"
+                        className="file-input w-full lg:w-1/3 p-4 bg-inputBg border text-textColor border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purpleText"
                     />
 
                     {/* Target Size Selector */}
-                    <div className="target-size flex items-center space-x-4 py-3 lg:w-1/3 flex-1 bg-[#f0f4f8] border border-gray-300 w-full px-3 rounded-lg">
-                        <label className="text-lg font-semibold text-[#5f13c5] whitespace-nowrap mr-2">
+                    <div className="target-size flex gap-3 items-center justify-center py-3 lg:w-1/3 flex-1 bg-inputBg border border-gray-400 w-full px-3 rounded-lg">
+                        <label className="text-lg font-semibold text-purpleText whitespace-nowrap mr-2">
                             Target Size:
                         </label>
                         <input
@@ -112,14 +112,14 @@ function ImageCompressor() {
                             onChange={(e) => setTargetSize(e.target.value)}
                             className="w-[90%] accent-primary"
                         />
-                        <div className="text-sm text-gray-600 m-0">{(targetSize * 1024).toFixed(0)}_Kb</div>
+                        <div className="text-sm text-greyText m-0">{(targetSize * 1024).toFixed(0)}_Kb</div>
                     </div>
 
                     {/* Compress Button */}
                     <button
                         onClick={handleCompression}
                         disabled={!originalImage || loading}
-                        className={`compress-btn px-8 py-3 bg-[#5f13c5] text-white font-semibold rounded-lg shadow-md transition-colors hover:bg-[#4a0fa3] focus:outline-none disabled:bg-gray-400`}
+                        className={`compress-btn px-8 py-3 bg-mainPurple text-white font-semibold rounded-lg shadow-md transition-colors hover:bg-mainPurpleDark focus:outline-none disabled:bg-gray-400`}
                     >
                         {loading ? 'Compressing...' : 'Compress'}
                     </button>
@@ -128,8 +128,8 @@ function ImageCompressor() {
                 {/* Preview Section */}
                 <div className="image-preview grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Original/Dummy Image */}
-                    <div className="original-section text-center bg-white p-4 rounded-lg shadow-md">
-                        <h3 className="text-xl font-semibold text-[#5f13c5] mb-4">Original Image</h3>
+                    <div className="original-section text-center bg-whiteCard p-4 rounded-lg shadow-md">
+                        <h3 className="text-xl font-semibold text-purpleText mb-4">Original Image</h3>
                         {originalImage ? (
                             <img
                                 src={URL.createObjectURL(originalImage)}
@@ -143,12 +143,12 @@ function ImageCompressor() {
                                 className="rounded-lg shadow-md mx-auto w-full"
                             />
                         )}
-                        {originalImage && <p className="mt-2 text-gray-600">Size: {originalSize} MB</p>}
+                        {originalImage && <p className="mt-2 text-greyText">Size: {originalSize} MB</p>}
                     </div>
 
                     {/* Compressed/Dummy Image */}
-                    <div className="compressed-section text-center bg-white p-4 rounded-lg shadow-md">
-                        <h3 className="text-xl font-semibold text-[#5f13c5] mb-4">Compressed Image</h3>
+                    <div className="compressed-section text-center bg-whiteCard p-4 rounded-lg shadow-md">
+                        <h3 className="text-xl font-semibold text-purpleText mb-4">Compressed Image</h3>
                         {compressedImage ? (
                             <>
                                 {loading
@@ -158,7 +158,7 @@ function ImageCompressor() {
                                             alt="loading"
                                             className="rounded-lg mx-auto w-[150px]"
                                         />
-                                        <p className='mt-2 text-gray-600'>Compressing Image...</p>
+                                        <p className='mt-2 text-greyText'>Compressing Image...</p>
                                     </div>
                                     :
                                     <div>
@@ -167,7 +167,7 @@ function ImageCompressor() {
                                             alt="Compressed"
                                             className="rounded-lg shadow-md mx-auto"
                                         />
-                                        <p className="mt-2 text-gray-600">Size: {compressedSize} MB</p>
+                                        <p className="mt-2 text-greyText">Size: {compressedSize} MB</p>
                                         <p className="mt-2 text-green-600 font-semibold">
                                             Compression: {calculateCompression()}% smaller
                                         </p>
@@ -176,7 +176,7 @@ function ImageCompressor() {
                                 {!loading &&
                                     <button
                                         onClick={downloadImage}
-                                        className="mt-4 px-6 py-3 bg-[#5f13c5] text-white font-medium rounded-lg shadow-md hover:bg-[#4a0fa3] transition-colors"
+                                        className="mt-4 px-6 py-3 bg-mainPurple text-white font-medium rounded-lg shadow-md hover:bg-mainPurpleDark transition-colors"
                                     >
                                         Download Compressed Image
                                     </button>
@@ -190,7 +190,7 @@ function ImageCompressor() {
                                         alt="loading"
                                         className="rounded-lg mx-auto w-[150px]"
                                     />
-                                    <p className='mt-2 text-gray-600'>Compressing Image</p>
+                                    <p className='mt-2 text-greyText'>Compressing Image</p>
                                 </div>
                                 : <img
                                     src={images.dummy_image} //  dummy image

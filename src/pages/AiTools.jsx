@@ -13,7 +13,7 @@ function AiTools() {
             <GradientBox>
                 <h1 className='font-semibold text-3xl'>AI Tools</h1>
             </GradientBox>
-            <div className='p-5 flex flex-wrap gap-4 justify-center md:justify-start'>
+            <div className='p-5 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-4'>
                 {AI_TOOLS.map((tool, index) => (
                     <AiToolCard
                         key={index}
