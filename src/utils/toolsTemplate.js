@@ -2,14 +2,6 @@ import { TOOLS_IMAGES } from "../assets/images";
 
 export const AI_TOOLS = [
   {
-    title: "Keywords Generator",
-    description:
-      "An AI Tool by which you can generate trending keywords with AI.",
-    icon: TOOLS_IMAGES.keywords_generator,
-    aiPrompt: "Generate a list of trending keywords based on user input.",
-    slug: "keywords-gen",
-  },
-  {
     title: "Instagram Reels Ideas",
     description:
       "Generate Trending ideas for Instagram Reels and make your videos viral.",
@@ -88,5 +80,13 @@ export const AI_TOOLS = [
     icon: TOOLS_IMAGES.blog_topic_ideas,
     aiPrompt: "Suggest 10 blog topic ideas for the [niche] industry.",
     slug: "blog-topic-ideas",
+  },
+  {
+    title: "Keywords Generator",
+    description:
+      "An AI Tool by which you can generate trending keywords with AI.",
+    icon: TOOLS_IMAGES.keywords_generator,
+    aiPrompt: "Generate a list of trending keywords based on user input.",
+    slug: "keywords-gen",
   },
 ];

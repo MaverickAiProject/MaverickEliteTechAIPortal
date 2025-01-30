@@ -70,24 +70,24 @@ function TextToVoice() {
                     description={'Generate speech from text using AI'}
                 />
             </GradientBox>
-            <div className="bg-[#e7effe] max-w-[1200px] mx-auto min-h-fit flex sm:flex-col flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-2 md:gap-4 p-6">
+            <div className="max-w-[1200px] mx-auto min-h-fit flex sm:flex-col flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-2 md:gap-4 p-6">
                 {/* Left Section */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
                     {/* Input & Button Card */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-whiteCard p-6 rounded-lg shadow-md">
                         <textarea
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             placeholder="Enter your text here"
                             rows="5"
-                            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
+                            className="w-full p-3 border bg-inputBg text-textColor border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4"
                         ></textarea>
 
                         <div>
                             <select
                                 value={selectedLanguage}
                                 onChange={(e) => { setSelectedLanguage(e.target.value) }}
-                                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
+                                className="w-full p-3 bg-inputBg text-textColor border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4"
                             >
                                 {LANGUAGES.map((lang) => (
                                     <option key={lang.id} value={lang.value}>{lang.name}</option>
@@ -100,7 +100,7 @@ function TextToVoice() {
                                 ? <select
                                     value={selectedVoice}
                                     onChange={(e) => setSelectedVoice(e.target.value)}
-                                    className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
+                                    className="w-full p-3 bg-inputBg text-textColor border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4"
                                 >
                                     {voices.map((voice, index) => (
                                         <option key={index} value={voice.name}>{voice.name} ({voice.gender})</option>
@@ -115,7 +115,7 @@ function TextToVoice() {
                             disabled={loading}
                             className={`w-full px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
                                 ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
+                                : "bg-mainPurple hover:bg-mainPurpleDark"
                                 }`}
                         >
                             {loading ? "Generating..." : "Generate Voice"}
@@ -126,7 +126,7 @@ function TextToVoice() {
 
                 {/* Right Section */}
                 <div className="w-full lg:w-1/2 flex justify-center items-center">
-                    <div className="bg-white p-6 rounded-lg shadow-md w-full ">
+                    <div className="bg-whiteCard p-6 rounded-lg shadow-md w-full ">
                         {!loading ? (
                             audioUrl ? (
                                 <audio controls className="w-full">

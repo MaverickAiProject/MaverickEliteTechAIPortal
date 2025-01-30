@@ -100,7 +100,7 @@ function YoutubeVideoGen() {
             try {
                 const res = await generateContent({
                     responseType: "application/json",
-                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt in Realistic format for each scene (the AI Prompt must be fully descriptive of the scene. The length of Image prompt must be minimum 30 words) and give me result in an array of multiple objects (minimum 8) with id, imagePrompt, scene and ContentText (The length of ContentText must be minimum 30 words. It can have many lines also.) as field, No Plain text.`,
+                    inputPrompt: `Write a script to generate 5 minutes video on topic: ${selectedTopic.heading} and description ${selectedTopic.description} along with AI image prompt for each scene (the AI Prompt must be fully descriptive of the scene. The length of Image prompt must be minimum 30 words) and give me result in an array of multiple objects (minimum 8) with id, imagePrompt, scene and ContentText (The length of ContentText must be minimum 30 words. It can have many lines also.) as field, No Plain text.`,
                 });
 
                 if (res) {
@@ -176,11 +176,11 @@ function YoutubeVideoGen() {
 
                 {/* Generated Script Section */}
                 {script.length > 0 && (
-                    <div className="bg-white p-4 mb-8 shadow-md rounded-lg flex flex-col items-center">
-                        <h1 className="text-primary text-3xl text-center mb-5 font-bold">🚀 Video Generated Successfully!</h1>
+                    <div className="bg-whiteCard p-4 mb-8 shadow-md rounded-lg flex flex-col items-center ease-in-out transition-all duration-500">
+                        <h1 className="text-purpleText text-3xl text-center mb-5 font-bold">🚀 Video Generated Successfully!</h1>
                         {selectedTopic.heading && (
-                            <div className="p-3 bg-gray-100 border-[1px] border-[#5f13c5] sticky rounded-lg shadow-md">
-                                <h2 className="text-lg font-bold text-[#5f13c5] mb-2">Selected Topic</h2>
+                            <div className="p-3 mb-3 bg-dashboardBg text-textColor border-[1px] border-purpleText sticky rounded-lg shadow-md">
+                                <h2 className="text-lg font-bold text-purpleText mb-2">Selected Topic</h2>
                                 <p className="text-sm mb-2">
                                     <span className="font-bold">Heading:</span> {selectedTopic.heading}
                                 </p>
@@ -193,20 +193,20 @@ function YoutubeVideoGen() {
                             {script.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="p-4 bg-white border border-gray-200 rounded-lg shadow-md ursor-pointer  transform transition-transform duration-200 hover:shadow-lg"
+                                    className="p-4 bg-dashboardBg border border-gray-500 rounded-lg shadow-md ursor-pointer  transform transition-transform duration-200 hover:shadow-lg"
                                 >
                                     <div>
-                                        <h3 className="text-lg font-bold text-[#5f13c5] mb-2">{`Scene ${index + 1}`}</h3>
-                                        <p className="text-sm text-gray-800">{item.ContentText}</p>
-                                        <p className="text-sm mt-2">
-                                            <span className="font-bold">Image Prompt:</span> {item.imagePrompt}
+                                        <h3 className="text-lg font-bold text-purpleText mb-2">{`Scene ${index + 1}`}</h3>
+                                        <p className="text-sm text-textColor">{item.ContentText}</p>
+                                        <p className="text-sm mt-2 text-greyText">
+                                            <span className="font-bold text-textColor">Image Prompt:</span> {item.imagePrompt}
                                         </p>
                                         {/* {item.image && */}
                                         <button
                                             onClick={() => handleGenerateYtImage(item.id, item.imagePrompt)}
                                             disabled={loading}
                                             className={`px-6 py-2 mt-3 text-white font-medium rounded-md shadow-md focus:outline-none 
-                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-mainPurple hover:bg-mainPurpleDark"}`}
                                         >
                                             {loading ? "Loading..." : "Generate Image"}
                                         </button>
@@ -219,7 +219,7 @@ function YoutubeVideoGen() {
                                                 onClick={() => handleDownloadImage(item.image)}
                                                 className={`w-full mt-3 px-6 py-3 text-white font-medium rounded-lg shadow-md transition-colors ${loading
                                                     ? "bg-gray-400 cursor-not-allowed"
-                                                    : "bg-[#5f13c5] hover:bg-[#4a0fa3]"
+                                                    : "bg-mainPurple hover:bg-mainPurpleDark"
                                                     }`}
                                             >
                                                 Download Image
@@ -232,7 +232,7 @@ function YoutubeVideoGen() {
                         <button
                             onClick={handleGenerateOtherVideo}
                             className={`px-6 py-2 mt-6 text-white font-medium rounded-md shadow-md focus:outline-none 
-                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-mainPurple hover:bg-mainPurpleDark"}`}
                         >
                             {loading ? "Loading..." : "Generate Other Video"}
                         </button>
@@ -240,17 +240,17 @@ function YoutubeVideoGen() {
                 )}
 
                 {/* Form Section */}
-                <div className="flex flex-col bg-white mt-6 rounded-lg p-5 md:flex-row gap-6 mb-6 items-start shadow-md">
+                <div className="flex flex-col bg-whiteCard mt-6 rounded-lg p-5 md:flex-row gap-6 mb-6 items-start shadow-md">
                     <div className="w-full">
                         <label
                             htmlFor="niche"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className="block text-sm font-medium text-greyText mb-2"
                         >
                             Select a Niche:
                         </label>
                         <select
                             id="niche"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-[#5f13c5] focus:outline-none"
+                            className="w-full px-4 py-2 bg-inputBg text-textColor border border-gray-400 rounded-md text-sm focus:ring-2 focus:ring-purpleText focus:outline-none"
                             value={niche}
                             onChange={(e) => setNiche(e.target.value)}
                         >
@@ -266,7 +266,7 @@ function YoutubeVideoGen() {
                                 value={customNiche}
                                 onChange={(e) => setCustomNiche(e.target.value)}
                                 placeholder="Enter your prompt"
-                                className="w-full p-3 mt-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5f13c5] focus:border-transparent mb-4"
+                                className="w-full p-3 mt-4 border bg-inputBg text-textColor border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4"
                             />
                         }
 
@@ -275,13 +275,13 @@ function YoutubeVideoGen() {
                     <div className="w-full">
                         <label
                             htmlFor="videoLanguage"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className="block text-sm font-medium text-greyText mb-2"
                         >
                             Select a Language:
                         </label>
                         <select
                             id="videoLanguage"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-[#5f13c5] focus:outline-none"
+                            className="w-full px-4 py-2 border bg-inputBg text-textColor border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-purpleText focus:outline-none"
                             value={videoLanguage}
                             onChange={(e) => setVideoLanguage(e.target.value)}
                         >
@@ -297,7 +297,7 @@ function YoutubeVideoGen() {
                         onClick={handleGetTopics}
                         disabled={loading}
                         className={`px-6 py-2 text-white font-medium rounded-md shadow-md focus:outline-none 
-                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-mainPurple hover:bg-mainPurpleDark"}`}
                     >
                         {loading ? "Loading..." : "Generate Topics"}
                     </button>
@@ -307,7 +307,7 @@ function YoutubeVideoGen() {
                     {/* Topics Section */}
                     {allTopics.length > 0 && (
                         <div className="mb-3">
-                            <h2 className="text-primary text-xl mb-2 font-bold">{selectedTopic.heading ? 'Topic selected successfully. If you want another topic, click another 👉' : `Select a topic to continue 👉`}</h2>
+                            <h2 className="text-purpleText text-xl mb-3 font-bold">{selectedTopic.heading ? 'Topic selected successfully. If you want another topic, click another 👉' : `Select a topic to continue 👉`}</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                                 {allTopics.map((item, index) => (
                                     <div
@@ -325,8 +325,8 @@ function YoutubeVideoGen() {
 
                     {/* Selected Topic */}
                     {selectedTopic.heading && (
-                        <div className="p-3 mb-3 bg-gray-100 border-[3px] border-[#5f13c5] rounded-lg shadow-md">
-                            <h2 className="text-lg font-bold text-[#5f13c5] mb-2">Selected Topic</h2>
+                        <div className="p-3 mb-3 bg-whiteCard text-textColor border-[3px] border-purpleText rounded-lg shadow-md">
+                            <h2 className="text-lg font-bold text-purpleText mb-2">Selected Topic</h2>
                             <p className="text-sm mb-2">
                                 <span className="font-bold">Heading:</span> {selectedTopic.heading}
                             </p>
@@ -337,7 +337,7 @@ function YoutubeVideoGen() {
                                 onClick={generateScript}
                                 disabled={loading}
                                 className={`px-6 py-2 text-white font-medium rounded-md shadow-md focus:outline-none 
-                    ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#5f13c5] hover:bg-[#4e0f9f]"}`}
+                    ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-mainPurple hover:bg-mainPurpleDark"}`}
                             >
                                 {loading ? "Generating Script..." : "Generate Script"}
                             </button>

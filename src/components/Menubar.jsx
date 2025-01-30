@@ -5,8 +5,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Context } from '../context/Context';
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../context/ThemeContext';
+import { BsMoonStars } from "react-icons/bs";
+import { LuSunMedium } from "react-icons/lu";
 
 function Menubar() {
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext);
     const navigate = useNavigate()
     const { setNavOpen, navOpen, userDetails } = useContext(Context)
 
@@ -31,14 +35,37 @@ function Menubar() {
                     : <GiHamburgerMenu size={30} className='md:hidden' />
                 }
             </div>
-            <img src={images.logo_purple_transparent} alt="" className='h-10' />
-            <div
-                className='flex gap-2 items-center cursor-pointer hover:text-purpleText transition-all duration-200'
-                onClick={() => navigate('/settings')}
-            >
-                <p className='hidden md:block'>{userDetails.name}</p>
-                <FaRegCircleUser size={30} className='' />
+            {/* <img src={images.logo_purple_transparent} alt="" className='h-10' /> */}
+            <div className='h-full p-0'>
+                <video
+                    src="/Maverick3.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full"
+                />
             </div>
+
+            <div className='flex gap-6 items-center justify-center'>
+
+                <div
+                    className='hidden md:flex flex-row-reverse gap-2 items-center cursor-pointer hover:text-purpleText transition-all duration-200'
+                    onClick={() => navigate('/settings')}
+                >
+
+                    <p className=''>{userDetails.name}</p>
+                    <FaRegCircleUser size={25} className='' />
+                </div>
+
+                <div className="cursor-pointer text-xl transition-all duration-300 ease-in-out" onClick={toggleDarkMode}>
+                    {darkMode
+                        ? <BsMoonStars size={25} className='hover:text-yellow-300 hover:scale-110 transition-all duration-200 ease-in-out' />
+                        : <LuSunMedium size={25} className=' hover:scale-125 transition-all duration-200 ease-in-out' />
+                    }
+                </div>
+            </div>
+
         </div>
     )
 }

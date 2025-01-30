@@ -12,11 +12,11 @@ const SearchForm = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-gray-100 rounded">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-4 mb-5 rounded-lg bg-whiteCard">
             <div className="grid grid-cols-2 gap-4">
                 {/* Channel Name */}
                 <div>
-                    <label htmlFor="channelName" className="block mb-2 text-lg font-medium text-gray-700">
+                    <label htmlFor="channelName" className="block mb-2 text-lg font-medium text-greyText">
                         Channel Name
                     </label>
                     <input
@@ -24,18 +24,18 @@ const SearchForm = ({ onSearch }) => {
                         type="text"
                         placeholder="Channel Name"
                         {...register("channelName")}
-                        className="p-2 border rounded w-full"
+                        className="p-2 border rounded w-full bg-inputBg text-textColor"
                     />
                 </div>
                 {/* Country or region */}
                 <div>
-                    <label htmlFor="country" className="block mb-2 text-lg font-medium text-gray-700">
+                    <label htmlFor="country" className="block mb-2 text-lg font-medium text-greyText">
                         Country
                     </label>
                     <select
                         id="country"
                         {...register("country")}
-                        className="p-2 border rounded w-full"
+                        className="p-2 border rounded w-full  bg-inputBg text-textColor"
                     >
                         <option value="">Select an option</option>
                         {Countries_With_Region_Codes.map((option) => (
@@ -47,13 +47,13 @@ const SearchForm = ({ onSearch }) => {
                 </div>
                 {/* Min Subscribers */}
                 <div className="">
-                    <label htmlFor="minSubscribers" className="block mb-2 text-lg font-medium text-gray-700">
+                    <label htmlFor="minSubscribers" className="block mb-2 text-lg font-medium text-greyText">
                         Minimum Subscribers
                     </label>
                     <select
                         id="minSubscribers"
                         {...register("minSubscribers")}
-                        className="p-2 border rounded w-full"
+                        className="p-2 border rounded w-full bg-inputBg text-textColor"
                     >
                         <option value="">Select an option</option>
                         {minMaxValues.map((option) => (
@@ -66,13 +66,13 @@ const SearchForm = ({ onSearch }) => {
 
                 {/* Minimum Views */}
                 <div>
-                    <label htmlFor="minViews" className="block mb-2 text-lg font-medium text-gray-700">
+                    <label htmlFor="minViews" className="block mb-2 text-lg font-medium text-greyText">
                         Minimum Views
                     </label>
                     <select
                         id="minViews"
                         {...register("minViews")}
-                        className="p-2 border rounded w-full"
+                        className="p-2 border rounded w-full bg-inputBg text-textColor"
                     >
                         <option value="">Select an option</option>
                         {minMaxValues.map((option) => (
@@ -85,7 +85,7 @@ const SearchForm = ({ onSearch }) => {
 
                 {/* Min Videos */}
                 <div className="">
-                    <label htmlFor="minVideos" className="block mb-2 text-lg font-medium text-gray-700">
+                    <label htmlFor="minVideos" className="block mb-2 text-lg font-medium text-greyText">
                         Minimum Videos Uploaded
                     </label>
                     <input
@@ -94,14 +94,14 @@ const SearchForm = ({ onSearch }) => {
                         name="minVideos"
                         placeholder="Min Videos"
                         {...register("minVideos")}
-                        className="p-2 border rounded w-full"
+                        className="p-2 border rounded w-full bg-inputBg text-textColor"
                     />
                 </div>
 
             </div>
             <button
                 type="submit"
-                className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="mt-5 px-10 py-2 bg-mainPurple text-white rounded hover:bg-mainPurpleDark"
             >
                 Search
             </button>

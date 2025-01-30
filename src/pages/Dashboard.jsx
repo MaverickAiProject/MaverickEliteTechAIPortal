@@ -39,7 +39,7 @@ function Dashboard() {
                     />
                 </div>
             </GradientBox>
-            <div className='p-5 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-4'>
+            <div className='p-3 sm:p-5 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-4'>
                 {aiToolsList.map((tool, index) => (
                     <AiToolCard
                         key={index}

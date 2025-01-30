@@ -5,10 +5,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#5f13c5",
-          hover: "#4b0f9b",
-        },
         mainPurple: "var(--mainPurple)",
         mainPurpleDark: "var(--mainPurpleDark)",
 
@@ -32,12 +28,3 @@ export default {
   },
   plugins: [],
 };
-
-// Dark Theme Colors
-// dark: {
-//   primary: "#9c79f2", // Adjusted primary for better contrast in dark mode
-//   grayCard: "#303030", // Card background in dark mode
-//   dashboardBg: "#121212", // Dashboard background in dark mode
-//   sidebarBg: "#1a1a1a", // Sidebar background in dark mode
-//   textPrimary: "#ffffff", // Text color in dark mode
-// },
