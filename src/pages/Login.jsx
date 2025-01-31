@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.config.js";
 import { Link, useNavigate } from "react-router-dom";
-import { images } from "../assets/images.js";
 import { Context } from "../context/Context";
 import ReactLoading from 'react-loading';
 import PolicyLinks from "../components/PolicyLinks.jsx";

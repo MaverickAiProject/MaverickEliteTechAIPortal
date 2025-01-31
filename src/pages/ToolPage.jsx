@@ -8,7 +8,7 @@ import TextEditor from '../components/TextEditor'
 import { Context } from '../context/Context'
 import ReactLoading from 'react-loading';
 import generateContent from '../services/generateContent'
-import { toast } from 'react-toastify'
+import { toast } from 'react-hot-toast'
 
 function ToolPage() {
 
@@ -42,7 +42,6 @@ function ToolPage() {
             });
 
             if (res) {
-                console.log(res)
                 setResult(res)
                 deductCredits(50)
                 setLoading(false);

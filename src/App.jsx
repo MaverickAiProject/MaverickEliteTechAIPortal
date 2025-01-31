@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -9,8 +9,6 @@ import Billing from "./pages/Billing";
 import Settings from "./pages/Settings";
 import ToolPage from "./pages/ToolPage";
 import { Context } from "./context/Context";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import AboutUs from "./pages/AboutUs";
 import PrivacyPoilcy from "./pages/PrivacyPoilcy";
 import TermsConditions from "./pages/TermsConditions";
@@ -41,7 +39,6 @@ function App() {
           },
         }}
       />
-      <ToastContainer />
       <Routes>
         <Route element={<Layout />}>
           {/* Secured Routes */}

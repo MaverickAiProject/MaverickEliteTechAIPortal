@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase.config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 export const Context = createContext();
 

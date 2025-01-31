@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import GradientBox from '../components/GradientBox'
 import { AI_TOOLS } from '../utils/toolsTemplate'
 import AiToolCard from '../components/AiToolCard'

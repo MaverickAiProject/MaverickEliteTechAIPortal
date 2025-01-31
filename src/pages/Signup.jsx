@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/
 import { auth, db } from "../firebase.config.js";
 import { Link, useNavigate } from "react-router-dom";
 import { setDoc, doc, getDocs, collection, query, where } from "firebase/firestore";
-import { images } from "../assets/images.js";
 import ReactLoading from 'react-loading';
 import { Context } from "../context/Context.jsx";
 import LogoVideo from "../components/LogoVideo.jsx";
