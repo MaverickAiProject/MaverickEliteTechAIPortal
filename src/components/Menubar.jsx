@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import { BsMoonStars } from "react-icons/bs";
 import { LuSunMedium } from "react-icons/lu";
+import LogoVideo from './LogoVideo';
 
 function Menubar() {
     const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -36,14 +37,7 @@ function Menubar() {
             </div>
             {/* <img src={images.logo_purple_transparent} alt="" className='h-10' /> */}
             <div className='h-full p-0'>
-                <video
-                    src={`${!darkMode ? "/Maverick3.mp4" : "/Maverickblack.mp4"}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="h-full"
-                />
+                <LogoVideo />
             </div>
 
             <div className='flex gap-6 items-center justify-center'>

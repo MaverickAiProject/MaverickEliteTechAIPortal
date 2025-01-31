@@ -70,9 +70,9 @@ function TextToVoice() {
                     description={'Generate speech from text using AI'}
                 />
             </GradientBox>
-            <div className="max-w-[1200px] mx-auto min-h-fit flex sm:flex-col flex-col-reverse lg:flex-row items-center lg:items-start justify-center gap-2 md:gap-4 p-6">
+            <div className="max-w-[1200px] mx-auto min-h-fit items-start grid grid-cols-2 justify-center gap-2 md:gap-4 p-6">
                 {/* Left Section */}
-                <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
+                <div className="flex flex-col gap-4 md:gap-6 ">
                     {/* Input & Button Card */}
                     <div className="bg-whiteCard p-6 rounded-lg shadow-md">
                         <textarea
@@ -125,7 +125,7 @@ function TextToVoice() {
                 </div>
 
                 {/* Right Section */}
-                <div className="w-full lg:w-1/2 flex justify-center items-center">
+                <div className="flex justify-center items-center">
                     <div className="bg-whiteCard p-6 rounded-lg shadow-md w-full ">
                         {!loading ? (
                             audioUrl ? (
