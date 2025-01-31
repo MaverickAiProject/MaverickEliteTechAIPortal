@@ -14,7 +14,7 @@ const Layout = () => {
     }
 
     return (
-        <div className="flex h-screen flex-col overflow-x-hidden">
+        <div className={`flex h-screen flex-col overflow-x-hidden ${navOpen ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
             <MenuBar />
             <div className="flex flex-1 relative w-screen">
                 {/* <div className="h-full"> */}
