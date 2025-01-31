@@ -16,7 +16,7 @@ function ToolPage() {
     const [inputTopic, setInputTopic] = useState("");
     const [inputDescription, setInputDescription] = useState("");
     const [aiPrompt, setAiPrompt] = useState("");
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState(null);
 
     const { toolSlug } = useParams()
     const tool = AI_TOOLS.find((tool) => tool.slug === toolSlug)

@@ -17,13 +17,11 @@ function TextEditor({ text }) {
             const editorContent = editorInstance.getMarkdown();
 
             if (editorContent) {
-                const lineHeight = 24; // Approximate line height in pixels
-                const minHeight = 150;
-                const maxHeight = window.innerHeight * 0.8;
+                const lineHeight = 25;
+                const minHeight = 500;
 
                 const calculatedHeight = Math.min(
-                    Math.max(editorContent.split("\n").length * lineHeight, minHeight),
-                    maxHeight
+                    Math.max(editorContent.split("\n").length * lineHeight, minHeight)
                 );
 
                 setEditorHeight(`${calculatedHeight}px`);
@@ -31,23 +29,20 @@ function TextEditor({ text }) {
         }
     };
 
-    // ✅ Adjust height on mount & window resize
     useEffect(() => {
         adjustHeight();
         window.addEventListener("resize", adjustHeight);
         return () => window.removeEventListener("resize", adjustHeight);
     }, []);
 
-    // ✅ Update editor content only when `text` changes
     useEffect(() => {
-        if (editorRef.current) {
+        if (text && text.length > 0) {
             const editorInstance = editorRef.current.getInstance();
-            editorInstance.setMarkdown(text || ""); // Avoids undefined issues
-            adjustHeight(); // Adjust height after setting content
+            editorInstance.setMarkdown(text);
         }
-    }, [text]); // 🔥 Fixes infinite re-render loop
+    }, [text]);
 
-    // ✅ Copy function
+    // Copy function
     const handleCopy = async () => {
         if (!text) {
             toast.error("Please generate content before copying.");
@@ -81,8 +76,8 @@ function TextEditor({ text }) {
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
                     autofocus={false}
-                    height={editorHeight} // ✅ Dynamic height
-                    onChange={() => setTimeout(adjustHeight, 300)} // ✅ Debounced height update
+                    height={editorHeight}
+                    onChange={() => setTimeout(adjustHeight, 300)}
                 />
             </div>
         </div>
