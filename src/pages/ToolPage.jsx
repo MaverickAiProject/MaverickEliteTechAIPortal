@@ -68,13 +68,13 @@ function ToolPage() {
             </GradientBox>
             <div className='p-5 flex-col sm:flex-row flex gap-4 sm:h-[calc(100vh-10.5rem)] items-start'>
                 <div className='flex min-h-full md:w-auto w-full'>
-                    <div className='flex flex-col gap-4 bg-white p-5 rounded shadow-sm min-h-fit sm:min-h-full w-full'>
+                    <div className='flex flex-col gap-2 bg-whiteCard text-textColor p-5 rounded shadow-sm min-h-fit sm:min-h-full w-full'>
                         <div className='flex flex-col gap-2'>
                             <label htmlFor="idea-heading" className='font-semibold'>What is your content Topic?</label>
                             <input
                                 type="text"
                                 id='idea-heading'
-                                className='border-2 outline-none px-3 py-2 rounded focus:border-primary'
+                                className='w-full bg-inputBg text-textColor p-3 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4'
                                 placeholder='Type here...'
                                 value={inputTopic}
                                 onChange={(e) => setInputTopic(e.target.value)}
@@ -86,12 +86,12 @@ function ToolPage() {
                                 name="desc"
                                 id="desc"
                                 placeholder='Type Here...'
-                                className='border-2 outline-none px-3 py-2 rounded focus:border-primary flex-grow resize-none'
+                                className='w-full bg-inputBg text-textColor p-3 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purpleText focus:border-transparent mb-4 flex-grow resize-none'
                                 value={inputDescription}
                                 onChange={(e) => setInputDescription(e.target.value)}
                             ></textarea>
                         </div>
-                        <button className='bg-primary text-white rounded py-2 flex items-center justify-center min-h-8' onClick={handleGenerateContent}>
+                        <button className='bg-mainPurple hover:bg-mainPurpleDark text-white rounded py-2 flex items-center justify-center min-h-8' onClick={handleGenerateContent}>
                             {loading ?
                                 <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
                                 : 'Generate'
@@ -99,7 +99,7 @@ function ToolPage() {
                         </button>
                     </div>
                 </div>
-                <div className='min-h-full md:flex-1 min-w-72 w-full pb-5 col-span-3 h-full overflow-auto bg-white'>
+                <div className='min-h-full md:flex-1 min-w-72 w-full pb-5 col-span-3 h-full overflow-auto'>
                     <TextEditor text={result} />
                 </div>
             </div>
