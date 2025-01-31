@@ -184,7 +184,7 @@ function YoutubeVideoGen() {
                 />
             </GradientBox>
 
-            <div className="m-5 ABCD-SECTION">
+            <div className="p-5">
 
                 {/* Generated Script Section */}
                 {script.length > 0 && (
@@ -252,7 +252,7 @@ function YoutubeVideoGen() {
                 )}
 
                 {/* Form Section */}
-                <div className="flex flex-col bg-whiteCard mt-6 rounded-lg p-5 md:flex-row gap-6 mb-6 items-start shadow-md">
+                <div className="flex flex-col bg-whiteCard rounded-lg p-5 md:flex-row gap-6 mb-6 items-start shadow-md">
                     <div className="w-full">
                         <label
                             htmlFor="niche"

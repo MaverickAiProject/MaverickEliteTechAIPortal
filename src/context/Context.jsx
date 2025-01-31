@@ -103,10 +103,12 @@ const ContextProvider = (props) => {
     // Deduct credits from Firestore
     const deductCredits = async (amount) => {
         try {
-            const newCredits = credits - amount;
-
-            // Update Firestore
             const userDocRef = doc(db, "Users", authorizedUser.uid);
+            const userDocSnap = await getDoc(userDocRef);
+            const currentCredits = userDocSnap.data().credits;
+
+            const newCredits = currentCredits - amount;
+            // Update Firestore
             await updateDoc(userDocRef, { credits: newCredits });
 
             // Update local state
