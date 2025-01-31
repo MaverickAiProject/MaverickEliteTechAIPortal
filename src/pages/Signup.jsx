@@ -6,6 +6,8 @@ import { setDoc, doc, getDocs, collection, query, where } from "firebase/firesto
 import { images } from "../assets/images.js";
 import ReactLoading from 'react-loading';
 import { Context } from "../context/Context.jsx";
+import LogoVideo from "../components/LogoVideo.jsx";
+import PolicyLinks from "../components/PolicyLinks.jsx";
 
 function Signup() {
     const [email, setEmail] = useState("");
@@ -83,13 +85,15 @@ function Signup() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-dashboardBg dark:bg-dark-dashboardBg">
+        <div className="flex items-center justify-center min-h-screen bg-dashboardBg ">
             {!newUser
                 &&
-                <div className="w-full max-w-[90%] sm:max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md">
+                <div className="w-[90%] text-textColor max-w-lg border-gray-400 border py-4 px-4 sm:px-8 bg-whiteCard shadow-md rounded-md">
                     <div>
-                        <img src={images.logo_purple_transparent} alt="" className="w-[40%] mx-auto mb-2" />
-                        <h1 className="text-2xl font-bold text-primary dark:text-dark-primary text-center">
+                        <div className="w-44 sm:w-44 mx-auto mb-3">
+                            <LogoVideo />
+                        </div>
+                        <h1 className="text-2xl font-bold text-purpleText text-center">
                             Create New Account
                         </h1>
                         <p className="text-center mb-5">Deep dive into best AI Tools!</p>
@@ -102,7 +106,7 @@ function Signup() {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                         />
                         <input
                             type="number"
@@ -112,7 +116,7 @@ function Signup() {
                             value={number}
                             onChange={(e) => setNumber(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                         />
                         <input
                             type="email"
@@ -120,7 +124,7 @@ function Signup() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                         />
                         <input
                             type="password"
@@ -129,26 +133,26 @@ function Signup() {
                             minLength="8"
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                         />
                         <div className="flex items-start space-x-2 mt-4">
                             <input
                                 type="checkbox"
                                 id="terms"
                                 required
-                                className="w-4 h-4 mt-1 text-primary accent-primary "
+                                className="w-4 h-4 mt-1 text-purpleText accent-primary "
                             />
                             <label
                                 htmlFor="terms"
-                                className="text-sm text-gray-700 dark:text-dark-textPrimary"
+                                className="text-sm text-greyText"
                             >
-                                I hereby declare that the email and phone number I have provided are true and authentic. I also agree to the <Link to={'/t&c'} className="text-primary underline">Terms & Conditions</Link>  and <Link to={'/privacyPolicy'} className="text-primary underline"> Privacy Policy</Link> of Maverick AI Portal.
+                                I hereby declare that the email and phone number I have provided are true and authentic. I also agree to the <Link to={'/t&c'} className="text-purpleText underline">Terms & Conditions</Link>  and <Link to={'/privacyPolicy'} className="text-purpleText underline"> Privacy Policy</Link> of Maverick AI Portal.
                             </label>
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full px-4 py-2 bg-primary text-white font-bold rounded hover:bg-primary-dark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
+                            className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded hover:bg-mainPurpleDark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
                         >
                             {loading ?
                                 <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
@@ -159,7 +163,7 @@ function Signup() {
 
                     <div className="text-center mt-2">
                         <p>Already have an account?{" "}
-                            <Link to={'/login'} className="text-primary dark:text-dark-primary font-semibold">
+                            <Link to={'/login'} className="text-purpleText   font-semibold">
                                 Login here
                             </Link>
                         </p>
@@ -169,19 +173,13 @@ function Signup() {
                             {error}
                         </p>
                     )}
-                    <div className="text-sm text-gray-600 flex gap-4 w-[90%] mx-auto flex-wrap items-center justify-center mt-3 border-t pt-3">
-                        <Link to={'/aboutUs'} className="hover:text-primary hover:border-b border-primary transition-all">About Us</Link>
-                        <Link to={'/contactUs'} className="hover:text-primary hover:border-b border-primary transition-all">Contact Us</Link>
-                        <Link to={'/t&c'} className="hover:text-primary hover:border-b border-primary transition-all">Terms & Conditions</Link>
-                        <Link to={'/privacyPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Privacy Policy</Link>
-                        <Link to={'/refundPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Refund Policy</Link>
-                    </div>
+                    <PolicyLinks />
                 </div>
             }
             {newUser && !verificationStatus &&
                 <div className="w-full max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md flex flex-col gap-4 ">
                     <img src={images.logo_purple_transparent} alt="" className="w-[40%] mx-auto mb-2" />
-                    <h1 className="text-2xl font-bold text-primary dark:text-dark-primary text-center">
+                    <h1 className="text-2xl font-bold text-purpleText   text-center">
                         Verify your Email
                     </h1>
                     <p className="text-center mb-5">We have sent you a verification mail. Open your Email Inbox and click on the link to verify your email.</p>
