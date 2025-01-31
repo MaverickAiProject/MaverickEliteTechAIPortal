@@ -4,7 +4,7 @@ function AboutUs() {
     return (
         <div id='main-outer-container'>
             {/* Header Section */}
-            <div className='bg-primary text-white text-center py-10 px-4'>
+            <div className='bg-mainPurple text-white text-center py-10 px-4'>
                 <h1 className='text-3xl md:text-5xl font-bold mb-4'>About Us</h1>
                 <p className='text-sm md:text-md max-w-[90%] md:max-w-[400px] mx-auto'>
                     Read more about us. Our vision, mission, success, and much more you might love.
@@ -87,7 +87,7 @@ function AboutUs() {
             </div>
 
             {/* Footer Section */}
-            <div className='bg-primary text-white text-center py-10 px-4'>
+            <div className='bg-mainPurple text-white text-center py-10 px-4'>
                 <h1 className='text-3xl md:text-5xl font-bold mb-6'>Join Us on Our Journey</h1>
                 <p>Copyright Maverick @2024</p>
             </div>

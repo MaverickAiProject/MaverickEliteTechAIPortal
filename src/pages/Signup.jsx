@@ -57,6 +57,7 @@ function Signup() {
 
         } catch (err) {
             setError(err.message);
+            console.log(err)
             setLoading(false)
         }
     };
@@ -80,8 +81,10 @@ function Signup() {
     }, [newUser]);
 
     const handleEmailChange = () => {
-        confirm("Are you sure you want to change your email?");
-        setNewUser(null);
+        const confirmation = confirm("Are you sure you want to use another email?");
+        if (confirmation) {
+            setNewUser(null);
+        };
     }
 
     return (
@@ -140,7 +143,7 @@ function Signup() {
                                 type="checkbox"
                                 id="terms"
                                 required
-                                className="w-4 h-4 mt-1 text-purpleText accent-primary "
+                                className="w-4 h-4 mt-1 text-purpleText accent-purpleText "
                             />
                             <label
                                 htmlFor="terms"
@@ -177,15 +180,17 @@ function Signup() {
                 </div>
             }
             {newUser && !verificationStatus &&
-                <div className="w-full max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md flex flex-col gap-4 ">
-                    <img src={images.logo_purple_transparent} alt="" className="w-[40%] mx-auto mb-2" />
-                    <h1 className="text-2xl font-bold text-purpleText   text-center">
+                <div className="w-full max-w-md p-8 bg-whiteCard shadow-md rounded-md flex flex-col gap-4 ">
+                    <div className="w-44 sm:w-44 mx-auto mb-3">
+                        <LogoVideo />
+                    </div>
+                    <h1 className="text-2xl font-bold text-purpleText text-center">
                         Verify your Email
                     </h1>
-                    <p className="text-center mb-5">We have sent you a verification mail. Open your Email Inbox and click on the link to verify your email.</p>
+                    <p className="text-center text-textColor mb-5">{`We have sent you a verification mail at ${newUser.email} . Open your Email Inbox and click on the link to verify your email.`}</p>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-primary text-white font-bold rounded hover:bg-primary-dark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
+                        className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded hover:bg-mainPurpleDark transition duration-300 text-center flex items-center justify-center"
                         onClick={handleEmailChange}
                     >
                         Want to use another email? Click here.

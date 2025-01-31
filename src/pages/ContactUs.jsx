@@ -4,7 +4,7 @@ function ContactUs() {
     return (
         <div id='main-outer-container'>
             {/* Header Section */}
-            <div className='bg-primary text-white text-center py-10 px-4'>
+            <div className='bg-mainPurple text-white text-center py-10 px-4'>
                 <h1 className='text-3xl md:text-5xl font-bold mb-4'>Contact Us</h1>
                 <p className='text-sm md:text-md max-w-[90%] md:max-w-[400px] mx-auto'>
                     Got questions, feedback, or need assistance? We're here to help.
@@ -78,7 +78,7 @@ function ContactUs() {
                         </div>
                         <button
                             type='submit'
-                            className='bg-primary text-white py-3 px-6 rounded shadow-lg hover:bg-primary-dark transition duration-300 mt-4'>
+                            className='bg-mainPurple text-white py-3 px-6 rounded shadow-lg hover:bg-mainPurple-dark transition duration-300 mt-4'>
                             Send Message
                         </button>
                     </form>
@@ -86,7 +86,7 @@ function ContactUs() {
             </div>
 
             {/* Footer Section */}
-            <div className='bg-primary text-white text-center py-10 px-4'>
+            <div className='bg-mainPurple text-white text-center py-10 px-4'>
                 <h1 className='text-3xl md:text-5xl font-bold mb-6'>Let’s Build Something Great Together</h1>
                 <p>We value your feedback and inquiries. Stay connected with Maverick AI.</p>
                 <p className='mt-4'>Copyright &copy; Maverick @2024</p>

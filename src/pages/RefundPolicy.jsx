@@ -4,7 +4,7 @@ function RefundPolicy() {
     return (
         <div id="main-outer-container">
             {/* Header Section */}
-            <div className="bg-primary text-white text-center py-10 px-4">
+            <div className="bg-mainPurple text-white text-center py-10 px-4">
                 <h1 className="text-3xl md:text-5xl font-bold mb-4">Refund Policy</h1>
                 <p className="text-sm md:text-md max-w-[90%] md:max-w-[600px] mx-auto">
                     Please review our refund policy carefully before making any purchases on our platform.
@@ -75,7 +75,7 @@ function RefundPolicy() {
             </div>
 
             {/* Footer Section */}
-            <div className="bg-primary text-white text-center py-10 px-4">
+            <div className="bg-mainPurple text-white text-center py-10 px-4">
                 <h1 className="text-3xl md:text-5xl font-bold mb-6">Thank You for Using Maverick AI Tools</h1>
                 <p>Copyright Maverick AI Tools &copy; 2024</p>
             </div>
