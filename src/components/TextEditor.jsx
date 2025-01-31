@@ -10,7 +10,6 @@ function TextEditor({ text }) {
     const [editorHeight, setEditorHeight] = useState("auto");
     const [isCopied, setIsCopied] = useState(false);
 
-    // Function to adjust height dynamically (Debounced)
     const adjustHeight = () => {
         if (editorRef.current) {
             const editorInstance = editorRef.current.getInstance();
