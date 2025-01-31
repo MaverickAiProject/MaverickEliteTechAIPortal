@@ -11,7 +11,7 @@ import { handleDownloadImage } from '../services/downloadImage'
 
 function ImageGen() {
 
-    const { deductCredits } = useContext(Context)
+    const { checkCredits, deductCredits } = useContext(Context)
     const [prompt, setPrompt] = useState("");
     const [imageModel, setImageModel] = useState(IMAGE_MODELS[0].model)
     const [imageUrl, setImageUrl] = useState(() => {
@@ -26,6 +26,14 @@ function ImageGen() {
         const loadingToastId = toast.loading("Generating AI Image...");
         setLoading(true);
         setError(null);
+
+        const hasCredits = await checkCredits(100);
+
+        if (!hasCredits) {
+            setLoading(false);
+            toast.dismiss(loadingToastId);
+            return;
+        }
 
         const generatedImage = await imageGenerator({
             inputs: prompt,

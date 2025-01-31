@@ -25,7 +25,7 @@ function ToolPage() {
         return <div>Tool not found</div>;
     }
 
-    const { deductCredits } = useContext(Context)
+    const { checkCredits, deductCredits } = useContext(Context)
 
     useEffect(() => {
         const aiPrompt = tool.aiPrompt
@@ -34,6 +34,13 @@ function ToolPage() {
 
     const handleGenerateContent = async () => {
         setLoading(true);
+
+        const hasCredits = await checkCredits(50);
+
+        if (!hasCredits) {
+            setLoading(false);
+            return;
+        }
 
         try {
             const res = await generateContent({

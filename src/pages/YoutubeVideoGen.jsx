@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ContentContainer from "../components/ContentContainer";
 import GradientBox from "../components/GradientBox";
 import GradientInnerTitle from "../components/GradientInnerTitle";
@@ -10,8 +10,11 @@ import { images, TOOLS_IMAGES } from "../assets/images";
 import { IMAGE_MODELS } from "../utils/aiModel";
 import { imageGenerator } from "../services/imageGenerator";
 import { handleDownloadImage } from "../services/downloadImage";
+import { Context } from "../context/Context";
 
 function YoutubeVideoGen() {
+    const { checkCredits, deductCredits } = useContext(Context)
+
     const youtubeNiche = YOUTUBENICHE;
     const languages = LANGUAGES;
     const [loading, setLoading] = useState(false);
@@ -97,6 +100,14 @@ function YoutubeVideoGen() {
         const loadingToastId = toast.loading("Generating script...");
         setLoading(true);
         if (selectedTopic.heading && selectedTopic.description) {
+
+            const hasCredits = await checkCredits(50);
+            if (!hasCredits) {
+                toast.dismiss(loadingToastId);
+                setLoading(false);
+                return;
+            }
+
             try {
                 const res = await generateContent({
                     responseType: "application/json",
@@ -107,6 +118,7 @@ function YoutubeVideoGen() {
                     setScript(JSON.parse(res));
                     toast.dismiss(loadingToastId);
                     toast.success('Script Generated Successfully ')
+                    deductCredits(50);
                     setLoading(false);
                 } else {
                     toast.dismiss(loadingToastId);

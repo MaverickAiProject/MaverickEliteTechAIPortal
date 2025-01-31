@@ -7,7 +7,7 @@ import { LANGUAGES } from '../utils/languagesData';
 import { Context } from '../context/Context';
 
 function TextToVoice() {
-    const { deductCredits } = useContext(Context)
+    const { checkCredits, deductCredits } = useContext(Context)
 
     const [text, setText] = useState("");
     const [loading, setLoading] = useState(false);
@@ -33,10 +33,18 @@ function TextToVoice() {
         setAudioUrl(null);
 
         try {
+            const hasCredits = await checkCredits(70);
+
+            if (!hasCredits) {
+                setLoading(false);
+                return;
+            }
+
             const response = await fetch(
                 `https://api.voicerss.org/?key=${'a0cec6f432d745d19be0ae4323bbb5c0'}&hl=${selectedLanguage}&v=${selectedVoice}&src=${encodeURIComponent(text)}&c=MP3`);
 
             if (!response.ok) {
+                toast.error("Failed to generate audio. Please try again.")
                 throw new Error("Failed to generate audio.");
             }
 
@@ -72,7 +80,7 @@ function TextToVoice() {
             </GradientBox>
             <div className="max-w-[1200px] mx-auto min-h-fit items-start grid reve grid=cols-1 sm:grid-cols-2 justify-center gap-2 md:gap-4 p-6">
                 {/* Left Section */}
-                <div className="flex flex-col order-last sm:order-first gap-4 md:gap-6 ">
+                <div className="flex flex-col order-last sm:order-first gap-4 md:gap-6 min-w-full">
                     {/* Input & Button Card */}
                     <div className="bg-whiteCard p-6 rounded-lg shadow-md">
                         <textarea
@@ -129,15 +137,15 @@ function TextToVoice() {
                     <div className="bg-whiteCard p-6 rounded-lg shadow-md w-full ">
                         {!loading ? (
                             audioUrl ? (
-                                <audio controls className="w-full">
-                                    <source src={audioUrl} type="audio/mpeg" />
+                                <audio controls className="w-[80vw] mx-auto sm:w-full">
+                                    <source src={audioUrl} type="audio/mpeg" className='' />
                                     Your browser does not support the audio tag.
                                 </audio>
                             ) : (
                                 <img
                                     src={images.text_to_voice_dummy}
                                     alt="AI Placeholder"
-                                    className="rounded-lg shadow-md mx-auto max-w-[300px] sm:max-w-lg w-full"
+                                    className="rounded-lg shadow-md mx-auto max-w-[400px] sm:max-w-lg w-full"
                                 />
                             )
                         ) : (

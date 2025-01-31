@@ -68,28 +68,45 @@ const ContextProvider = (props) => {
     const [credits, setCredits] = useState();
     const [maxLimit, setMaxLimit] = useState();
 
-    // Deduct credits from Firestore
-    const deductCredits = async (amount) => {
+    // Check Credits
+    const checkCredits = async (amount) => {
         if (!authorizedUser) {
             toast.error("User not signed in!")
             return;
         }
-
-        const userDocRef = doc(db, "Users", authorizedUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
-        setCredits(userDocSnap.data().credits);
-
         try {
-            const currentCredits = userDocSnap.data().credits;
+            const userDocRef = doc(db, "Users", authorizedUser.uid);
+            const userDocSnap = await getDoc(userDocRef);
 
-            if (currentCredits < amount) {
-                handleError("Insufficient credits...Buy more credits to continue.")
-                return;
+            if (!userDocSnap.exists()) {
+                toast.error("User data not found!");
+                return false;
             }
 
-            const newCredits = currentCredits - amount;
+            const currentCredits = userDocSnap.data().credits;
+            setCredits(currentCredits);
+
+            if (currentCredits < amount) {
+                toast.error("Insufficient credits... Buy more credits to continue.");
+                return false;
+            }
+
+            return true;
+
+        } catch (err) {
+            toast.error("Error:" + err)
+            return false;
+        }
+
+    };
+
+    // Deduct credits from Firestore
+    const deductCredits = async (amount) => {
+        try {
+            const newCredits = credits - amount;
 
             // Update Firestore
+            const userDocRef = doc(db, "Users", authorizedUser.uid);
             await updateDoc(userDocRef, { credits: newCredits });
 
             // Update local state
@@ -203,6 +220,7 @@ const ContextProvider = (props) => {
         setCredits,
         maxLimit,
         setMaxLimit,
+        checkCredits,
         deductCredits,
         // Buy credits
         buyNow,

@@ -7,7 +7,7 @@ import imageCompression from 'browser-image-compression'
 import { Context } from '../context/Context'
 
 function ImageCompressor() {
-    const { deductCredits } = useContext(Context)
+    const { checkCredits, deductCredits } = useContext(Context)
 
     const [originalImage, setOriginalImage] = useState(null)
     const [compressedImage, setCompressedImage] = useState(null)
@@ -31,6 +31,13 @@ function ImageCompressor() {
 
         setLoading(true)
         try {
+            const hasCredits = await checkCredits(20);
+
+            if (!hasCredits) {
+                setLoading(false);
+                return;
+            }
+
             let quality = 1.0 // Start with maximum quality
             let compressedFile = originalImage
 
@@ -51,7 +58,7 @@ function ImageCompressor() {
             }
 
             setCompressedImage(compressedFile);
-            deductCredits(50);
+            deductCredits(20);
             setCompressedSize((compressedFile.size / 1024 / 1024).toFixed(2)) // Convert to MB
 
         } catch (error) {
