@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { FaRegCircleUser } from "react-icons/fa6";
-import { images } from '../assets/images';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Context } from '../context/Context';

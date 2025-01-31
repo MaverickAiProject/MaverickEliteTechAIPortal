@@ -1,3 +1,5 @@
+// different ai models for image generation
+
 export const IMAGE_MODELS = [
   {
     id: 1,

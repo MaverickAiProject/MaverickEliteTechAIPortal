@@ -1,3 +1,5 @@
+//  data for youtube analytics page
+
 export const minMaxValues = [
   { label: "1", value: 1 },
   { label: "10", value: 10 },

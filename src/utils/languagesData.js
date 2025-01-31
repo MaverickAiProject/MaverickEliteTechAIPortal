@@ -1,3 +1,5 @@
+// different languages for text to voice generator
+
 export const LANGUAGES = [
   {
     id: 1,

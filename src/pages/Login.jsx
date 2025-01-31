@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { images } from "../assets/images.js";
 import { Context } from "../context/Context";
 import ReactLoading from 'react-loading';
+import PolicyLinks from "../components/PolicyLinks.jsx";
+import LogoVideo from "../components/LogoVideo.jsx";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -42,11 +44,13 @@ function Login() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-dashboardBg dark:bg-dark-dashboardBg">
-            <div className="w-full max-w-[90%] sm:max-w-md p-8 bg-white dark:bg-dark-grayCard shadow-md rounded-md">
+        <div className="flex items-center justify-center min-h-screen bg-dashboardBg ">
+            <div className="w-[90%] text-textColor max-w-lg border-gray-400 border p-8 bg-whiteCard shadow-md rounded-md">
                 <div>
-                    <img src={images.logo_purple_transparent} alt="Logo" className="w-[40%] mx-auto mb-2" />
-                    <h1 className="text-2xl font-bold text-primary dark:text-dark-primary text-center">
+                    <div className="w-44 sm:w-48 mx-auto mb-5">
+                        <LogoVideo />
+                    </div>
+                    <h1 className="text-2xl font-bold text-purpleText text-center">
                         Welcome Back!
                     </h1>
                     <p className="text-center mb-5">Log in to access your dashboard</p>
@@ -58,7 +62,7 @@ function Login() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                        className="w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                     />
                     <input
                         type="password"
@@ -66,12 +70,12 @@ function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary dark:bg-dark-dashboardBg dark:text-dark-textPrimary"
+                        className="w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
                     />
 
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-primary text-white font-bold rounded hover:bg-primary-dark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-ligh flex items-center justify-center"
+                        className="w-full px-4 py-2 bg-mainPurple hover:bg-mainPurpleDark text-white font-bold rounded  transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-ligh flex items-center justify-center"
                     >
                         {loading ?
                             <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
@@ -79,10 +83,10 @@ function Login() {
                         }
                     </button>
                 </form>
-                <div className="text-center mt-2">
+                <div className="text-center mt-6">
                     <p>
                         Don’t have an account?{" "}
-                        <Link to={"/signup"} className="text-primary dark:text-dark-primary font-semibold">
+                        <Link to={"/signup"} className="text-purpleText font-semibold">
                             Sign up here
                         </Link>
                     </p>
@@ -92,12 +96,8 @@ function Login() {
                         {error}
                     </p>
                 )}
-                <div className="text-sm text-gray-600 flex gap-4 w-[90%] mx-auto flex-wrap items-center justify-center mt-3 border-t pt-3">
-                    <Link to={'/aboutUs'} className="hover:text-primary hover:border-b border-primary transition-all">About Us</Link>
-                    <Link to={'/contactUs'} className="hover:text-primary hover:border-b border-primary transition-all">Contact Us</Link>
-                    <Link to={'/t&c'} className="hover:text-primary hover:border-b border-primary transition-all">Terms & Conditions</Link>
-                    <Link to={'/privacyPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Privacy Policy</Link>
-                    <Link to={'/refundPolicy'} className="hover:text-primary hover:border-b border-primary transition-all">Refund Policy</Link>
+                <div>
+                    <PolicyLinks />
                 </div>
             </div>
         </div>
