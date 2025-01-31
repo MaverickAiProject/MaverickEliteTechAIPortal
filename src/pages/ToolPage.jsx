@@ -99,7 +99,7 @@ function ToolPage() {
                         </button>
                     </div>
                 </div>
-                <div className='min-h-full md:flex-1 min-w-72 w-full pb-5 col-span-3 h-full overflow-auto'>
+                <div className=' md:flex-1 min-w-72 w-full pb-5 col-span-3 overflow-auto'>
                     <TextEditor text={result} />
                 </div>
             </div>
