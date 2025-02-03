@@ -167,7 +167,7 @@ const ContextProvider = (props) => {
             modal: {
                 ondismiss: () => {
                     console.log("Payment popup closed.");
-                    toast.error("Payment unsuccessfull.")
+                    toast.error("Payment unsuccessful")
                     setAmount(0);
                     setCartItems(0);
                 },
