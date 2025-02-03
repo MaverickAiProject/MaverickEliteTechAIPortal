@@ -139,7 +139,7 @@ function Login() {
                         className="text-greyText text-right mt-2 w-full"
                         onClick={handleForgotPassword}
                     >
-                        <span className="border-b border-transparent w-fit hover:border-greyText transition-all ease-in-out duration-300 cursor-pointer"> Forget password?</span>
+                        <span className="border-b border-transparent w-fit hover:border-greyText transition-all ease-in-out duration-300 cursor-pointer"> Forgot password?</span>
                     </div>
 
                     : <div
