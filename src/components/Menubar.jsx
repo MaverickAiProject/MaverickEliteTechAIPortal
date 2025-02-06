@@ -26,7 +26,7 @@ function Menubar() {
 
     return (
         <div
-            className='flex h-16 py-2  fixed z-[1000] md:static bg-navbarBg text-textColor px-6 justify-between items-center w-full shadow-md  ease-in-out transform duration-300'
+            className='flex md:hidden h-16 py-2  fixed z-[1000] md:static bg-navbarBg text-textColor px-6 justify-between items-center w-full shadow-md  ease-in-out transform duration-300'
             onClick={handleNav}
         >
             <div onClick={toggleNavbar} className='md:hidden' >

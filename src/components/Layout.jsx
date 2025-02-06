@@ -20,7 +20,7 @@ const Layout = () => {
                 {/* <div className="h-full"> */}
                 <Sidebar />
                 {/* </div> */}
-                <div className={`flex-1 bg-dashboardBg transition-all ease-in-out duration-300 ${!navOpen ? 'overflow-y-auto' : 'overflow-hidden'}`} onClick={handleNavOpenClose}>
+                <div className={`flex-1 p-3 bg-dashboardBg transition-all ease-in-out duration-300 ${!navOpen ? 'overflow-y-auto' : 'overflow-hidden'}`} onClick={handleNavOpenClose}>
                     <Outlet />
                 </div>
             </div>

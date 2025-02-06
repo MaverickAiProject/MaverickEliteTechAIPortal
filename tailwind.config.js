@@ -20,6 +20,7 @@ export default {
         dashboardBg: "var(--dashboardBg)",
 
         whiteCard: "var(--whiteCard)",
+        whiteCardHover: "var(--whiteCardHover)",
         grayCard: "var(--grayCard)",
 
         inputBg: "var(--inputBg)",

@@ -27,6 +27,7 @@
 
   /* cards */
   --whiteCard: white;
+  --whiteCardHover: rgb(248, 248, 248);
 
   /* input */
   --inputBg: white;
@@ -52,6 +53,7 @@
 
   /* cards */
   --whiteCard: rgb(22, 22, 22);
+  --whiteCardHover: rgb(36, 36, 36);
 
   /* input */
   --inputBg: #303030;

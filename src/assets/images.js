@@ -5,6 +5,7 @@ import profile_logo from "./profile_logo.png";
 import dummy_image from "./dummy/dummy.jpg";
 import text_to_voice_dummy from "./text_to_voice.jpg";
 import ai_image_dummy from "./dummy/ai_image.png";
+import fireworks from "./dummy/fireworks.png";
 
 export const images = {
   logo_purple,
@@ -14,6 +15,7 @@ export const images = {
   dummy_image,
   text_to_voice_dummy,
   ai_image_dummy,
+  fireworks,
 };
 
 // tools images
@@ -31,6 +33,8 @@ import blog_topic_ideas from "./tools images/blog_topic_ideas.png";
 import image_compressor from "./tools images/image_compressor.png";
 import ai_image_gen from "./tools images/ai_image_gen.png";
 import text_to_voice from "./tools images/text_to_voice.png";
+import text from "./tools images/text.png";
+import voice from "./tools images/voice.png";
 
 export const TOOLS_IMAGES = {
   blog_content,
@@ -47,6 +51,8 @@ export const TOOLS_IMAGES = {
   image_compressor,
   ai_image_gen,
   text_to_voice,
+  text,
+  voice,
 };
 
 // Loading gifs
@@ -58,4 +64,15 @@ export const LOADING_GIFS = {
   image_compress_loading,
   microphone,
   progress,
+};
+
+// animated
+import video_camera from "./animated/video-camera.gif";
+import arrow_animated from "./animated/arrow-animated.gif";
+import fast_forward from "./animated/fast-forward.gif";
+
+export const ANIMATED = {
+  video_camera,
+  arrow_animated,
+  fast_forward,
 };

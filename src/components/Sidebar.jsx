@@ -6,6 +6,7 @@ import { NAV_MENUS } from "../utils/navMenus";
 import { ThemeContext } from "../context/ThemeContext";
 import { BsMoonStars } from "react-icons/bs";
 import { LuSunMedium } from "react-icons/lu";
+import LogoVideo from "./LogoVideo";
 
 function Sidebar() {
     const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -17,9 +18,12 @@ function Sidebar() {
     const navigate = useNavigate();
 
     return (
-        <div className={`${navOpen ? "left-0" : "-left-full"} transition-all ease-in-out duration-500 fixed md:relative w-56
+        <div className={`${navOpen ? "left-0" : "-left-full"} transition-all ease-in-out duration-500 fixed md:relative w-56 lg:w-64
          bg-sidebarBg justify-between p-4 md:pt-5 flex flex-col z-50 top-0 bottom-0 right-0 md:left-0 pt-20 h-screen md:h-full`}>
             <nav className="mb-9 pt-4 md:pt-0">
+                <div className="w-[80%] mx-auto mb-4 hidden md:block">
+                    <LogoVideo />
+                </div>
                 <ul className="space-y-2 h-full">
                     {navMenus.map((menu, index) => (
                         <li key={index}>
