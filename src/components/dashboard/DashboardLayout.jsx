@@ -18,7 +18,7 @@ function DashboardLayout() {
                         <InstagramComp />
                     </div>
                 </div>
-                <div className='sm:min-w-[400px]'>
+                <div className='sm:min-w-[350px]'>
                     <YoutubeComp />
                 </div>
             </div>

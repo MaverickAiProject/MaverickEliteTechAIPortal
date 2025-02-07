@@ -3,6 +3,7 @@ import { TOOLS_IMAGES } from "../assets/images";
 export const AI_TOOLS = [
   {
     title: "Instagram Reels Ideas",
+    smallTitle: "Reel Ideas",
     description:
       "Generate Trending ideas for Instagram Reels and make your videos viral.",
     icon: TOOLS_IMAGES.insta_reels_ideas,
@@ -13,6 +14,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Instagram Hashtags",
+    smallTitle: "Trending Hashtags",
     description:
       "Generate popular hashtags for your Instagram posts to boost engagement.",
     icon: TOOLS_IMAGES.instagram_hashtags,
@@ -23,6 +25,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Instagram Post Description",
+    smallTitle: "Post Description",
     description: "Create engaging captions for your Instagram posts.",
     icon: TOOLS_IMAGES.instagram_post_description,
     aiPrompt:
@@ -32,6 +35,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Youtube Videos Ideas",
+    smallTitle: "Get Video Ideas",
     description: "Generate trending ideas for your YouTube videos.",
     icon: TOOLS_IMAGES.youtube_videos_ideas,
     aiPrompt:
@@ -41,6 +45,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Youtube Video Title",
+    smallTitle: "Unique Video Title",
     description: "Create creative titles for your YouTube videos.",
     icon: TOOLS_IMAGES.youtube_seo_title,
     aiPrompt:
@@ -50,6 +55,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Youtube Description",
+    smallTitle: "Generate Description",
     description: "Write engaging descriptions for your YouTube videos.",
     icon: TOOLS_IMAGES.youtube_description,
     aiPrompt:
@@ -59,6 +65,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Youtube Hashtags",
+    smallTitle: "Get Trending Hashtags",
     description: "Generate effective hashtags for your YouTube videos.",
     icon: TOOLS_IMAGES.youtube_hashtags,
     aiPrompt: "Suggest trending hashtags for a YouTube video about [topic].",
@@ -67,6 +74,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Blog Title",
+    smallTitle: "Title",
     description: "Create catchy titles for your blog posts.",
     icon: TOOLS_IMAGES.blog_title,
     aiPrompt: "Suggest 5 engaging titles for a blog about [topic].",
@@ -75,6 +83,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Blog Content",
+    smallTitle: "Content",
     description: "Generate detailed content for your blog posts.",
     icon: TOOLS_IMAGES.blog_content,
     aiPrompt:
@@ -84,6 +93,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Blog Topic Ideas",
+    smallTitle: "Blog Topic Ideas",
     description: "Get ideas for blog topics in your niche.",
     icon: TOOLS_IMAGES.blog_topic_ideas,
     aiPrompt: "Suggest 10 blog topic ideas for the [niche] industry.",
@@ -92,6 +102,7 @@ export const AI_TOOLS = [
   },
   {
     title: "Keywords Generator",
+    smallTitle: "Keywords",
     description:
       "An AI Tool by which you can generate trending keywords with AI.",
     icon: TOOLS_IMAGES.keywords_generator,
