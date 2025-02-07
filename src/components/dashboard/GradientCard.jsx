@@ -10,7 +10,7 @@ function GradientCard({ gradient, link, image, otherText, heading }) {
             onClick={() => navigate(`/${link}`)}
         >
             <div className='w-[20%] py-3'>
-                <img src={image} alt="text" className='w-full sm:max-w-20 max-w-16' />
+                <img src={image} alt="text" className='w-full sm:max-w-20' />
             </div>
             <div className='flex flex-col justify-center sm:gap-1'>
                 <h2 className='xl:text-3xl md:text-2xl text-xl font-bold text-white'>{heading}</h2>
