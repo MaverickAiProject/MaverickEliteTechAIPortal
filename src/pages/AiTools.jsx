@@ -49,24 +49,24 @@ function AiTools() {
                     ? <div>
 
                         <div className='rounded-lg mb-2 mt-1'>
-                            <h1 className='font-bold text-center sm:text-left text-3xl mb-4 text-textColor'>Advanced Tools</h1>
+                            <h1 className='font-bold text-center sm:text-left text-3xl mb-3 text-purpleText pl-2'>Advanced Tools</h1>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {ADVANCED_TOOLS.map((tool, index) => (
                                     <div
                                         key={index}
                                         onClick={() => navigate('/' + tool.slug)}
-                                        className="bg-white rounded-2xl p-4 transition-all ease-in-out duration-[0.25s] relative hover:shadow-lg hover:bottom-1 bottom-0 cursor-pointer"
+                                        className="bg-whiteCard rounded-2xl p-4 transition-all ease-in-out duration-[0.25s] relative hover:shadow-lg hover:bottom-1 bottom-0 cursor-pointer"
                                     >
                                         <img src={tool.icon} alt={tool.title} className="w-full h-32 object-cover rounded-lg" />
-                                        <h3 className="mt-4 text-lg font-semibold text-gray-800">{tool.title}</h3>
-                                        <p className="text-sm text-gray-600 mt-2">{tool.description}</p>
+                                        <h3 className="mt-4 text-lg font-semibold text-textColor">{tool.title}</h3>
+                                        <p className="text-sm text-greyText mt-2">{tool.description}</p>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         <div className='py-3 rounded-lg'>
-                            <h1 className='font-bold text-center sm:text-left text-3xl mb-4 text-textColor'>Youtube</h1>
+                            <h1 className='font-bold text-center sm:text-left text-3xl mb-3 text-purpleText pl-1'>Youtube</h1>
                             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
                                 {youtubeList.map((tool, index) => (
                                     <AiToolCard
@@ -84,7 +84,7 @@ function AiTools() {
                         </div>
 
                         <div className=' py-3 rounded-lg'>
-                            <h1 className='font-bold text-center sm:text-left text-3xl mb-4 text-textColor'>Instagram</h1>
+                            <h1 className='font-bold text-center sm:text-left text-3xl mb-3 text-purpleText pl-1'>Instagram</h1>
                             <div className='grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
                                 {instagramList.map((tool, index) => (
                                     <AiToolCard
@@ -102,7 +102,7 @@ function AiTools() {
                         </div>
 
                         <div className='py-3 rounded-lg'>
-                            <h1 className='font-bold text-center sm:text-left text-3xl mb-4 text-textColor'>Blogs</h1>
+                            <h1 className='font-bold text-center sm:text-left text-3xl mb-3 text-purpleText pl-1'>Blogs</h1>
                             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
                                 {blogList.map((tool, index) => (
                                     <AiToolCard
@@ -120,7 +120,7 @@ function AiTools() {
                         </div>
 
                         <div className='py-3 rounded-lg'>
-                            <h1 className='font-bold text-center sm:text-left text-3xl mb-4 text-textColor'>LinkedIn</h1>
+                            <h1 className='font-bold text-center sm:text-left text-3xl mb-3 text-purpleText pl-1'>LinkedIn</h1>
                             <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
                                 {linkedInList.map((tool, index) => (
                                     <AiToolCard
