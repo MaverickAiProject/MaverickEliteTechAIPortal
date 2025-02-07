@@ -9,9 +9,9 @@ function InstagramComp() {
     const navigate = useNavigate();
 
     return (
-        <div className='flex flex-col gap-3 hover:shadow-lg mt-3 transition-all ease-in-out duration-200 cursor-pointer rounded-lg'>
+        <div className='flex flex-col gap-3 mt-3 transition-all ease-in-out duration-200 cursor-pointer rounded-lg'>
             <h2 className='text-2xl text-center sm:text-left font-bold text-purpleText'>🚀 Boost your <span className='text-pink-500'>Instagram</span>  Profile</h2>
-            <div className='grid grid-cols-2 place-items-center sm:grid-cols-3 mt-2 gap-3 '>
+            <div className='grid grid-cols-2 sm:grid-cols-3 mt-2 gap-3 '>
                 {YOUTUBE_TOOLS.map((tool, index) => (
                     <AiToolCard
                         key={index}

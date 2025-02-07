@@ -9,7 +9,7 @@ import ExploreMoreComp from './ExploreMoreComp'
 function DashboardLayout() {
     return (
         <div className='py-2 pb-5 rounded-lg flex flex-col gap-3'>
-            <div className='flex gap-3 flex-col lg:flex-row'>
+            <div className='flex gap-3 flex-col xl:flex-row'>
                 <div className='flex flex-col gap-3'>
                     <div className='md:mt-4 mt-1 flex-1'>
                         <ImageComp />
@@ -23,7 +23,7 @@ function DashboardLayout() {
                 </div>
             </div>
 
-            <div className='mt-3 gap-3 grid sm:grid-cols-3 w-full'>
+            <div className='mt-3 gap-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full'>
                 <div className=''>
                     <ImageCompressComp />
                 </div>
