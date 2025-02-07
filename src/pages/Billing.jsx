@@ -20,7 +20,7 @@ function Billing() {
                     description={'You can buy more credits if your balance is low and then enjoy.'}
                 />
             </GradientBox>
-            <div className='p-5 flex flex-wrap gap-4  '>
+            <div className='py-3 sm:py-5 flex flex-wrap gap-4  '>
                 <div className='max-w-[500px] md:w-5/6 lg:w-3/5 w-[100%] mx-auto h-[calc(100vh-210px)] md:h-full'>
                     <div className='flex justify-between py-3 px-5 gap-6 bg-whiteCard items-center transition-all ease-in-out duration-500 mb-3 shadow-sm rounded-lg'>
                         <div className='flex-1'>

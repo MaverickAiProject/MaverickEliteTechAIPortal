@@ -78,7 +78,7 @@ function TextToVoice() {
                     description={'Generate speech from text using AI'}
                 />
             </GradientBox>
-            <div className="max-w-[1200px] mx-auto min-h-fit items-start grid reve grid=cols-1 sm:grid-cols-2 justify-center gap-2 md:gap-4 p-6">
+            <div className="max-w-[1700px] mx-auto min-h-fit items-start grid reve grid=cols-1 sm:grid-cols-2 justify-center gap-2 md:gap-4 py-3 sm:py-6">
                 {/* Left Section */}
                 <div className="flex flex-col order-last sm:order-first gap-4 md:gap-6 min-w-full">
                     {/* Input & Button Card */}

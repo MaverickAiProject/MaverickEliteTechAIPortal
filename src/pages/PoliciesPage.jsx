@@ -41,7 +41,7 @@ function PoliciesPage() {
             <GradientBox>
                 <h1 className="font-semibold text-3xl">Our Policies</h1>
             </GradientBox>
-            <div className="p-3 sm:p-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 justify-center md:justify-start">
+            <div className="py-3 sm:py-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 justify-center md:justify-start">
                 {INFO_CARDS.map((card, index) => (
                     <div
                         key={index}

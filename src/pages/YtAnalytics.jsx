@@ -86,7 +86,7 @@ function YtAnalytics() {
                     description={"Get Youtube Analytics using AI"}
                 />
             </GradientBox>
-            <div className='p-4'>
+            <div className='py-3 sm:py-4'>
                 <SearchForm onSearch={fetchChannels} />
                 <ChannelList channels={channels} loading={loading} />
             </div>

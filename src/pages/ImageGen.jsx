@@ -69,13 +69,13 @@ function ImageGen() {
                     description={'Generate images using AI'}
                 />
             </GradientBox>
-            <div className=" max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3 md:gap-5 p-6">
+            <div className=" max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3 md:gap-5 py-3 sm:py-6">
                 {/* Left Section */}
                 <div className="flex flex-col gap-4 md:gap-6 w-full lg:w-1/2">
                     {/* Details Card */}
                     <div className="bg-whiteCard p-6 rounded-lg shadow-md">
                         <h2 className="text-xl md:text-2xl text-center font-bold text-purpleText mb-4">
-                            🚀 Welcome to Our AI Image Generator!
+                            AI Images Generator
                         </h2>
                         <p className="text-greyText text-sm text-justify">
                             Discover the power of AI to create stunning images from simple prompts. <br />

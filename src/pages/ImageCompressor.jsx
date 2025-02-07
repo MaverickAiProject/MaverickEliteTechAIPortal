@@ -93,7 +93,7 @@ function ImageCompressor() {
                 />
             </GradientBox>
 
-            <div className="compressor-container lg:max-w-[900px] lg:mx-auto py-6 px-4 lg:px-8 rounded-lg w-full mx-auto space-y-6">
+            <div className="compressor-container lg:max-w-[900px] lg:mx-auto py-3 sm:py-6 rounded-lg w-full mx-auto space-y-6">
 
                 {/* Control Section */}
                 <div className="controls flex flex-col gap-1 md:gap-3 lg:flex-row bg-whiteCard p-3 rounded-lg shadow-md justify-between items-center space-y-4 lg:space-y-0">

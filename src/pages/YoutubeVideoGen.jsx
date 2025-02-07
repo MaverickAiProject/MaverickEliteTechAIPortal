@@ -184,7 +184,7 @@ function YoutubeVideoGen() {
                 />
             </GradientBox>
 
-            <div className="p-5">
+            <div className="py-3 sm:py-5">
 
                 {/* Generated Script Section */}
                 {script.length > 0 && (

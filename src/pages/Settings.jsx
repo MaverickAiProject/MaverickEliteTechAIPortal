@@ -17,8 +17,8 @@ function Settings() {
                     description={"View and manage your account details, status, and other information."}
                 />
             </GradientBox>
-            <div className='p-5 h-[calc(100vh-5px)] md:h-auto  '>
-                <div className="bg-whiteCard rounded-md w-[90%] lg:w-2/5 mx-auto p-6 shadow-md">
+            <div className='py-3 sm:py-5 h-[calc(100vh-5px)] md:h-auto '>
+                <div className="bg-whiteCard rounded-md w-[100%] lg:w-2/5 mx-auto p-6 shadow-md">
                     <h1 className="text-2xl font-bold text-purpleText mb-4">User Details</h1>
                     <div className="space-y-4">
                         <p className="text-lg text-textColor">
