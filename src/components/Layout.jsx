@@ -17,10 +17,8 @@ const Layout = () => {
         <div className={`flex h-screen flex-col overflow-x-hidden ${navOpen ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
             <MenuBar />
             <div className="flex flex-1 relative w-screen">
-                {/* <div className="h-full"> */}
                 <Sidebar />
-                {/* </div> */}
-                <div className={`flex-1 p-3 bg-dashboardBg transition-all ease-in-out duration-300 ${!navOpen ? 'overflow-y-auto' : 'overflow-hidden'}`} onClick={handleNavOpenClose}>
+                <div className={`flex-1 p-3 sm:p-5 pt-4 sm:pt-3 bg-dashboardMainBg transition-all ease-in-out duration-300 ${!navOpen ? 'overflow-y-auto' : 'overflow-hidden'}`} onClick={handleNavOpenClose}>
                     <Outlet />
                 </div>
             </div>

@@ -73,6 +73,16 @@ export const AI_TOOLS = [
     category: "youtube",
   },
   {
+    title: "LinkedIn Post",
+    smallTitle: "LinkedIn Post",
+    description: "Generate professional LinkedIn Posts with the help of AI.",
+    icon: TOOLS_IMAGES.linkedin,
+    aiPrompt:
+      "Write a professional LinkedIn Post about [topic]. Use emojis also for better look.",
+    slug: "linkedIn-post",
+    category: "linkedIn",
+  },
+  {
     title: "Blog Title",
     smallTitle: "Title",
     description: "Create catchy titles for your blog posts.",

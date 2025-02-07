@@ -22,8 +22,11 @@
   --sidebarLinksHover: rgb(229 231 235);
   --grayCard: #e9e9e9;
 
-  /* dashboard */
-  --dashboardBg: #e7effe;
+  /* dashboard bg - to be used as a light color when dark theme */
+  --dashboardBg: #ebf2ff;
+
+  /* main dashboard */
+  --dashboardMainBg: #dfe9fc;
 
   /* cards */
   --whiteCard: white;
@@ -50,6 +53,7 @@
 
   /* dashboard */
   --dashboardBg: #303030;
+  --dashboardMainBg: #303030;
 
   /* cards */
   --whiteCard: rgb(22, 22, 22);

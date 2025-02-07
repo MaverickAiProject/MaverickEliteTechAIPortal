@@ -1,35 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import GradientBox from '../components/GradientBox'
-import { AI_TOOLS } from '../utils/toolsTemplate'
-import AiToolCard from '../components/AiToolCard'
-import { useNavigate } from 'react-router-dom'
 import ContentContainer from '../components/ContentContainer'
 import DashboardLayout from '../components/dashboard/DashboardLayout'
 
 
 function Dashboard() {
-
-    const navigate = useNavigate();
-
-    const [searchInput, setSearchInput] = useState('')
-    const [aiToolsList, setAiToolsList] = useState(AI_TOOLS)
-
-    useEffect(() => {
-        if (searchInput.trim()) {
-            const filteredList = AI_TOOLS.filter((tool) =>
-                tool.title.toLowerCase().includes(searchInput.toLowerCase())
-            );
-            setAiToolsList(filteredList);
-        } else {
-            setAiToolsList(AI_TOOLS);
-        }
-    }, [searchInput, AI_TOOLS]);
-
     return (
         <ContentContainer>
             <GradientBox>
-                <div className='flex flex-col items-center w-full px-2'>
-                    <h1 className='font-semibold md:text-3xl text-2xl md:mb-0 mb-1 text-center md:w-full w-[80%]'>AI Tools for Social Media Growth</h1>
+                <div className='flex flex-col items-center w-full px-5'>
+                    <h1 className='font-semibold md:text-3xl text-2xl md:mb-0 mb-1 text-center'>AI Tools for Social Media Growth</h1>
                     <p className='mt-2'>by Maverick Elite Tech</p>
                 </div>
             </GradientBox>

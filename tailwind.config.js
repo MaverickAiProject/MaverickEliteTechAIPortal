@@ -17,7 +17,9 @@ export default {
 
         sidebarBg: "var(--sidebarBg)",
         sidebarLinksHover: "var(--sidebarLinksHover)",
+
         dashboardBg: "var(--dashboardBg)",
+        dashboardMainBg: "var(--dashboardMainBg)",
 
         whiteCard: "var(--whiteCard)",
         whiteCardHover: "var(--whiteCardHover)",

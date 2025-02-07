@@ -35,6 +35,9 @@ import ai_image_gen from "./tools images/ai_image_gen.png";
 import text_to_voice from "./tools images/text_to_voice.png";
 import text from "./tools images/text.png";
 import voice from "./tools images/voice.png";
+import linkedin_circle from "./tools images/linkedin_circle.png";
+import linkedin from "./tools images/linkedin.png";
+import linkedin_normal from "./tools images/linkedin_normal.png";
 
 export const TOOLS_IMAGES = {
   blog_content,
@@ -53,6 +56,9 @@ export const TOOLS_IMAGES = {
   text_to_voice,
   text,
   voice,
+  linkedin,
+  linkedin_circle,
+  linkedin_normal,
 };
 
 // Loading gifs
