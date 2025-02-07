@@ -21,6 +21,11 @@ function AiTools() {
         }
     }, [searchInput, AI_TOOLS]);
 
+    const youtubeList = AI_TOOLS.filter(item => item.category === 'youtube')
+    const instagramList = AI_TOOLS.filter(item => item.category === 'instagram')
+    const blogList = AI_TOOLS.filter(item => item.category === 'blog')
+    const linkedInList = AI_TOOLS.filter(item => item.category === 'linkedIn')
+
     return (
         <ContentContainer>
             <GradientBox>
@@ -36,21 +41,100 @@ function AiTools() {
                     />
                 </div>
             </GradientBox>
-            <div>
-                <div className='py-3 mt-2 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
-                    {aiToolsList.map((tool, index) => (
-                        <AiToolCard
-                            key={index}
-                            cardImage={tool.icon}
-                            cardTitle={tool.title}
-                            cardText={tool.description}
-                            handleOpenToolPage={() => {
-                                navigate(`./${tool.slug}`);
-                            }
-                            }
-                        />
-                    ))}
-                </div>
+            <div className='flex flex-col mt-2 py-2 '>
+                {!searchInput || searchInput.length == 0
+                    ? <div>
+                        <div className='py-3 rounded-lg'>
+                            <h1 className='font-bold text-3xl mb-4 text-textColor'>Youtube</h1>
+                            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
+                                {youtubeList.map((tool, index) => (
+                                    <AiToolCard
+                                        key={index}
+                                        cardImage={tool.icon}
+                                        cardTitle={tool.title}
+                                        cardText={tool.description}
+                                        handleOpenToolPage={() => {
+                                            navigate(`./${tool.slug}`);
+                                        }
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className=' py-3 rounded-lg'>
+                            <h1 className='font-bold text-3xl mb-4 text-textColor'>Instagram</h1>
+                            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
+                                {instagramList.map((tool, index) => (
+                                    <AiToolCard
+                                        key={index}
+                                        cardImage={tool.icon}
+                                        cardTitle={tool.title}
+                                        cardText={tool.description}
+                                        handleOpenToolPage={() => {
+                                            navigate(`./${tool.slug}`);
+                                        }
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className='py-3 rounded-lg'>
+                            <h1 className='font-bold text-3xl mb-4 text-textColor'>Blogs</h1>
+                            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
+                                {blogList.map((tool, index) => (
+                                    <AiToolCard
+                                        key={index}
+                                        cardImage={tool.icon}
+                                        cardTitle={tool.title}
+                                        cardText={tool.description}
+                                        handleOpenToolPage={() => {
+                                            navigate(`./${tool.slug}`);
+                                        }
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className='py-3 rounded-lg'>
+                            <h1 className='font-bold text-3xl mb-4 text-textColor'>LinkedIn</h1>
+                            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
+                                {linkedInList.map((tool, index) => (
+                                    <AiToolCard
+                                        key={index}
+                                        cardImage={tool.icon}
+                                        cardTitle={tool.title}
+                                        cardText={tool.description}
+                                        handleOpenToolPage={() => {
+                                            navigate(`./${tool.slug}`);
+                                        }
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    : <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-3'>
+                        {aiToolsList.map((tool, index) => (
+                            <AiToolCard
+                                key={index}
+                                cardImage={tool.icon}
+                                cardTitle={tool.title}
+                                cardText={tool.description}
+                                handleOpenToolPage={() => {
+                                    navigate(`./${tool.slug}`);
+                                }
+                                }
+                            />
+                        ))}
+                    </div>
+                }
+
             </div>
         </ContentContainer>
     )

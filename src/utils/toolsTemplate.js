@@ -118,6 +118,6 @@ export const AI_TOOLS = [
     icon: TOOLS_IMAGES.keywords_generator,
     aiPrompt: "Generate a list of trending keywords based on user input.",
     slug: "keywords-gen",
-    category: "keywords",
+    category: "blog",
   },
 ];
