@@ -33,11 +33,15 @@ import blog_topic_ideas from "./tools images/blog_topic_ideas.png";
 import image_compressor from "./tools images/image_compressor.png";
 import ai_image_gen from "./tools images/ai_image_gen.png";
 import text_to_voice from "./tools images/text_to_voice.png";
+import text_to_voice_advance from "./tools images/text_to_voice_advance.jpg";
 import text from "./tools images/text.png";
 import voice from "./tools images/voice.png";
 import linkedin_circle from "./tools images/linkedin_circle.png";
 import linkedin from "./tools images/linkedin.png";
 import linkedin_normal from "./tools images/linkedin_normal.png";
+import ai_image_advance from "./tools images/ai_image_advance.png";
+import image_compress_advance from "./tools images/image_compress_advance.jpg";
+import video_gen_advance from "./tools images/video_gen_advance.jpg";
 
 export const TOOLS_IMAGES = {
   blog_content,
@@ -54,11 +58,15 @@ export const TOOLS_IMAGES = {
   image_compressor,
   ai_image_gen,
   text_to_voice,
+  text_to_voice_advance,
   text,
   voice,
   linkedin,
   linkedin_circle,
   linkedin_normal,
+  ai_image_advance,
+  image_compress_advance,
+  video_gen_advance,
 };
 
 // Loading gifs

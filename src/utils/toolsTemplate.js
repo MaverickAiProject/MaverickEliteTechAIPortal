@@ -113,11 +113,54 @@ export const AI_TOOLS = [
   {
     title: "Keywords Generator",
     smallTitle: "Keywords",
-    description:
-      "An AI Tool by which you can generate trending keywords with AI.",
+    description: "Generate trending keywords with AI.",
     icon: TOOLS_IMAGES.keywords_generator,
     aiPrompt: "Generate a list of trending keywords based on user input.",
     slug: "keywords-gen",
     category: "blog",
+  },
+];
+
+export const ADVANCED_TOOLS = [
+  {
+    title: "AI Images Generator",
+    smallTitle: "AI Images",
+    description: "Generate stunning AI-powered images with just a text prompt.",
+    icon: TOOLS_IMAGES.ai_image_advance,
+    aiPrompt: "Generate a high-quality AI image based on a given text prompt.",
+    slug: "image-gen",
+    category: "advance",
+  },
+
+  {
+    title: "Image Compressor",
+    smallTitle: "Compressor",
+    description:
+      "Compress your images without losing quality and reduce file size instantly.",
+    icon: TOOLS_IMAGES.image_compress_advance,
+    aiPrompt: "Optimize and compress images while maintaining high quality.",
+    slug: "image-compressor",
+    category: "advance",
+  },
+
+  {
+    title: "Text to Voice",
+    smallTitle: "Voice Generator",
+    description:
+      "Convert any text into realistic AI-generated voice instantly.",
+    icon: TOOLS_IMAGES.text_to_voice_advance,
+    aiPrompt: "Convert the given text into natural AI-generated speech.",
+    slug: "text-to-voice",
+    category: "advance",
+  },
+
+  {
+    title: "Video Generator",
+    smallTitle: "AI Videos",
+    description: "Create AI-powered videos from text or images effortlessly.",
+    icon: TOOLS_IMAGES.video_gen_advance,
+    aiPrompt: "Generate an AI-powered video from text or images.",
+    slug: "youtube-video-generator",
+    category: "advance",
   },
 ];
