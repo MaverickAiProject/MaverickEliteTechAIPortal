@@ -45,8 +45,6 @@ export default function AuthContextProvider({ children }) {
 
     }, []);
 
-    console.log(auth.currentUser)
-
     // sign in with google
     const handleSignInWithGoogle = async () => {
         try {
