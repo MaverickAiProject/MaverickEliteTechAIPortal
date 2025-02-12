@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -22,9 +22,11 @@ import YoutubeVideoGen from "./pages/YoutubeVideoGen";
 import { Toaster } from "react-hot-toast";
 import YtAnalytics from "./pages/YtAnalytics";
 import { ThemeProvider } from "./context/ThemeContext";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
-  const { authorizedUser } = useContext(Context);
+  // const { authorizedUser } = useContext(Context);
+  const { authorizedUser } = useAuth();
 
   return (
     <ThemeProvider>
@@ -78,3 +80,15 @@ function App() {
 }
 
 export default App;
+
+{/* <Route path="/" element={<Dashboard />} />
+<Route path="/ai-tools" element={<AiTools />} />
+<Route path="/ai-tools/:toolSlug" element={<ToolPage />} />
+<Route path="/image-gen" element={<ImageGen />} />
+<Route path="/image-compressor" element={<ImageCompressor />} />
+<Route path="/text-to-voice" element={<TextToVoice />} />
+<Route path="/youtube-video-generator" element={<YoutubeVideoGen />} />
+<Route path="/youtube-analytics" element={<YtAnalytics />} />
+<Route path="/billing" element={<Billing />} />
+<Route path="/settings" element={<Settings />} />
+<Route path="/PolicyPage" element={<PoliciesPage />} /> */}

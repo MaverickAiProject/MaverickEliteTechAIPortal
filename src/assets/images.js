@@ -6,6 +6,10 @@ import dummy_image from "./dummy/dummy.jpg";
 import text_to_voice_dummy from "./text_to_voice.jpg";
 import ai_image_dummy from "./dummy/ai_image.png";
 import fireworks from "./dummy/fireworks.png";
+import loginImage from "./dummy/login.jpg";
+import newLogo from "./newLogo.png";
+import fb from "./fb.png";
+import google from "./google.png";
 
 export const images = {
   logo_purple,
@@ -16,6 +20,10 @@ export const images = {
   text_to_voice_dummy,
   ai_image_dummy,
   fireworks,
+  loginImage,
+  newLogo,
+  fb,
+  google,
 };
 
 // tools images

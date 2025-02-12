@@ -50,6 +50,9 @@ function Sidebar() {
                     <CreditProgressBar />
                     <p className=' text-xs mt-1 '>{`${credits}/${maxLimit} Credits Left`}</p>
                 </div>
+                {/* <div className="bg-mainPurple text-white w-full py-2 rounded-lg flex items-center justify-center cursor-pointer">
+                    Login
+                </div> */}
                 <div className="bg-dashboardBg shadow-md text-greyText w-full text-center py-2 rounded-lg cursor-pointer" onClick={toggleDarkMode}>
                     {!darkMode
                         ? <p className="flex items-center justify-center gap-3"><span>Light Mode</span> <LuSunMedium /></p>

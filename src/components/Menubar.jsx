@@ -8,11 +8,13 @@ import { ThemeContext } from '../context/ThemeContext';
 import { BsMoonStars } from "react-icons/bs";
 import { LuSunMedium } from "react-icons/lu";
 import LogoVideo from './LogoVideo';
+import { useAuth } from '../context/AuthContext';
 
 function Menubar() {
     const { darkMode, toggleDarkMode } = useContext(ThemeContext);
     const navigate = useNavigate()
-    const { setNavOpen, navOpen, userDetails } = useContext(Context)
+    const { setNavOpen, navOpen } = useContext(Context)
+    const { userDetails } = useAuth()
 
     const toggleNavbar = () => {
         setNavOpen((prev) => !prev); // Correctly toggling navOpen state

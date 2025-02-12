@@ -7,6 +7,11 @@ import ReactLoading from 'react-loading';
 import PolicyLinks from "../components/PolicyLinks.jsx";
 import LogoVideo from "../components/LogoVideo.jsx";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import AuthOuter from "../components/auth/AuthOuter.jsx";
+import { images } from "../assets/images.js";
+import AuthMain from "../components/auth/AuthMain.jsx";
+import ExternalProviders from "../components/auth/ExternalProviders.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -17,7 +22,9 @@ function Login() {
     const [resetMailSent, setResetMailSent] = useState(false)
     const [timer, setTimer] = useState(0);
 
-    const { setAuthorizedUser, fetchUserData } = useContext(Context);
+    // const { setAuthorizedUser, fetchUserData } = useContext(Context);
+    const { setAuthorizedUser, fetchUserData } = useAuth();
+
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -88,16 +95,16 @@ function Login() {
     }, [timer])
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-dashboardBg ">
-            <div className="w-[90%] text-textColor max-w-lg border-gray-400 border p-8 bg-whiteCard shadow-md rounded-md">
-                <div>
-                    <div className="w-44 sm:w-48 mx-auto mb-5">
-                        <LogoVideo />
-                    </div>
-                    <h1 className="text-2xl font-bold text-purpleText text-center">
+        <AuthOuter>
+            <AuthMain>
+                <div className="flex mt-10 flex-col">
+                    <h1 className="md:text-3xl text-2xl font-bold mb-2 text-center">
                         Welcome Back!
                     </h1>
                     <p className="text-center mb-5">Log in to access your dashboard</p>
+                </div>
+                <div className="">
+                    <ExternalProviders />
                 </div>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
@@ -106,7 +113,7 @@ function Login() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
+                        className="w-full px-4 py-3 bg-[#f9fafb] text-lg rounded-xl focus:outline-none"
                     />
                     <input
                         type="password"
@@ -114,12 +121,12 @@ function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
+                        className="w-full px-4 py-3 bg-[#f9fafb] text-lg rounded-xl focus:outline-none"
                     />
 
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-mainPurple hover:bg-mainPurpleDark text-white font-bold rounded  transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-ligh flex items-center justify-center"
+                        className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded-xl text-xl hover:bg-mainPurpleDark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
                     >
                         {loading ?
                             <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
@@ -176,8 +183,8 @@ function Login() {
                 <div>
                     <PolicyLinks />
                 </div>
-            </div>
-        </div >
+            </AuthMain>
+        </AuthOuter>
     );
 }
 

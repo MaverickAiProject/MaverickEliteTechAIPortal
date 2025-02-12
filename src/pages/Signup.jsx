@@ -1,18 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth, db } from "../firebase.config.js";
 import { Link, useNavigate } from "react-router-dom";
-import { setDoc, doc, getDocs, collection, query, where } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import ReactLoading from 'react-loading';
-import { Context } from "../context/Context.jsx";
-import LogoVideo from "../components/LogoVideo.jsx";
 import PolicyLinks from "../components/PolicyLinks.jsx";
+import AuthOuter from "../components/auth/AuthOuter.jsx";
+import AuthMain from "../components/auth/AuthMain.jsx";
+import VerifyMailCard from "../components/auth/VerifyMailCard.jsx";
+import ExternalProviders from "../components/auth/ExternalProviders.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+
 
 function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-    const [number, setNumber] = useState("");
 
     const [verificationStatus, setVerificationStatus] = useState(false);
 
@@ -20,23 +23,12 @@ function Signup() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { setAuthorizedUser, newUser, setNewUser, fetchUserData } = useContext(Context)
+    const { setAuthorizedUser, newUser, setNewUser, fetchUserData } = useAuth();
 
     const handleSignup = async (e) => {
         e.preventDefault();
         setLoading(true)
         try {
-            // Phone number checking
-            const q = query(collection(db, "Users"), where("number", "==", number));
-            const querySnapshot = await getDocs(q);
-
-            if (!querySnapshot.empty) {
-                setError("This phone number is already registered.");
-                setLoading(false)
-                return;
-            }
-
-            // If phone number validation done - User login
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             await sendEmailVerification(userCredential.user);
             const user = auth.currentUser;
@@ -46,7 +38,6 @@ function Signup() {
                 await setDoc(doc(db, "Users", user.uid), {
                     email: user.email,
                     name: name,
-                    number: number,
                     credits: 1000,
                     maxLimit: 1000
                 });
@@ -87,20 +78,14 @@ function Signup() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-dashboardBg ">
+        <AuthOuter>
             {!newUser
                 &&
-                <div className="w-[90%] text-textColor max-w-lg border-gray-400 border py-4 px-4 sm:px-8 bg-whiteCard shadow-md rounded-md">
-                    <div>
-                        <div className="w-44 sm:w-44 mx-auto mb-3">
-                            <LogoVideo />
-                        </div>
-                        <h1 className="text-2xl font-bold text-purpleText text-center">
-                            Create New Account
-                        </h1>
-                        <p className="text-center mb-5">Deep dive into best AI Tools!</p>
-                    </div>
-
+                <AuthMain>
+                    <h1 className="md:text-3xl text-2xl font-semibold text-gray-500 mb-8 text-center">
+                        Create New Account
+                    </h1>
+                    <ExternalProviders />
                     <form onSubmit={handleSignup} className="space-y-4">
                         <input
                             type="text"
@@ -108,17 +93,7 @@ function Signup() {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
-                        />
-                        <input
-                            type="number"
-                            min="1000000000"
-                            max="9999999999"
-                            placeholder="Enter Your Phone Number"
-                            value={number}
-                            onChange={(e) => setNumber(e.target.value)}
-                            required
-                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
+                            className="w-full px-4 py-3 bg-[#f9fafb] text-lg rounded-xl focus:outline-none"
                         />
                         <input
                             type="email"
@@ -126,7 +101,7 @@ function Signup() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
+                            className="w-full px-4 py-3 bg-[#f9fafb] text-lg rounded-xl focus:outline-none"
                         />
                         <input
                             type="password"
@@ -135,26 +110,13 @@ function Signup() {
                             minLength="8"
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className=" w-full px-4 py-2 border border-gray-400 bg-inputBg rounded focus:outline-none focus:ring-2 focus:ring-purpleText "
+                            className="w-full px-4 py-3 bg-[#f9fafb] text-lg rounded-xl focus:outline-none"
                         />
-                        <div className="flex items-start space-x-2 mt-4">
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                required
-                                className="w-4 h-4 mt-1 text-purpleText accent-purpleText "
-                            />
-                            <label
-                                htmlFor="terms"
-                                className="text-sm text-greyText"
-                            >
-                                I hereby declare that the email and phone number I have provided are true and authentic. I also agree to the <Link to={'/t&c'} className="text-purpleText underline">Terms & Conditions</Link>  and <Link to={'/privacyPolicy'} className="text-purpleText underline"> Privacy Policy</Link> of Maverick AI Portal.
-                            </label>
-                        </div>
+                        <p className="text-base text-greyText">By continuing you agree to AI Mavs's <Link to={'/t&c'} className="text-purpleText underline">Terms & Conditions</Link>  and <Link to={'/privacyPolicy'} className="text-purpleText underline"> Privacy Policy</Link></p>
 
                         <button
                             type="submit"
-                            className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded hover:bg-mainPurpleDark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
+                            className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded-xl text-xl hover:bg-mainPurpleDark transition duration-300 dark:bg-dark-primary dark:hover:bg-dark-primary-light text-center flex items-center justify-center"
                         >
                             {loading ?
                                 <ReactLoading type={"bars"} color={"white"} height={'30px'} width={'30px'} />
@@ -163,7 +125,7 @@ function Signup() {
                         </button>
                     </form>
 
-                    <div className="text-center mt-2">
+                    <div className="text-center mt-3">
                         <p>Already have an account?{" "}
                             <Link to={'/login'} className="text-purpleText   font-semibold">
                                 Login here
@@ -176,27 +138,15 @@ function Signup() {
                         </p>
                     )}
                     <PolicyLinks />
-                </div>
+                </AuthMain>
             }
-            {newUser && !verificationStatus &&
-                <div className="w-full max-w-md p-8 bg-whiteCard shadow-md rounded-md flex flex-col gap-4 ">
-                    <div className="w-44 sm:w-44 mx-auto mb-3">
-                        <LogoVideo />
-                    </div>
-                    <h1 className="text-2xl font-bold text-purpleText text-center">
-                        Verify your Email
-                    </h1>
-                    <p className="text-center text-textColor mb-5">{`We have sent you a verification mail at ${newUser.email} . Open your Email Inbox and click on the link to verify your email.`}</p>
-                    <button
-                        type="submit"
-                        className="w-full px-4 py-2 bg-mainPurple text-white font-bold rounded hover:bg-mainPurpleDark transition duration-300 text-center flex items-center justify-center"
-                        onClick={handleEmailChange}
-                    >
-                        Want to use another email? Click here.
-                    </button>
-                </div>
+            {
+                newUser && !verificationStatus &&
+                <AuthMain>
+                    <VerifyMailCard newUser={newUser} handleEmailChange={handleEmailChange} />
+                </AuthMain>
             }
-        </div>
+        </AuthOuter >
     );
 }
 

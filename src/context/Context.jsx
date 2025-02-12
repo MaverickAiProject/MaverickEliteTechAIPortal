@@ -2,6 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase.config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
+import React from "react";
+import { useAuth } from "./AuthContext";
 
 export const Context = createContext();
 
@@ -10,59 +12,8 @@ const ContextProvider = (props) => {
     // nav open state
     const [navOpen, setNavOpen] = useState(false)
 
-    // Error Toast Message
-    const handleError = (message) => {
-        toast.error(message)
-    }
-
-    // User Realted States
-    const [newUser, setNewUser] = useState()
-    const [authorizedUser, setAuthorizedUser] = useState(null);
-    const [userDetails, setUserDetails] = useState("");
-
-    // Fetch user details from Firestore
-    const fetchUserData = async (user) => {
-        if (!user) {
-            setUserDetails("User details not found");
-            return;
-        }
-
-        try {
-            const docRef = doc(db, "Users", user.uid);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setUserDetails(docSnap.data());
-            } else {
-                console.log("User data does not exist in Firestore.");
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
-    };
-
-    // Monitor Firebase authentication state changes
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            if (user?.emailVerified === false) {
-                setNewUser(user)
-                setAuthorizedUser(null)
-            } else {
-                setAuthorizedUser(user);
-                fetchUserData(user);
-            }
-        });
-
-    }, []);
-
-    // Handle logout
-    const handleLogout = async () => {
-        try {
-            await auth.signOut();
-            console.log("Logout successfully");
-        } catch (error) {
-            console.error("Error during logout:", error);
-        }
-    };
+    // User related
+    const { userDetails, authorizedUser, fetchUserData } = useAuth();
 
     // Credits management
     const [credits, setCredits] = useState();
@@ -100,28 +51,21 @@ const ContextProvider = (props) => {
 
     };
 
-    // Deduct credits from Firestore
+    // Deduct credits 
     const deductCredits = async (amount) => {
         try {
             const userDocRef = doc(db, "Users", authorizedUser.uid);
             const userDocSnap = await getDoc(userDocRef);
             const currentCredits = userDocSnap.data().credits;
-
             const newCredits = currentCredits - amount;
-            // Update Firestore
-            await updateDoc(userDocRef, { credits: newCredits });
 
-            // Update local state
+            // Update Firestore details
+            await updateDoc(userDocRef, { credits: newCredits });
             setCredits(newCredits);
 
-            setUserDetails((prevDetails) => ({
-                ...prevDetails,
-                credits: newCredits,
-            }));
-
         } catch (error) {
-            toast.error("Error deducting credits:", error)
-            console.error("Error deducting credits:", error);
+            toast.error("Error deducting credits")
+            console.error("Error deducting credits", error);
         }
     };
 
@@ -186,7 +130,7 @@ const ContextProvider = (props) => {
 
     const handleBuyCredits = (val) => {
         if (val === 50) {
-            setAmount(50);
+            setAmount(1);
             setCartItems(500);
         } else if (val === 85) {
             setAmount(85);
@@ -210,21 +154,12 @@ const ContextProvider = (props) => {
 
     const contextValue = {
         navOpen, setNavOpen,
-        // User related
-        userDetails,
-        handleLogout,
-        authorizedUser,
-        setAuthorizedUser,
-        fetchUserData,
-        newUser, setNewUser,
-        // credits
         credits,
         setCredits,
         maxLimit,
         setMaxLimit,
         checkCredits,
         deductCredits,
-        // Buy credits
         buyNow,
         handleBuyCredits
     };

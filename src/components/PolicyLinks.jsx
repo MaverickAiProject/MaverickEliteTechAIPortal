@@ -20,10 +20,10 @@ function PolicyLinks() {
             name: 'Privacy Policy',
             link: '/privacyPolicy'
         },
-        {
-            name: 'Refund Policy',
-            link: '/refundPolicy'
-        },
+        // {
+        //     name: 'Refund Policy',
+        //     link: '/refundPolicy'
+        // },
     ]
 
     return (
